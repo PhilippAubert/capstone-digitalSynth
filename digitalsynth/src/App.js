@@ -9,13 +9,15 @@ import {
 
 export default function App() {
   const audioContext = new AudioContext();
+  const [oscillator, setOscillator] = useState(220);
   const [cutOffFrequency, setCutOffFrequency] = useState(100);
-  const [ampEnvelope, setAmpEnvelope] = useState(50);
+  const [ampEnvelope, setAmpEnvelope] = useState(10);
   let osc;
 
   function onClickStart() {
     osc = audioContext.createOscillator();
     osc.type = "square";
+    osc.frequency.setValueAtTime(oscillator, audioContext.currentTime);
     const filter = audioContext.createBiquadFilter();
     osc.connect(filter);
     const gainNode = audioContext.createGain();
@@ -31,6 +33,10 @@ export default function App() {
     osc.stop();
   }
 
+  function handleOscChange(event) {
+    setOscillator(Number(event.target.value));
+  }
+
   function handleFilterChange(event) {
     setCutOffFrequency(Number(event.target.value));
   }
@@ -44,6 +50,10 @@ export default function App() {
       <div className="App">
         <header className="App-header">SYNTH RESEARCH LAB</header>
         <nav>
+          <NavLink className="Slider" to="/oscillator">
+            {" "}
+            Oscillator{" "}
+          </NavLink>
           <NavLink className="Slider" to="/filter">
             {" "}
             Filter{" "}
@@ -55,6 +65,17 @@ export default function App() {
         </nav>
 
         <Switch>
+          <Route path="/oscillator">
+            {" "}
+            <input
+              value={oscillator}
+              onChange={handleOscChange}
+              type="range"
+              min="0"
+              max="1000"
+              className="Value"
+            />
+          </Route>
           <Route path="/filter">
             <input
               value={cutOffFrequency}
