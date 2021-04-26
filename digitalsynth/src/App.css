@@ -1,3 +1,44 @@
 .App {
   text-align: center;
 }
+
+.App-header {
+  padding: 10%;
+  font-family: "Squad";
+  font-size: 50px;
+  color: #f00;
+  margin-bottom: 10px;
+}
+
+.Touchpad {
+  height: 200px;
+  width: 200px;
+  border: 3px solid #f00;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+.Btn {
+  padding: 3%;
+  border-radius: 5px;
+  margin: 5px;
+  font-family: "Akira Expanded";
+  border: 3px solid #f00;
+  color: #f00;
+  background: #fff;
+}
+
+.Slider {
+  text-decoration: none;
+  font-family: "Akira Expanded";
+  color: #f00;
+  margin: 5px;
+}
+
+input {
+  margin: 20px;
+}
+
+.Value {
+  color: #f00;
+}
