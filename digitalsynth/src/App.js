@@ -36,6 +36,7 @@ export default function App() {
     gainNode.connect(delay);
     delay.connect(audioContext.destination);
 
+
     osc1.start();
     osc2.start();
     console.log("osc1 playing");
@@ -122,22 +123,22 @@ export default function App() {
         </Switch>
         <div className="Slider">Oscillator 2</div>
         <input
-          value={delayAmount}
-          onChange={handleDelayChange}
+          value={oscillator2}
+          onChange={handleOsc2Change}
           type="range"
           min="0"
-          max="180"
+          max="100"
           className="Value"
         />
 
         <div className="Slider">Delay</div>
 
         <input
-          value={oscillator2}
-          onChange={handleOsc2Change}
+          value={delayAmount}
+          onChange={handleDelayChange}
           type="range"
           min="0"
-          max="1000"
+          max="20"
           className="Value"
         />
 
