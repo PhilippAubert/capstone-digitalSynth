@@ -3,11 +3,11 @@
 }
 
 .App-header {
-  padding: 10%;
   font-family: "Squad";
   font-size: 50px;
   color: #f00;
-  margin-bottom: 10px;
+  margin:10%;
+
 }
 
 .Touchpad {

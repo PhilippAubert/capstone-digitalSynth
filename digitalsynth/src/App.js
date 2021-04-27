@@ -13,7 +13,7 @@ export default function App() {
   const [oscillator2, setOscillator2] = useState(220);
   const [cutOffFrequency, setCutOffFrequency] = useState(100);
   const [ampEnvelope, setAmpEnvelope] = useState(10);
-  const [delayAmount, setDelayAmount] = useState(10);
+  const [delayAmount, setDelayAmount] = useState(0.5);
   let osc1;
   let osc2;
 
@@ -126,7 +126,7 @@ export default function App() {
           onChange={handleDelayChange}
           type="range"
           min="0"
-          max="18"
+          max="180"
           className="Value"
         />
 
