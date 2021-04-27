@@ -9,18 +9,24 @@ import {
 
 export default function App() {
   const audioContext = new AudioContext();
-  const [oscillator, setOscillator] = useState(220);
+  const [oscillator1, setOscillator1] = useState(220);
+  const [oscillator2, setOscillator2] = useState(220);
   const [cutOffFrequency, setCutOffFrequency] = useState(100);
   const [ampEnvelope, setAmpEnvelope] = useState(10);
-  const [delayAmount, setDelayAmount] = useState(1.0);
-  let osc;
+  const [delayAmount, setDelayAmount] = useState(10);
+  let osc1;
+  let osc2;
 
   function onClickStart() {
-    osc = audioContext.createOscillator();
-    osc.type = "square";
-    osc.frequency.setValueAtTime(oscillator, audioContext.currentTime);
+    osc1 = audioContext.createOscillator();
+    osc1.type = "square";
+    osc1.frequency.setValueAtTime(oscillator1, audioContext.currentTime);
+    osc2 = audioContext.createOscillator();
+    osc2.type = "square";
+    osc2.frequency.setValueAtTime(oscillator2, audioContext.currentTime);
     const filter = audioContext.createBiquadFilter();
-    osc.connect(filter);
+    osc2.connect(filter);
+    osc1.connect(filter);
     const gainNode = audioContext.createGain();
     gainNode.gain.value = ampEnvelope;
     filter.frequency.setValueAtTime(cutOffFrequency, audioContext.currentTime);
@@ -30,15 +36,23 @@ export default function App() {
     gainNode.connect(delay);
     delay.connect(audioContext.destination);
 
-    osc.start();
+    osc1.start();
+    osc2.start();
+    console.log("osc1 playing");
+    console.log("osc2 playing");
   }
 
   function onClickStop() {
-    osc.stop();
+    osc1.stop();
+    osc2.stop();
   }
 
-  function handleOscChange(event) {
-    setOscillator(Number(event.target.value));
+  function handleOsc1Change(event) {
+    setOscillator1(Number(event.target.value));
+  }
+
+  function handleOsc2Change(event) {
+    setOscillator2(Number(event.target.value));
   }
 
   function handleFilterChange(event) {
@@ -60,7 +74,7 @@ export default function App() {
         <nav>
           <NavLink className="Slider" to="/oscillator">
             {" "}
-            Oscillator{" "}
+            Oscillator 1{" "}
           </NavLink>
           <NavLink className="Slider" to="/filter">
             {" "}
@@ -76,8 +90,8 @@ export default function App() {
           <Route path="/oscillator">
             {" "}
             <input
-              value={oscillator}
-              onChange={handleOscChange}
+              value={oscillator1}
+              onChange={handleOsc1Change}
               type="range"
               min="0"
               max="1000"
@@ -106,13 +120,24 @@ export default function App() {
             />
           </Route>
         </Switch>
-        <div className="Slider">Delay</div>
+        <div className="Slider">Oscillator 2</div>
         <input
           value={delayAmount}
           onChange={handleDelayChange}
           type="range"
           min="0"
           max="18"
+          className="Value"
+        />
+
+        <div className="Slider">Delay</div>
+
+        <input
+          value={oscillator2}
+          onChange={handleOsc2Change}
+          type="range"
+          min="0"
+          max="1000"
           className="Value"
         />
 
