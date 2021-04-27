@@ -12,6 +12,7 @@ export default function App() {
   const [oscillator, setOscillator] = useState(220);
   const [cutOffFrequency, setCutOffFrequency] = useState(100);
   const [ampEnvelope, setAmpEnvelope] = useState(10);
+  const [delayAmount, setDelayAmount] = useState(1.0);
   let osc;
 
   function onClickStart() {
@@ -24,7 +25,10 @@ export default function App() {
     gainNode.gain.value = ampEnvelope;
     filter.frequency.setValueAtTime(cutOffFrequency, audioContext.currentTime);
     filter.connect(gainNode);
-    gainNode.connect(audioContext.destination);
+    const delay = audioContext.createDelay();
+    delay.delayTime.setValueAtTime(delayAmount, audioContext.currentTime);
+    gainNode.connect(delay);
+    delay.connect(audioContext.destination);
 
     osc.start();
   }
@@ -43,6 +47,10 @@ export default function App() {
 
   function handleAmpChange(event) {
     setAmpEnvelope(Number(event.target.value));
+  }
+
+  function handleDelayChange(event) {
+    setDelayAmount(Number(event.target.value));
   }
 
   return (
@@ -82,7 +90,7 @@ export default function App() {
               onChange={handleFilterChange}
               type="range"
               min="0"
-              max="1000"
+              max="100"
               className="Value"
             />
           </Route>
@@ -98,6 +106,15 @@ export default function App() {
             />
           </Route>
         </Switch>
+        <div className="Slider">Delay</div>
+        <input
+          value={delayAmount}
+          onChange={handleDelayChange}
+          type="range"
+          min="0"
+          max="18"
+          className="Value"
+        />
 
         <div className="Touchpad"></div>
         <button onClick={onClickStart} className="Btn">
