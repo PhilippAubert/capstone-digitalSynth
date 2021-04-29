@@ -1,5 +1,8 @@
 import "./App.css";
-import { useState } from "react";
+import Header from "./components/Header.js";
+import Touchpad from "./components/Touchpad.js";
+import Footer from "./components/Footer.js";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,148 +11,222 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const audioContext = new AudioContext();
-  const [oscillator1, setOscillator1] = useState(220);
-  const [oscillator2, setOscillator2] = useState(220);
-  const [cutOffFrequency, setCutOffFrequency] = useState(100);
-  const [ampEnvelope, setAmpEnvelope] = useState(10);
-  const [delayAmount, setDelayAmount] = useState(0.5);
-  let osc1;
-  let osc2;
-
-  function onClickStart() {
-    osc1 = audioContext.createOscillator();
-    osc1.type = "square";
-    osc1.frequency.setValueAtTime(oscillator1, audioContext.currentTime);
-    osc2 = audioContext.createOscillator();
-    osc2.type = "square";
-    osc2.frequency.setValueAtTime(oscillator2, audioContext.currentTime);
-    const filter = audioContext.createBiquadFilter();
-    osc2.connect(filter);
-    osc1.connect(filter);
-    const gainNode = audioContext.createGain();
-    gainNode.gain.value = ampEnvelope;
-    filter.frequency.setValueAtTime(cutOffFrequency, audioContext.currentTime);
-    filter.connect(gainNode);
-    const delay = audioContext.createDelay();
-    delay.delayTime.setValueAtTime(delayAmount, audioContext.currentTime);
-    gainNode.connect(delay);
-    delay.connect(audioContext.destination);
-
-
-    osc1.start();
-    osc2.start();
-    console.log("osc1 playing");
-    console.log("osc2 playing");
-  }
-
-  function onClickStop() {
-    osc1.stop();
-    osc2.stop();
-  }
-
-  function handleOsc1Change(event) {
-    setOscillator1(Number(event.target.value));
-  }
-
-  function handleOsc2Change(event) {
-    setOscillator2(Number(event.target.value));
-  }
-
-  function handleFilterChange(event) {
-    setCutOffFrequency(Number(event.target.value));
-  }
-
-  function handleAmpChange(event) {
-    setAmpEnvelope(Number(event.target.value));
-  }
-
-  function handleDelayChange(event) {
-    setDelayAmount(Number(event.target.value));
-  }
-
   return (
-    <Router>
-      <div className="App">
-        <header className="App-header">SYNTH RESEARCH LAB</header>
-        <nav>
-          <NavLink className="Slider" to="/oscillator">
-            {" "}
-            Oscillator 1{" "}
-          </NavLink>
-          <NavLink className="Slider" to="/filter">
-            {" "}
-            Filter{" "}
-          </NavLink>
-          <NavLink className="Slider" to="/amp">
-            {" "}
-            Amp{" "}
-          </NavLink>
-        </nav>
+    <div className="App">
+      <header className="App-Header">
+        <Header />
+      </header>
+      <main className="App-Main">
+        <Router>
+          <nav>
+            <NavLink className="Slider" to="/oscillator">
+              {" "}
+              VCO{" "}
+            </NavLink>
+            <NavLink className="Slider" to="/filter">
+              {" "}
+              VCF{" "}
+            </NavLink>
+            <NavLink className="Slider" to="/amp">
+              {" "}
+              VCA{" "}
+            </NavLink>
+          </nav>
+          <Switch>
+            <Route path="/oscillator">
+              {" "}
+              <div className="Function-Board">
+                <h2>Set Oscillator</h2>
 
-        <Switch>
-          <Route path="/oscillator">
-            {" "}
-            <input
-              value={oscillator1}
-              onChange={handleOsc1Change}
-              type="range"
-              min="0"
-              max="1000"
-              className="Value"
-            />
-          </Route>
-          <Route path="/filter">
-            <input
-              value={cutOffFrequency}
-              onChange={handleFilterChange}
-              type="range"
-              min="0"
-              max="100"
-              className="Value"
-            />
-          </Route>
-          <Route path="/amp">
-            {" "}
-            <input
-              value={ampEnvelope}
-              onChange={handleAmpChange}
-              type="range"
-              min="0"
-              max="100"
-              className="Value"
-            />
-          </Route>
-        </Switch>
-        <div className="Slider">Oscillator 2</div>
-        <input
-          value={oscillator2}
-          onChange={handleOsc2Change}
-          type="range"
-          min="0"
-          max="100"
-          className="Value"
-        />
+                <div className="Vco-bar">
+                  <h2>OSC 1</h2>
 
-        <div className="Slider">Delay</div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="15"
+                    viewBox="0 0 980.005 711.671"
+                  >
+                    <g
+                      id="dfea22860915215cb76e09557237856c"
+                      transform="translate(-10 -144.169)"
+                    >
+                      <g
+                        id="Gruppe_1"
+                        data-name="Gruppe 1"
+                        transform="translate(0 511)"
+                      >
+                        <path
+                          id="Pfad_1"
+                          data-name="Pfad 1"
+                          d="M36.01-365c-10.4,3-17.21,8.6-21.81,18.21l-4.2,8.6V-10.68c0,273.69.4,328.71,2.8,334.11,3.2,7.8,12.2,16.41,19.81,19.21,4,1.6,146.05,2.2,467.76,2.2,383.53,0,463.15-.4,468.55-2.8,8.6-3.4,19.01-15.6,20.41-23.61.6-3.6.8-153.85.6-333.91l-.6-327.11-5.4-8.2a38.494,38.494,0,0,0-13-11.8c-7.4-3.8-19.61-3.8-467.75-4.2C201.86-367,40.61-366.4,36.01-365ZM500.16-54.3C608.2,73.35,697.23,177.98,698.03,178.18c.6.2,38.41-42.41,84.03-94.63l82.63-94.83H895.7c17,0,30.61.8,30.21,1.8-1,3-226.48,274.29-227.87,274.29-.6,0-89.83-104.44-197.87-232.08C391.93-94.91,302.9-199.34,302.1-199.34c-.6,0-38.21,42.21-83.23,94.03L137.04-11.48l-31.81.2H73.42l4.8-6C97.63-42.09,301.3-286.97,302.3-286.77,302.9-286.57,391.93-181.94,500.16-54.3Z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
 
-        <input
-          value={delayAmount}
-          onChange={handleDelayChange}
-          type="range"
-          min="0"
-          max="20"
-          className="Value"
-        />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="15"
+                    viewBox="0 0 143.937 81.359"
+                  >
+                    <g
+                      id="_8c54389548b4d9e831e8df59dd38f593"
+                      data-name="8c54389548b4d9e831e8df59dd38f593"
+                      transform="translate(-10 -144.169)"
+                    >
+                      <g
+                        id="Gruppe_1"
+                        data-name="Gruppe 1"
+                        transform="translate(10 144.169)"
+                      >
+                        <path
+                          id="Pfad_1"
+                          data-name="Pfad 1"
+                          d="M13.82-366.622a4.623,4.623,0,0,0-3.2,2.082l-.617.983v37.441c0,31.289.059,37.579.411,38.2a5.385,5.385,0,0,0,2.91,2.2c.587.183,21.451.252,68.7.252,56.331,0,68.025-.046,68.818-.32a5.111,5.111,0,0,0,3-2.7c.088-.412.117-17.588.088-38.173l-.088-37.4-.793-.937a5.4,5.4,0,0,0-1.909-1.349c-1.087-.434-2.88-.434-68.7-.48C38.179-366.85,14.5-366.782,13.82-366.622Zm72.873,36.893v28.018h48.778v-24.5l4.643.069,4.613.069.088,15.851.059,15.828H77.29v-56.264H28.512v24.472h-9.4v-31.564H86.695v28.019Z"
+                          transform="translate(-10 366.831)"
+                        />
+                      </g>
+                    </g>
+                  </svg>
 
-        <div className="Touchpad"></div>
-        <button onClick={onClickStart} className="Btn">
-          START
-        </button>
-        <button onClick={onClickStop} className="Btn">
-          STOP
-        </button>
-      </div>
-    </Router>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="15"
+                    viewBox="0 0 102.795 57.906"
+                  >
+                    <g id="sine" transform="translate(-10 -144.169)">
+                      <g
+                        id="Gruppe_1"
+                        data-name="Gruppe 1"
+                        transform="translate(10 144.169)"
+                      >
+                        <path
+                          id="Pfad_1"
+                          data-name="Pfad 1"
+                          d="M12.728-366.682a3.3,3.3,0,0,0-2.288,1.482l-.441.7v26.648c0,22.269.042,26.746.294,27.185a3.845,3.845,0,0,0,2.078,1.563c.42.13,15.32.179,49.064.179,40.229,0,48.581-.033,49.147-.228a3.645,3.645,0,0,0,2.141-1.921c.063-.293.084-12.518.063-27.169l-.063-26.616-.566-.667a3.86,3.86,0,0,0-1.364-.96c-.776-.309-2.057-.309-49.063-.342C30.125-366.845,13.211-366.8,12.728-366.682Zm30.954,6.561c8.142,1.335,15.844,9.2,20.566,21.016,2.623,6.561,5.415,11.037,9.087,14.57a14.863,14.863,0,0,0,5.289,3.387,7.265,7.265,0,0,0,3.588.586,7.307,7.307,0,0,0,3.672-.635c3.274-1.253,6.8-4.509,9.674-8.954a55.957,55.957,0,0,0,3.735-6.9l.357-.846h3.232c2.938,0,3.232.033,3.232.277a47.913,47.913,0,0,1-3.274,7.163c-4.68,8.35-10.661,13.478-17.293,14.813a22.947,22.947,0,0,1-6.505.065,23.372,23.372,0,0,1-6.065-2.279c-5.834-3.369-11.249-10.516-14.627-19.307-2.414-6.3-6.463-12.242-10.346-15.237-3.735-2.881-7.366-3.516-11.312-2-4.511,1.726-9.4,7.456-12.864,15.123l-.587,1.3-3.274.049c-2.812.033-3.253,0-3.253-.212a16.9,16.9,0,0,1,.86-2.247c3.567-8.269,8.919-14.846,14.543-17.841a21.2,21.2,0,0,1,5.456-1.889A21.327,21.327,0,0,1,43.682-360.121Z"
+                          transform="translate(-10 366.831)"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+
+                <input type="range" min="0" max="1000" className="Value" />
+
+                <div className="Vco-bar">
+                  <h2>OSC 2</h2>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="15"
+                    viewBox="0 0 980.005 711.671"
+                  >
+                    <g
+                      id="dfea22860915215cb76e09557237856c"
+                      transform="translate(-10 -144.169)"
+                    >
+                      <g
+                        id="Gruppe_1"
+                        data-name="Gruppe 1"
+                        transform="translate(0 511)"
+                      >
+                        <path
+                          id="Pfad_1"
+                          data-name="Pfad 1"
+                          d="M36.01-365c-10.4,3-17.21,8.6-21.81,18.21l-4.2,8.6V-10.68c0,273.69.4,328.71,2.8,334.11,3.2,7.8,12.2,16.41,19.81,19.21,4,1.6,146.05,2.2,467.76,2.2,383.53,0,463.15-.4,468.55-2.8,8.6-3.4,19.01-15.6,20.41-23.61.6-3.6.8-153.85.6-333.91l-.6-327.11-5.4-8.2a38.494,38.494,0,0,0-13-11.8c-7.4-3.8-19.61-3.8-467.75-4.2C201.86-367,40.61-366.4,36.01-365ZM500.16-54.3C608.2,73.35,697.23,177.98,698.03,178.18c.6.2,38.41-42.41,84.03-94.63l82.63-94.83H895.7c17,0,30.61.8,30.21,1.8-1,3-226.48,274.29-227.87,274.29-.6,0-89.83-104.44-197.87-232.08C391.93-94.91,302.9-199.34,302.1-199.34c-.6,0-38.21,42.21-83.23,94.03L137.04-11.48l-31.81.2H73.42l4.8-6C97.63-42.09,301.3-286.97,302.3-286.77,302.9-286.57,391.93-181.94,500.16-54.3Z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="15"
+                    viewBox="0 0 143.937 81.359"
+                  >
+                    <g
+                      id="_8c54389548b4d9e831e8df59dd38f593"
+                      data-name="8c54389548b4d9e831e8df59dd38f593"
+                      transform="translate(-10 -144.169)"
+                    >
+                      <g
+                        id="Gruppe_1"
+                        data-name="Gruppe 1"
+                        transform="translate(10 144.169)"
+                      >
+                        <path
+                          id="Pfad_1"
+                          data-name="Pfad 1"
+                          d="M13.82-366.622a4.623,4.623,0,0,0-3.2,2.082l-.617.983v37.441c0,31.289.059,37.579.411,38.2a5.385,5.385,0,0,0,2.91,2.2c.587.183,21.451.252,68.7.252,56.331,0,68.025-.046,68.818-.32a5.111,5.111,0,0,0,3-2.7c.088-.412.117-17.588.088-38.173l-.088-37.4-.793-.937a5.4,5.4,0,0,0-1.909-1.349c-1.087-.434-2.88-.434-68.7-.48C38.179-366.85,14.5-366.782,13.82-366.622Zm72.873,36.893v28.018h48.778v-24.5l4.643.069,4.613.069.088,15.851.059,15.828H77.29v-56.264H28.512v24.472h-9.4v-31.564H86.695v28.019Z"
+                          transform="translate(-10 366.831)"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="15"
+                    viewBox="0 0 102.795 57.906"
+                  >
+                    <g id="sine" transform="translate(-10 -144.169)">
+                      <g
+                        id="Gruppe_1"
+                        data-name="Gruppe 1"
+                        transform="translate(10 144.169)"
+                      >
+                        <path
+                          id="Pfad_1"
+                          data-name="Pfad 1"
+                          d="M12.728-366.682a3.3,3.3,0,0,0-2.288,1.482l-.441.7v26.648c0,22.269.042,26.746.294,27.185a3.845,3.845,0,0,0,2.078,1.563c.42.13,15.32.179,49.064.179,40.229,0,48.581-.033,49.147-.228a3.645,3.645,0,0,0,2.141-1.921c.063-.293.084-12.518.063-27.169l-.063-26.616-.566-.667a3.86,3.86,0,0,0-1.364-.96c-.776-.309-2.057-.309-49.063-.342C30.125-366.845,13.211-366.8,12.728-366.682Zm30.954,6.561c8.142,1.335,15.844,9.2,20.566,21.016,2.623,6.561,5.415,11.037,9.087,14.57a14.863,14.863,0,0,0,5.289,3.387,7.265,7.265,0,0,0,3.588.586,7.307,7.307,0,0,0,3.672-.635c3.274-1.253,6.8-4.509,9.674-8.954a55.957,55.957,0,0,0,3.735-6.9l.357-.846h3.232c2.938,0,3.232.033,3.232.277a47.913,47.913,0,0,1-3.274,7.163c-4.68,8.35-10.661,13.478-17.293,14.813a22.947,22.947,0,0,1-6.505.065,23.372,23.372,0,0,1-6.065-2.279c-5.834-3.369-11.249-10.516-14.627-19.307-2.414-6.3-6.463-12.242-10.346-15.237-3.735-2.881-7.366-3.516-11.312-2-4.511,1.726-9.4,7.456-12.864,15.123l-.587,1.3-3.274.049c-2.812.033-3.253,0-3.253-.212a16.9,16.9,0,0,1,.86-2.247c3.567-8.269,8.919-14.846,14.543-17.841a21.2,21.2,0,0,1,5.456-1.889A21.327,21.327,0,0,1,43.682-360.121Z"
+                          transform="translate(-10 366.831)"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <input type="range" min="0" max="1000" className="Value" />
+              </div>
+            </Route>
+            <Route path="/filter">
+              <div className="Function-Board">
+                <div className="Filter-bar">
+                  <h2>Filter </h2>
+                  <h2> LP </h2>
+                  <h2> HP </h2>
+                </div>
+                <h2> Cutoff </h2>
+                <input type="range" min="0" max="100" className="Value" />
+                <h2> Resonance </h2>
+                <input type="range" min="0" max="100" className="Value" />
+              </div>
+            </Route>
+
+            <Route path="/amp">
+              <div className="Function-Board">
+                <div className="Amp-bar">
+                  <h2>Set Amp Envelope</h2>
+                </div>{" "}
+                <h2> Attack </h2>
+                <input type="range" min="0" max="100" className="Value" />
+                <h2> Decay </h2>
+                <input type="range" min="0" max="100" className="Value" />
+              </div>
+            </Route>
+          </Switch>
+        </Router>
+
+        <Touchpad />
+      </main>
+      <footer className="App-Footer">
+        <Footer />
+      </footer>
+    </div>
   );
 }

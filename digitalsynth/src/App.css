@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+ 
+
+
 .App {
   text-align: center;
 }
 
-.App-header {
-  font-family: "Squad";
-  font-size: 50px;
+.App-Header {
+  font-family:"Press Start 2P";
+  font-size: 35px;
   color: #f00;
   margin:10%;
 
@@ -20,9 +25,8 @@
 
 .Btn {
   padding: 3%;
-  border-radius: 8px;
   margin: 15px;
-  font-family: "Akira Expanded";
+  font-family: "Orbitron";
   border: 3px solid #f00;
   color: #f00;
   background: #fff;
@@ -30,9 +34,14 @@
 
 .Slider {
   text-decoration: none;
-  font-family: "Akira Expanded";
+  font-family: "Orbitron";
   color: #f00;
   margin: 5px;
+  font-weight:800;
+  border: 3px solid #f00;
+  border-radius: 8px;
+  padding:2%;
+  font-size:15px;
 }
 
 input {
@@ -41,4 +50,47 @@ input {
 
 .Value {
   color: #f00;
+}
+
+.App-Footer{
+  color:#f00;
+  display:flex;
+  justify-content:space-between;
+}
+
+.Function-Board{
+  border:3px solid #f00;
+  font-family:Orbitron;
+  color:#f00;
+  border-radius: 15px;
+  width:200px;
+  height:200px;
+  margin:4vh auto;
+}
+
+.Function-Board h2{
+  font-size:15px;
+}
+
+.Function-Board input{
+  margin:0 auto;
+}
+
+.Vco-bar{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.Filter-bar{
+ display:flex;
+ flex-direction:row;
+ justify-content:space-around;
+}
+
+.Amp-bar{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
 }
