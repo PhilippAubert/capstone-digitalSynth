@@ -18,7 +18,7 @@ export default function App() {
       </header>
       <main className="App-Main">
         <Router>
-          <nav>
+          <nav className="Nav-Bar">
             <NavLink className="Slider" to="/oscillator">
               {" "}
               VCO{" "}
@@ -32,6 +32,7 @@ export default function App() {
               VCA{" "}
             </NavLink>
           </nav>
+
           <Switch>
             <Route path="/oscillator">
               {" "}
