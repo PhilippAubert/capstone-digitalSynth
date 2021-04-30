@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,6 +11,45 @@ import {
 } from "react-router-dom";
 
 export default function App() {
+  const audioContextRef = useRef(new AudioContext());
+  const [oscFrequency, setOscFrequency] = useState(220);
+  const [filterFrequency, setFilterFrequency] = useState(220);
+  const oscRef = useRef(null);
+  const filterRef = useRef(null);
+
+  useEffect(() => {
+    if (oscRef.current) {
+      oscRef.current.frequency.value = oscFrequency;
+    }
+  }, [oscFrequency]);
+
+  useEffect(() => {
+    if (filterRef.current) {
+      filterRef.current.frequency.value = filterFrequency;
+    }
+  }, [filterFrequency]);
+
+  function onClickStart() {
+    oscRef.current = audioContextRef.current.createOscillator();
+    filterRef.current = audioContextRef.current.createBiquadFilter();
+    oscRef.current.frequency.value = oscFrequency;
+    oscRef.current.connect(filterRef.current);
+    filterRef.current.connect(audioContextRef.current.destination);
+    oscRef.current.start();
+  }
+
+  function onClickStop() {
+    oscRef.current.stop();
+  }
+
+  function handleOscFrequencyChange(event) {
+    setOscFrequency(Number(event.target.value));
+  }
+
+  function handleFilterCutoffChange(event) {
+    setFilterFrequency(Number(event.target.value));
+  }
+
   return (
     <div className="App">
       <header className="App-Header">
@@ -117,7 +156,14 @@ export default function App() {
                   </div>
                 </div>
 
-                <input type="range" min="0" max="1000" className="Value" />
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  value={oscFrequency}
+                  onChange={handleOscFrequencyChange}
+                  className="Value"
+                />
 
                 <div className="Vco-bar">
                   <h2>OSC 2</h2>
@@ -204,11 +250,18 @@ export default function App() {
               <div className="Function-Board">
                 <div className="Filter-bar">
                   <h2>Filter </h2>
-                  <h2> LP </h2>
-                  <h2> HP </h2>
+                  <h2 className="Filter-Box"> LP </h2>
+                  <h2 className="Filter-Box"> HP </h2>
                 </div>
                 <h2> Cutoff </h2>
-                <input type="range" min="0" max="100" className="Value" />
+                <input
+                  value={filterFrequency}
+                  onChange={handleFilterCutoffChange}
+                  type="range"
+                  min="0"
+                  max="100"
+                  className="Value"
+                />
                 <h2> Resonance </h2>
                 <input type="range" min="0" max="100" className="Value" />
               </div>
@@ -229,6 +282,9 @@ export default function App() {
         </Router>
 
         <Touchpad />
+
+        <button onClick={onClickStart}> Start </button>
+        <button onClick={onClickStop}> Stop </button>
       </main>
       <footer className="App-Footer">
         <Footer />
