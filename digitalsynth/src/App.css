@@ -10,13 +10,14 @@
 
 .App-Header {
   font-family: "Press Start 2P";
-  font-size: 1.5em;
+  font-size: 2.2em;
   color: #f00;
   grid-row: 1/2;
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  margin: 0 auto;
+  margin: 0 15%;
 }
 
 .Nav-Bar {
@@ -35,6 +36,9 @@
 
 .App-Footer {
   grid-row: 3/4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .Touchpad {
@@ -45,15 +49,6 @@
   margin: 0 auto;
 }
 
-.Btn {
-  padding: 3%;
-  margin: 15px;
-  font-family: "Orbitron";
-  border: 3px solid #f00;
-  color: #f00;
-  background: #fff;
-}
-
 .Slider {
   text-decoration: none;
   font-family: "Orbitron";
@@ -61,8 +56,8 @@
   font-weight: 800;
   border: 3px solid #f00;
   border-radius: 8px;
-  margin: 0 9%;
-  padding: 1%;
+  margin: 0 7%;
+  padding: 2%;
   font-size: 90%;
 }
 
@@ -85,7 +80,7 @@ input {
   font-family: Orbitron;
   color: #f00;
   border-radius: 15px;
-  width: 200px;
+  width: 250px;
   height: 200px;
   margin: 4vh auto;
 }
@@ -98,11 +93,21 @@ input {
   margin: 0 auto;
 }
 
+.Icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .Vco-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.Vco-bar h2 {
+  text-align: left;
 }
 
 .Filter-bar {
