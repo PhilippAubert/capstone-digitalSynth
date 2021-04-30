@@ -14,7 +14,9 @@ export default function App() {
   const audioContextRef = useRef(new AudioContext());
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc2Frequency, setOsc2Frequency] = useState(220);
-  const [filterFrequency, setFilterFrequency] = useState(100);
+  const [filterFrequency, setFilterFrequency] = useState(1000);
+  const [filterResonance, setFilterResonance] = useState(0);
+
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
 
@@ -270,7 +272,7 @@ export default function App() {
                   onChange={handleOsc2FrequencyChange}
                   type="range"
                   min="0"
-                  max="1000"
+                  max="440"
                   className="Value"
                 />
               </div>
