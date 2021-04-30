@@ -12,16 +12,25 @@ import {
 
 export default function App() {
   const audioContextRef = useRef(new AudioContext());
-  const [oscFrequency, setOscFrequency] = useState(220);
-  const [filterFrequency, setFilterFrequency] = useState(220);
-  const oscRef = useRef(null);
+  const [osc1Frequency, setOsc1Frequency] = useState(220);
+  const [osc2Frequency, setOsc2Frequency] = useState(220);
+  const [filterFrequency, setFilterFrequency] = useState(100);
+  const oscRef1 = useRef(null);
+  const oscRef2 = useRef(null);
+
   const filterRef = useRef(null);
 
   useEffect(() => {
-    if (oscRef.current) {
-      oscRef.current.frequency.value = oscFrequency;
+    if (oscRef1.current) {
+      oscRef1.current.frequency.value = osc1Frequency;
     }
-  }, [oscFrequency]);
+  }, [osc1Frequency]);
+
+  useEffect(() => {
+    if (oscRef2.current) {
+      oscRef2.current.frequency.value = osc2Frequency;
+    }
+  }, [osc2Frequency]);
 
   useEffect(() => {
     if (filterRef.current) {
@@ -30,20 +39,33 @@ export default function App() {
   }, [filterFrequency]);
 
   function onClickStart() {
-    oscRef.current = audioContextRef.current.createOscillator();
+    oscRef1.current = audioContextRef.current.createOscillator();
+    oscRef1.current.type = "square";
+    oscRef2.current = audioContextRef.current.createOscillator();
+    oscRef2.current.type = "square";
     filterRef.current = audioContextRef.current.createBiquadFilter();
-    oscRef.current.frequency.value = oscFrequency;
-    oscRef.current.connect(filterRef.current);
+    oscRef1.current.frequency.value = osc1Frequency;
+    oscRef2.current.frequency.value = osc2Frequency;
+
+    oscRef1.current.connect(filterRef.current);
+    oscRef2.current.connect(filterRef.current);
     filterRef.current.connect(audioContextRef.current.destination);
-    oscRef.current.start();
+
+    oscRef1.current.start();
+    oscRef2.current.start();
   }
 
   function onClickStop() {
-    oscRef.current.stop();
+    oscRef1.current.stop();
+    oscRef2.current.stop();
   }
 
-  function handleOscFrequencyChange(event) {
-    setOscFrequency(Number(event.target.value));
+  function handleOsc1FrequencyChange(event) {
+    setOsc1Frequency(Number(event.target.value));
+  }
+
+  function handleOsc2FrequencyChange(event) {
+    setOsc2Frequency(Number(event.target.value));
   }
 
   function handleFilterCutoffChange(event) {
@@ -159,9 +181,9 @@ export default function App() {
                 <input
                   type="range"
                   min="0"
-                  max="1000"
-                  value={oscFrequency}
-                  onChange={handleOscFrequencyChange}
+                  max="440"
+                  value={osc1Frequency}
+                  onChange={handleOsc1FrequencyChange}
                   className="Value"
                 />
 
@@ -243,7 +265,14 @@ export default function App() {
                   </div>
                 </div>
 
-                <input type="range" min="0" max="1000" className="Value" />
+                <input
+                  value={osc2Frequency}
+                  onChange={handleOsc2FrequencyChange}
+                  type="range"
+                  min="0"
+                  max="1000"
+                  className="Value"
+                />
               </div>
             </Route>
             <Route path="/filter">
@@ -259,7 +288,7 @@ export default function App() {
                   onChange={handleFilterCutoffChange}
                   type="range"
                   min="0"
-                  max="100"
+                  max="1000"
                   className="Value"
                 />
                 <h2> Resonance </h2>
