@@ -3,6 +3,7 @@ import Header from "./components/Header.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import { useState, useEffect, useRef } from "react";
+import * as Tone from "tone";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,11 +12,9 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const audioContextRef = useRef(new AudioContext());
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc2Frequency, setOsc2Frequency] = useState(220);
   const [filterFrequency, setFilterFrequency] = useState(1000);
-  const [filterResonance, setFilterResonance] = useState(0);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
@@ -41,17 +40,14 @@ export default function App() {
   }, [filterFrequency]);
 
   function onClickStart() {
-    oscRef1.current = audioContextRef.current.createOscillator();
-    oscRef1.current.type = "square";
-    oscRef2.current = audioContextRef.current.createOscillator();
-    oscRef2.current.type = "square";
-    filterRef.current = audioContextRef.current.createBiquadFilter();
-    oscRef1.current.frequency.value = osc1Frequency;
-    oscRef2.current.frequency.value = osc2Frequency;
+    Tone.start();
+    oscRef1.current = new Tone.Oscillator(osc1Frequency, "square");
+    oscRef2.current = new Tone.Oscillator(osc2Frequency, "square");
+    filterRef.current = new Tone.Filter(filterRef.current, "lowpass");
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(audioContextRef.current.destination);
+    filterRef.current.connect(Tone.getDestination());
 
     oscRef1.current.start();
     oscRef2.current.start();
@@ -294,7 +290,7 @@ export default function App() {
                   className="Value"
                 />
                 <h2> Resonance </h2>
-                <input type="range" min="0" max="100" className="Value" />
+                <input type="range" min="0" max="880" className="Value" />
               </div>
             </Route>
 
