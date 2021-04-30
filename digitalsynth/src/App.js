@@ -15,7 +15,9 @@ export default function App() {
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc2Frequency, setOsc2Frequency] = useState(220);
   const [filterFrequency, setFilterFrequency] = useState(1000);
+  const [ampEnvelope, setAmpEnvelope] = useState(100);
 
+  const envRef = useRef(null);
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
 
@@ -39,15 +41,23 @@ export default function App() {
     }
   }, [filterFrequency]);
 
+  useEffect(() => {
+    if (envRef.current) {
+      envRef.current.attack.value = ampEnvelope;
+    }
+  }, [ampEnvelope]);
+
   function onClickStart() {
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency, "square");
     oscRef2.current = new Tone.Oscillator(osc2Frequency, "square");
     filterRef.current = new Tone.Filter(filterRef.current, "lowpass");
+    envRef.current = new Tone.Envelope(envRef.current, "linear");
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(Tone.getDestination());
+    filterRef.current.connect(envRef.current);
+    envRef.current.connect(Tone.getDestination());
 
     oscRef1.current.start();
     oscRef2.current.start();
@@ -68,6 +78,10 @@ export default function App() {
 
   function handleFilterCutoffChange(event) {
     setFilterFrequency(Number(event.target.value));
+  }
+
+  function handleAmpEnvelope(event) {
+    setAmpEnvelope(Number(event.target.value));
   }
 
   return (
@@ -300,8 +314,15 @@ export default function App() {
                   <h2>Set Amp Envelope</h2>
                 </div>{" "}
                 <h2> Attack </h2>
-                <input type="range" min="0" max="100" className="Value" />
-                <h2> Decay </h2>
+                <input
+                  value={ampEnvelope}
+                  onChange={handleAmpEnvelope}
+                  type="range"
+                  min="0"
+                  max="100"
+                  className="Value"
+                />
+                <h2> Release </h2>
                 <input type="range" min="0" max="100" className="Value" />
               </div>
             </Route>
