@@ -15,9 +15,9 @@ export default function App() {
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc2Frequency, setOsc2Frequency] = useState(220);
   const [filterFrequency, setFilterFrequency] = useState(1000);
-  const [ampEnvelope, setAmpEnvelope] = useState(100);
+  const [attackEnvelope, setAttackEnvelope] = useState({ attack: "0.1" });
 
-  const envRef = useRef(null);
+  const attackRef = useRef(null);
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
 
@@ -42,25 +42,22 @@ export default function App() {
   }, [filterFrequency]);
 
   useEffect(() => {
-    if (envRef.current) {
-      envRef.current.attack.value = ampEnvelope;
+    if (attackRef.current) {
+      attackRef.current.attack.value = attackEnvelope;
     }
-  }, [ampEnvelope]);
+  }, [attackEnvelope]);
 
   function onClickStart() {
     Tone.start();
-    oscRef1.current = new Tone.Oscillator(osc1Frequency, "square");
-    oscRef2.current = new Tone.Oscillator(osc2Frequency, "square");
-    filterRef.current = new Tone.Filter(filterRef.current, "lowpass");
-    envRef.current = new Tone.Envelope(envRef.current, "linear");
+    oscRef1.current = new Tone.Oscillator(osc1Frequency, "square").start();
+    oscRef2.current = new Tone.Oscillator(osc2Frequency, "square").start();
+    filterRef.current = new Tone.Filter(filterRef, "lowpass");
+    attackRef.current = new Tone.AmplitudeEnvelope(attackRef);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(envRef.current);
-    envRef.current.connect(Tone.getDestination());
-
-    oscRef1.current.start();
-    oscRef2.current.start();
+    filterRef.current.connect(attackRef.current);
+    attackRef.current.connect(Tone.getDestination());
   }
 
   function onClickStop() {
@@ -80,8 +77,8 @@ export default function App() {
     setFilterFrequency(Number(event.target.value));
   }
 
-  function handleAmpEnvelope(event) {
-    setAmpEnvelope(Number(event.target.value));
+  function handleAttackEnvelope(event) {
+    setAttackEnvelope(Number(event.target.value));
   }
 
   return (
@@ -315,14 +312,14 @@ export default function App() {
                 </div>{" "}
                 <h2> Attack </h2>
                 <input
-                  value={ampEnvelope}
-                  onChange={handleAmpEnvelope}
+                  value={attackEnvelope}
+                  onChange={handleAttackEnvelope}
                   type="range"
                   min="0"
                   max="100"
                   className="Value"
                 />
-                <h2> Release </h2>
+                <h2> Decay </h2>
                 <input type="range" min="0" max="100" className="Value" />
               </div>
             </Route>
