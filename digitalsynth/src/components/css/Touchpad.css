@@ -1,0 +1,6 @@
+.Touchpad {
+  height: 250px;
+  width: 250px;
+  border: 3px solid #f00;
+  border-radius: 15px;
+}

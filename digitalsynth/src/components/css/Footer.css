@@ -1,0 +1,10 @@
+.FooterNav {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  font-family: "Press Start 2P";
+  font-size: 1.3vh;
+}
