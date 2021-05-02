@@ -6,7 +6,7 @@
   display: grid;
   grid-template-rows: 15vh auto 10vh;
   height: 100vh;
-  background: #000;
+  background: #fc0303;
 }
 
 .App-Header {

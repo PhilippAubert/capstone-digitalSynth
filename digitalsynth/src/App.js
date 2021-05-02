@@ -15,11 +15,12 @@ export default function App() {
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc2Frequency, setOsc2Frequency] = useState(220);
   const [filterFrequency, setFilterFrequency] = useState(1000);
+  const [reverbDuration, setReverbDuration] = useState(1);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
-
   const filterRef = useRef(null);
+  const revRef = useRef(null);
 
   useEffect(() => {
     if (oscRef1.current) {
@@ -39,15 +40,23 @@ export default function App() {
     }
   }, [filterFrequency]);
 
+  useEffect(() => {
+    if (revRef.current) {
+      revRef.current.decay = reverbDuration;
+    }
+  }, [reverbDuration]);
+
   function onClickStart() {
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency, "square").start();
     oscRef2.current = new Tone.Oscillator(osc2Frequency, "square").start();
-    filterRef.current = new Tone.Filter(filterRef, "lowpass");
+    filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
+    revRef.current = new Tone.Reverb(reverbDuration);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(Tone.getDestination());
+    filterRef.current.connect(revRef.current);
+    revRef.current.connect(Tone.getDestination());
   }
 
   function onClickStop() {
@@ -65,6 +74,10 @@ export default function App() {
 
   function handleFilterCutoffChange(event) {
     setFilterFrequency(Number(event.target.value));
+  }
+
+  function handleReverbChange(event) {
+    setReverbDuration(Number(event.target.value));
   }
 
   return (
@@ -86,6 +99,10 @@ export default function App() {
             <NavLink className="Slider" to="/amp">
               {" "}
               VCA{" "}
+            </NavLink>
+            <NavLink className="Slider" to="/vfx">
+              {" "}
+              VFX{" "}
             </NavLink>
           </nav>
 
@@ -273,7 +290,7 @@ export default function App() {
             <Route path="/filter">
               <div className="Function-Board">
                 <div className="Filter-bar">
-                  <h2>Filter </h2>
+                  <h2>SET FILTER </h2>
                   <h2 className="Filter-Box"> LP </h2>
                   <h2 className="Filter-Box"> HP </h2>
                 </div>
@@ -294,7 +311,7 @@ export default function App() {
             <Route path="/amp">
               <div className="Function-Board">
                 <div className="Amp-bar">
-                  <h2>Set Amp Envelope</h2>
+                  <h2>SET AMP ENVELOPE</h2>
                 </div>{" "}
                 <h2> Attack </h2>
                 <input
@@ -305,6 +322,26 @@ export default function App() {
                   step="0.1"
                 />
                 <h2> Decay </h2>
+                <input type="range" min="0" max="100" className="Value" />
+              </div>
+            </Route>
+
+            <Route path="/vfx">
+              <div className="Function-Board">
+                <div className="Amp-bar">
+                  <h2>SET AUDIO EFFECTS</h2>
+                </div>{" "}
+                <h2> Reverb </h2>
+                <input
+                  value={reverbDuration}
+                  onChange={handleReverbChange}
+                  type="range"
+                  min="0.1"
+                  max="10"
+                  className="Value"
+                  step="0.1"
+                />
+                <h2> D </h2>
                 <input type="range" min="0" max="100" className="Value" />
               </div>
             </Route>
