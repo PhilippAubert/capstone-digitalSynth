@@ -16,11 +16,13 @@ export default function App() {
   const [osc2Frequency, setOsc2Frequency] = useState(220);
   const [filterFrequency, setFilterFrequency] = useState(1000);
   const [reverbDuration, setReverbDuration] = useState(1);
+  const [phaserDuration, setPhaserDuration] = useState(1);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
   const revRef = useRef(null);
+  const phaserRef = useRef(null);
 
   useEffect(() => {
     if (oscRef1.current) {
@@ -46,17 +48,25 @@ export default function App() {
     }
   }, [reverbDuration]);
 
+  useEffect(() => {
+    if (phaserRef.current) {
+      phaserRef.current.octaves = phaserDuration;
+    }
+  }, [phaserDuration]);
+
   function onClickStart() {
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency, "square").start();
     oscRef2.current = new Tone.Oscillator(osc2Frequency, "square").start();
     filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
     revRef.current = new Tone.Reverb(reverbDuration);
+    phaserRef.current = new Tone.Phaser(phaserDuration);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
     filterRef.current.connect(revRef.current);
-    revRef.current.connect(Tone.getDestination());
+    revRef.current.connect(phaserRef.current);
+    phaserRef.current.connect(Tone.getDestination());
   }
 
   function onClickStop() {
@@ -78,6 +88,10 @@ export default function App() {
 
   function handleReverbChange(event) {
     setReverbDuration(Number(event.target.value));
+  }
+
+  function handlePhaserChange(event) {
+    setPhaserDuration(Number(event.target.value));
   }
 
   return (
@@ -341,8 +355,15 @@ export default function App() {
                   className="Value"
                   step="0.1"
                 />
-                <h2> D </h2>
-                <input type="range" min="0" max="100" className="Value" />
+                <h2> Phaser </h2>
+                <input
+                  value={phaserDuration}
+                  onChange={handlePhaserChange}
+                  type="range"
+                  min="0"
+                  max="100"
+                  className="Value"
+                />
               </div>
             </Route>
           </Switch>
