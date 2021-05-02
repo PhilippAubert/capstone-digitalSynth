@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./css/Touchpad.css";
 
 export default function Touchpad() {
-  const [pointPos, setPointPos] = useState({ x: 110, y: 90 });
+  const [pointPos, setPointPos] = useState({ x: 0, y: 0 });
 
   function handlePointerMove(event) {
     const { clientX, clientY } = event;

@@ -287,7 +287,7 @@ export default function App() {
                   className="Value"
                 />
                 <h2> Resonance </h2>
-                <input type="range" min="0" max="880" className="Value" />
+                <input type="range" min="0" max="1000" className="Value" />
               </div>
             </Route>
 
@@ -312,9 +312,16 @@ export default function App() {
         </Router>
 
         <Touchpad />
-
-        <button onClick={onClickStart}> Start </button>
-        <button onClick={onClickStop}> Stop </button>
+        <div className="OnOff_Board">
+          <button className="OnOff" onClick={onClickStart}>
+            {" "}
+            Start{" "}
+          </button>
+          <button className="OnOff" onClick={onClickStop}>
+            {" "}
+            Stop{" "}
+          </button>
+        </div>
       </main>
       <footer className="App-Footer">
         <Footer />

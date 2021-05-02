@@ -6,22 +6,19 @@
   display: grid;
   grid-template-rows: 15vh auto 10vh;
   height: 100vh;
-  background: #850008;
+  background: #000;
 }
 
 .App-Header {
-  font-family: "Squad";
-  font-size: 2.9em;
-  color: white;
   grid-row: 1/2;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 2px solid white;
   background: #b6000c;
-  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
+  box-shadow: inset 5px 5px 10px #f00030, inset -5px -5px 10px #f00010;
 }
 
 .Nav-Bar {
@@ -54,7 +51,7 @@
   border: 3px solid white;
   border-radius: 15px;
   background: #b6000c;
-  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00090;
 }
 
 .Slider {
@@ -143,4 +140,15 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.OnOff_Board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.OnOff {
+  margin: 0 10%;
+  font-size: 1.5em;
 }
