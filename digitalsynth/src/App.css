@@ -9,8 +9,8 @@
 }
 
 .App-Header {
-  font-family: "Press Start 2P";
-  font-size: 1.9em;
+  font-family: "Squad";
+  font-size: 2.9em;
   color: #f00;
   grid-row: 1/2;
   display: flex;
@@ -25,6 +25,7 @@
   flex-direction: row;
   justify-content: space-around;
   margin-top: 20px;
+  font-size: 1.5em;
 }
 
 .App-Main {
@@ -52,7 +53,7 @@
 
 .Slider {
   text-decoration: none;
-  font-family: "Orbitron";
+  font-family: "Toxigenesis";
   color: #f00;
   font-weight: 800;
   border: 3px solid #f00;
@@ -78,7 +79,7 @@ input {
 
 .Function-Board {
   border: 3px solid #f00;
-  font-family: Orbitron;
+  font-family: "Toxigenesis";
   color: #f00;
   border-radius: 15px;
   width: 250px;
