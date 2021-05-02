@@ -1,5 +1,5 @@
 .FooterNav {
-  width: 100vw;
+  width: 89vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -7,4 +7,5 @@
   margin: 0 auto;
   font-family: "Toxigenesis";
   font-size: 1.3vh;
+  color: white;
 }

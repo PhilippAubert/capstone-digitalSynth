@@ -6,18 +6,22 @@
   display: grid;
   grid-template-rows: 15vh auto 10vh;
   height: 100vh;
+  background: #850008;
 }
 
 .App-Header {
   font-family: "Squad";
   font-size: 2.9em;
-  color: #f00;
+  color: white;
   grid-row: 1/2;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  border-bottom: 2px dotted #f00;
+  border-radius: 15px;
+  border: 2px solid white;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Nav-Bar {
@@ -46,21 +50,26 @@
 .Touchpad {
   height: 30%;
   width: 30%;
-  border: 3px solid #f00;
-  border-radius: 15px;
   margin: 0 auto;
+  border: 3px solid white;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Slider {
   text-decoration: none;
   font-family: "Toxigenesis";
-  color: #f00;
+  color: white;
   font-weight: 800;
-  border: 3px solid #f00;
-  border-radius: 8px;
+  border: 3px solid white;
+  border-radius: 10px;
   margin: 0 7%;
   padding: 2%;
   font-size: 90%;
+  font-weight: 200;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 input {
@@ -75,20 +84,27 @@ input {
   color: #f00;
   display: flex;
   justify-content: space-between;
+  border: 3px solid white;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Function-Board {
-  border: 3px solid #f00;
+  border: 2px solid white;
   font-family: "Toxigenesis";
-  color: #f00;
+  color: white;
   border-radius: 15px;
   width: 250px;
   height: 200px;
   margin: 1vh auto;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Function-Board h2 {
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .Function-Board input {
