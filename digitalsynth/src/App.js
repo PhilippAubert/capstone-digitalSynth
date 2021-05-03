@@ -14,13 +14,27 @@ import {
 export default function App() {
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc2Frequency, setOsc2Frequency] = useState(220);
+
   const [filterFrequency, setFilterFrequency] = useState(1000);
+
+  const [resonance, setResonance] = useState(0);
+
+  const [ampEnvelope, setAmpEnvelope] = useState({
+    attack: 0.1,
+    decay: 100,
+    sustain: 1.0,
+    release: 0.8,
+  });
+
   const [reverbDuration, setReverbDuration] = useState(0.1);
   const [phaserDuration, setPhaserDuration] = useState(0.1);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
+  const resonanceRef = useRef(null);
+  const ampEnvRef = useRef(null);
+
   const revRef = useRef(null);
   const phaserRef = useRef(null);
 
@@ -43,6 +57,18 @@ export default function App() {
   }, [filterFrequency]);
 
   useEffect(() => {
+    if (resonanceRef.current) {
+      resonanceRef.current.Q.value = resonance;
+    }
+  });
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.attack.value = ampEnvelope;
+    }
+  }, [ampEnvelope]);
+
+  useEffect(() => {
     if (revRef.current) {
       revRef.current.decay = reverbDuration;
     }
@@ -59,12 +85,15 @@ export default function App() {
     oscRef1.current = new Tone.Oscillator(osc1Frequency, "square").start();
     oscRef2.current = new Tone.Oscillator(osc2Frequency, "square").start();
     filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
+    resonanceRef.current = new Tone.Filter(resonance.Q);
+    ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(revRef.current);
+    filterRef.current.connect(resonanceRef.current);
+    resonanceRef.current.connect(revRef.current);
     revRef.current.connect(phaserRef.current);
     phaserRef.current.connect(Tone.getDestination());
   }
@@ -84,6 +113,16 @@ export default function App() {
 
   function handleFilterCutoffChange(event) {
     setFilterFrequency(Number(event.target.value));
+    console.log(event.target.value);
+  }
+
+  function handleFilterResonanceChange(event) {
+    setResonance(Number(event.target.value));
+  }
+
+  function handleAttackChange(event) {
+    setAmpEnvelope({ ...ampEnvelope, attack: Number(event.target.value) });
+    console.log(event.target.value);
   }
 
   function handleReverbChange(event) {
@@ -95,12 +134,12 @@ export default function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-Header">
-        <Header />
-      </header>
-      <main className="App-Main">
-        <Router>
+    <Router>
+      <div className="App">
+        <header className="App-Header">
+          <Header />
+        </header>
+        <main className="App-Main">
           <nav className="Nav-Bar">
             <NavLink className="Slider" to="/oscillator">
               {" "}
@@ -116,7 +155,7 @@ export default function App() {
             </NavLink>
             <NavLink className="Slider" to="/vfx">
               {" "}
-              VFX{" "}
+              EFX{" "}
             </NavLink>
           </nav>
 
@@ -124,7 +163,7 @@ export default function App() {
             <Route path="/oscillator">
               {" "}
               <div className="Function-Board">
-                <h2>Set Oscillator</h2>
+                <h2>SET OSCILLATOR</h2>
 
                 <div className="Vco-bar">
                   <h2>OSC 1</h2>
@@ -310,15 +349,24 @@ export default function App() {
                 </div>
                 <h2> Cutoff </h2>
                 <input
-                  value={filterFrequency}
+                  value={filterFrequency.frequency}
                   onChange={handleFilterCutoffChange}
                   type="range"
                   min="0"
                   max="1000"
                   className="Value"
+                  step="0.1"
                 />
                 <h2> Resonance </h2>
-                <input type="range" min="0" max="1000" className="Value" />
+                <input
+                  value={filterFrequency.Q}
+                  onChange={handleFilterResonanceChange}
+                  type="range"
+                  min="0"
+                  max="100"
+                  className="Value"
+                  step="0.1"
+                />
               </div>
             </Route>
 
@@ -329,9 +377,11 @@ export default function App() {
                 </div>{" "}
                 <h2> Attack </h2>
                 <input
+                  value={ampEnvelope.decay}
+                  onChange={handleAttackChange}
                   type="range"
                   min="0.1"
-                  max="100"
+                  max="1000"
                   className="Value"
                   step="0.1"
                 />
@@ -353,7 +403,7 @@ export default function App() {
                   min="0.1"
                   max="10"
                   className="Value"
-                  step="0.1"
+                  step="1"
                 />
                 <h2> Phaser </h2>
                 <input
@@ -361,30 +411,30 @@ export default function App() {
                   onChange={handlePhaserChange}
                   type="range"
                   min="0"
-                  max="5"
+                  max="10"
                   step="0.1"
                   className="Value"
                 />
               </div>
             </Route>
           </Switch>
-        </Router>
 
-        <Touchpad />
-        <div className="OnOff_Board">
-          <button className="OnOff" onClick={onClickStart}>
-            {" "}
-            Start{" "}
-          </button>
-          <button className="OnOff" onClick={onClickStop}>
-            {" "}
-            Stop{" "}
-          </button>
-        </div>
-      </main>
-      <footer className="App-Footer">
-        <Footer />
-      </footer>
-    </div>
+          <Touchpad />
+          <div className="OnOff_Board">
+            <button className="OnOff" onClick={onClickStart}>
+              {" "}
+              Start{" "}
+            </button>
+            <button className="OnOff" onClick={onClickStop}>
+              {" "}
+              Stop{" "}
+            </button>
+          </div>
+        </main>
+        <footer className="App-Footer">
+          <Footer />
+        </footer>
+      </div>
+    </Router>
   );
 }
