@@ -10,12 +10,11 @@ export default function Touchpad() {
   }
 
   return (
-    <div className="Touchpad">
+    <div className="Touchpad" onPointerMove={handlePointerMove}>
       {pointPos.x},{pointPos.y}
       <div
-        onPointerMove={handlePointerMove}
         className={`absolute box`}
-        style={{ top: `${pointPos.y}px`, left: `${pointPos.x}px` }}
+        style={{ top: `${pointPos.y - 515}px`, left: `${pointPos.x - 145}px` }}
       ></div>
     </div>
   );

@@ -12,10 +12,10 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const [osc1Frequency, setOsc1Frequency] = useState(220);
-  const [osc2Frequency, setOsc2Frequency] = useState(220);
+  const [osc1Frequency, setOsc1Frequency] = useState(110);
+  const [osc2Frequency, setOsc2Frequency] = useState(110);
 
-  const [filterFrequency, setFilterFrequency] = useState(1000);
+  const [filterFrequency, setFilterFrequency] = useState(1500);
 
   const [resonance, setResonance] = useState(0);
 
@@ -62,11 +62,11 @@ export default function App() {
     }
   });
 
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.attack.value = ampEnvelope;
-    }
-  }, [ampEnvelope]);
+  // useEffect(() => {
+  //   if (ampEnvRef.current) {
+  //     ampEnvRef.current.attack.value = ampEnvelope;
+  //   }
+  // }, [ampEnvelope]);
 
   useEffect(() => {
     if (revRef.current) {
@@ -353,9 +353,8 @@ export default function App() {
                   onChange={handleFilterCutoffChange}
                   type="range"
                   min="0"
-                  max="1000"
+                  max="1500"
                   className="Value"
-                  step="0.1"
                 />
                 <h2> Resonance </h2>
                 <input
@@ -363,7 +362,7 @@ export default function App() {
                   onChange={handleFilterResonanceChange}
                   type="range"
                   min="0"
-                  max="100"
+                  max="20"
                   className="Value"
                   step="0.1"
                 />
