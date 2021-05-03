@@ -26,7 +26,7 @@
   flex-direction: row;
   justify-content: space-around;
   margin-top: 20px;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .App-Main {
@@ -40,8 +40,13 @@
 .App-Footer {
   grid-row: 3/4;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  color: #f00;
+
+  border: 3px solid white;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Touchpad {
@@ -77,16 +82,6 @@ input {
   color: #f00;
 }
 
-.App-Footer {
-  color: #f00;
-  display: flex;
-  justify-content: space-between;
-  border: 3px solid white;
-  border-radius: 15px;
-  background: #b6000c;
-  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
-}
-
 .Function-Board {
   border: 2px solid white;
   font-family: "Toxigenesis";
@@ -94,7 +89,7 @@ input {
   border-radius: 15px;
   width: 250px;
   height: 200px;
-  margin: 1vh auto;
+  margin: 0 auto;
   border-radius: 15px;
   background: #b6000c;
   box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;

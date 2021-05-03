@@ -13,6 +13,6 @@
   border-radius: 100%;
   border-radius: 50%;
   background: linear-gradient(145deg, #7aca57, #90f068);
-  box-shadow: 5px 5px 18px #73be52, -5px -5px 18px #9bff70;
+  box-shadow: 4px 4px 18px #73be52, -2px -2px 18px #9bff70;
   position: absolute;
 }
