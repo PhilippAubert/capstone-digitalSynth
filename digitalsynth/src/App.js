@@ -102,10 +102,12 @@ export default function App() {
     oscRef2.current.stop();
   }
 
-  function handleOsc1FrequencyChange(event) {}
+  function handleOsc1FrequencyChange(Oscillator1) {
+    setOsc1Frequency(Oscillator1); // <=
+  }
 
-  function handleOsc2FrequencyChange(event) {
-    setOsc2Frequency(Number(event.target.value)); // <=
+  function handleOsc2FrequencyChange(Oscillator2) {
+    setOsc2Frequency(Oscillator2); // <=
   }
 
   // function handleFilterCutoffChange(event) {
@@ -161,13 +163,20 @@ export default function App() {
 
           <Switch>
             <Route path="/oscillator">
-              <Oscillators />
+              <Oscillators
+                Oscillator1={osc1Frequency}
+                Oscillator2={osc2Frequency}
+                onChange={
+                  (handleOsc1FrequencyChange, handleOsc2FrequencyChange)
+                }
+              />
             </Route>
             <Route path="/filter">
               <FilterBoard
                 filterFrequency={filterFrequency}
-                onChange={handleFilterCutoffChange}
-                onChange={handleFilterResonanceChange}
+                onChange={
+                  (handleFilterCutoffChange, handleFilterResonanceChange)
+                }
               />
             </Route>
 

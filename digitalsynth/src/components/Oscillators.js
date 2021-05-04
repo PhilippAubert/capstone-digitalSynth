@@ -7,6 +7,14 @@ export default function Oscillators({
   osc2Frequency,
   onChange,
 }) {
+  function handleOsc1Change(event) {
+    onChange(Number(event.target.value));
+  }
+
+  function handleOsc2Change(event) {
+    onChange(Number(event.target.value));
+  }
+
   return (
     <div className="Function-Board">
       <h2>SET OSCILLATOR</h2>
@@ -25,7 +33,7 @@ export default function Oscillators({
         min="0"
         max="440"
         value={osc1Frequency} // to local storage 1
-        onChange={handleOsc1FrequencyChange}
+        onChange={handleOsc1Change}
         className="Value"
       />
 
@@ -40,7 +48,7 @@ export default function Oscillators({
 
       <input
         value={osc2Frequency} // to local storage 2
-        onChange={handleOsc2FrequencyChange}
+        onChange={handleOsc2Change}
         type="range"
         min="0"
         max="440"
