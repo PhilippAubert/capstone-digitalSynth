@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./components/Header.js";
+import FilterBoard from "./components/FilterBoard.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import { useState, useEffect, useRef } from "react";
@@ -108,13 +109,16 @@ export default function App() {
     setOsc2Frequency(Number(event.target.value)); // <=
   }
 
-  function handleFilterCutoffChange(event) {
-    setFilterFrequency(Number(event.target.value));
-    console.log(event.target.value);
+  // function handleFilterCutoffChange(event) {
+  //   setFilterFrequency(Number(event.target.value));
+  // }
+
+  function handleFilterCutoffChange(CutOff) {
+    setFilterFrequency(CutOff);
   }
 
-  function handleFilterResonanceChange(event) {
-    setResonance(Number(event.target.value));
+  function handleFilterResonanceChange(Resonance) {
+    setResonance(Resonance);
   }
 
   function handleAttackChange(event) {
@@ -338,32 +342,11 @@ export default function App() {
               </div>
             </Route>
             <Route path="/filter">
-              <div className="Function-Board">
-                <div className="Filter-bar">
-                  <h2>SET FILTER </h2>
-                  <h2 className="Filter-Box"> LP </h2>
-                  <h2 className="Filter-Box"> HP </h2>
-                </div>
-                <h2> Cutoff </h2>
-                <input
-                  value={filterFrequency.frequency} // to local storage 3
-                  onChange={handleFilterCutoffChange}
-                  type="range"
-                  min="0"
-                  max="1500"
-                  className="Value"
-                />
-                <h2> Resonance </h2>
-                <input
-                  value={filterFrequency.Q} // to local storage 4
-                  onChange={handleFilterResonanceChange}
-                  type="range"
-                  min="0"
-                  max="20"
-                  className="Value"
-                  step="0.1"
-                />
-              </div>
+              <FilterBoard
+                filterFrequency={filterFrequency}
+                onChange={handleFilterCutoffChange}
+                onChange={handleFilterResonanceChange}
+              />
             </Route>
 
             <Route path="/amp">
@@ -385,7 +368,6 @@ export default function App() {
                 <input type="range" min="0" max="100" className="Value" />
               </div>
             </Route>
-
             <Route path="/vfx">
               <div className="Function-Board">
                 <div className="Amp-bar">
