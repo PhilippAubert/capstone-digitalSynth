@@ -166,8 +166,8 @@ export default function App() {
             <Route path="/filter">
               <FilterBoard
                 filterFrequency={filterFrequency}
-                onChange1={handleFilterCutoffChange}
-                onChange2={handleFilterResonanceChange}
+                onChange={handleFilterCutoffChange}
+                onChange={handleFilterResonanceChange}
               />
             </Route>
 
