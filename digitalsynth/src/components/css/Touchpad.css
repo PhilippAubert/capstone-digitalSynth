@@ -2,7 +2,6 @@
   height: 200px;
   width: 250px;
   border: 3px solid white;
-
   border-radius: 15px;
   position: relative;
 }
@@ -13,6 +12,7 @@
   border-radius: 100%;
   border-radius: 50%;
   background: linear-gradient(145deg, #7aca57, #90f068);
-  box-shadow: 4px 4px 18px #73be52, -2px -2px 18px #9bff70;
+  box-shadow: 2px 2px 8px #73be52, -1px -1px 8px #9bff70;
   position: absolute;
+  transform: translateX(-0.5);
 }

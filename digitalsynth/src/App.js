@@ -27,7 +27,7 @@ export default function App() {
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.1);
-  const [phaserDuration, setPhaserDuration] = useState(0.1);
+  const [phaserDuration, setPhaserDuration] = useState(0);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
@@ -410,7 +410,7 @@ export default function App() {
                   onChange={handlePhaserChange}
                   type="range"
                   min="0"
-                  max="10"
+                  max="100"
                   step="0.1"
                   className="Value"
                 />
