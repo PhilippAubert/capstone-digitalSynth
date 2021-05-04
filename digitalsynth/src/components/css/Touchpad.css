@@ -14,5 +14,6 @@
   background: linear-gradient(145deg, #7aca57, #90f068);
   box-shadow: 2px 2px 8px #73be52, -1px -1px 8px #9bff70;
   position: absolute;
-  transform: translateX(-0.5);
+  transform: translateX(-1px, -3px);
+  pointer-events: none;
 }

@@ -16,14 +16,11 @@ export default function App() {
   const [osc2Frequency, setOsc2Frequency] = useState(110);
 
   const [filterFrequency, setFilterFrequency] = useState(1500);
-
   const [resonance, setResonance] = useState(0);
 
   const [ampEnvelope, setAmpEnvelope] = useState({
     attack: 0.1,
     decay: 100,
-    sustain: 1.0,
-    release: 0.8,
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.1);
@@ -34,7 +31,6 @@ export default function App() {
   const filterRef = useRef(null);
   const resonanceRef = useRef(null);
   const ampEnvRef = useRef(null);
-
   const revRef = useRef(null);
   const phaserRef = useRef(null);
 
@@ -96,6 +92,7 @@ export default function App() {
     resonanceRef.current.connect(revRef.current);
     revRef.current.connect(phaserRef.current);
     phaserRef.current.connect(Tone.getDestination());
+    Tone.getDestination().volume.value = 30;
   }
 
   function onClickStop() {
@@ -247,7 +244,7 @@ export default function App() {
                   type="range"
                   min="0"
                   max="440"
-                  value={osc1Frequency}
+                  value={osc1Frequency} // to local storage 1
                   onChange={handleOsc1FrequencyChange}
                   className="Value"
                 />
@@ -331,7 +328,7 @@ export default function App() {
                 </div>
 
                 <input
-                  value={osc2Frequency}
+                  value={osc2Frequency} // to local storage 2
                   onChange={handleOsc2FrequencyChange}
                   type="range"
                   min="0"
@@ -349,7 +346,7 @@ export default function App() {
                 </div>
                 <h2> Cutoff </h2>
                 <input
-                  value={filterFrequency.frequency}
+                  value={filterFrequency.frequency} // to local storage 3
                   onChange={handleFilterCutoffChange}
                   type="range"
                   min="0"
@@ -358,7 +355,7 @@ export default function App() {
                 />
                 <h2> Resonance </h2>
                 <input
-                  value={filterFrequency.Q}
+                  value={filterFrequency.Q} // to local storage 4
                   onChange={handleFilterResonanceChange}
                   type="range"
                   min="0"
@@ -376,7 +373,7 @@ export default function App() {
                 </div>{" "}
                 <h2> Attack </h2>
                 <input
-                  value={ampEnvelope.decay}
+                  value={ampEnvelope.decay} // to local storage 5
                   onChange={handleAttackChange}
                   type="range"
                   min="0.1"
@@ -396,7 +393,7 @@ export default function App() {
                 </div>{" "}
                 <h2> Reverb </h2>
                 <input
-                  value={reverbDuration}
+                  value={reverbDuration} // to local storage 6
                   onChange={handleReverbChange}
                   type="range"
                   min="0.1"
@@ -406,11 +403,11 @@ export default function App() {
                 />
                 <h2> Phaser </h2>
                 <input
-                  value={phaserDuration}
+                  value={phaserDuration} // to local storage 7
                   onChange={handlePhaserChange}
                   type="range"
                   min="0"
-                  max="100"
+                  max="10"
                   step="0.1"
                   className="Value"
                 />
