@@ -2,7 +2,8 @@ import Saw from "./Icons/Saw.js";
 import Square from "./Icons/Square.js";
 import Sine from "./Icons/Sine.js";
 
-export default function Oscillators() {
+export default function Oscillators({osc1Frequency, osc2Frequency, onChange}) {
+    return (
   <div className="Function-Board">
     <h2>SET OSCILLATOR</h2>
 
@@ -42,4 +43,5 @@ export default function Oscillators() {
       className="Value"
     />
   </div>;
+  );
 }

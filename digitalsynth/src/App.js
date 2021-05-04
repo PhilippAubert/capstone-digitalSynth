@@ -102,9 +102,7 @@ export default function App() {
     oscRef2.current.stop();
   }
 
-  function handleOsc1FrequencyChange(event) {
-    setOsc1Frequency(Number(event.target.value));
-  }
+  function handleOsc1FrequencyChange(event) {}
 
   function handleOsc2FrequencyChange(event) {
     setOsc2Frequency(Number(event.target.value)); // <=
@@ -168,8 +166,8 @@ export default function App() {
             <Route path="/filter">
               <FilterBoard
                 filterFrequency={filterFrequency}
-                onChange={handleFilterCutoffChange}
-                onChange={handleFilterResonanceChange}
+                onChange1={handleFilterCutoffChange}
+                onChange2={handleFilterResonanceChange}
               />
             </Route>
 
