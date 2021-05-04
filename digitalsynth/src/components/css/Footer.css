@@ -1,7 +1,6 @@
 .Footer {
   grid-row: 3/4;
   width: 98vw;
-  margin: 0 auto;
   border: 3px solid white;
   border-radius: 15px;
   background: #b6000c;
@@ -9,8 +8,8 @@
 }
 
 .FooterNav {
+  margin-top: 0.5vh;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   font-family: "Toxigenesis";
