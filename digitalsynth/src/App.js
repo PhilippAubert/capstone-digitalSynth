@@ -419,7 +419,7 @@ export default function App() {
           </Switch>
 
           <Touchpad />
-          {/* <div className="OnOff_Board">
+          <div className="OnOff_Board">
             <button className="OnOff" onClick={onClickStart}>
               {" "}
               Start{" "}
@@ -428,7 +428,7 @@ export default function App() {
               {" "}
               Stop{" "}
             </button>
-          </div> */}
+          </div>
         </main>
         <footer className="App-Footer">
           <Footer />
