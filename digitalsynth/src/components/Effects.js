@@ -1,4 +1,4 @@
-export default function Reverb({
+export default function Effects({
   reverbDuration,
   phaserDuration,
   onChangeReverb,
@@ -11,6 +11,7 @@ export default function Reverb({
   function handlePhaserChange(event) {
     onChangePhaser(Number(event.target.value));
   }
+
   return (
     <div className="Function-Board">
       <div className="Amp-bar">

@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header.js";
 import Oscillators from "./components/Oscillators.js";
 import FilterBoard from "./components/FilterBoard.js";
-import Reverb from "./components/Reverb.js";
+import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import { useState, useEffect, useRef } from "react";
@@ -198,7 +198,7 @@ export default function App() {
               </div>
             </Route>
             <Route path="/vfx">
-              <Reverb
+              <Effects
                 Reverb={reverbDuration}
                 Phaser={phaserRef}
                 onChangeReverb={handleReverbChange}
