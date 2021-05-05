@@ -1,10 +1,15 @@
-export default function FilterBoard({ onChange, filterFrequency }) {
+export default function FilterBoard({
+  onChangeFreq,
+  onChangeRes,
+  filterFrequency,
+  resonance,
+}) {
   function handleCutoffChange(event) {
-    onChange(Number(event.target.value));
+    onChangeFreq(Number(event.target.value));
   }
 
   function handleResonanceChange(event) {
-    onChange(Number(event.target.value));
+    onChangeRes(Number(event.target.value));
   }
 
   return (
@@ -17,16 +22,18 @@ export default function FilterBoard({ onChange, filterFrequency }) {
 
       <h2> Cutoff </h2>
       <input
-        value={filterFrequency.frequency} // to local storage 3
+        value={filterFrequency} // to local storage 3
         onChange={handleCutoffChange}
         type="range"
         min="0"
         max="1500"
         className="Value"
+        step="0.1"
       />
+
       <h2> Resonance </h2>
       <input
-        value={filterFrequency.Q} // to local storage 4
+        value={resonance} // to local storage 4
         onChange={handleResonanceChange}
         type="range"
         min="0"

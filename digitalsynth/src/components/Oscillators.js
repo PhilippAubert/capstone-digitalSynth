@@ -5,14 +5,15 @@ import Sine from "./Icons/Sine.js";
 export default function Oscillators({
   osc1Frequency,
   osc2Frequency,
-  onChange,
+  onChangeFreqOsc1,
+  onChangeFreqOsc2,
 }) {
   function handleOsc1Change(event) {
-    onChange(Number(event.target.value));
+    onChangeFreqOsc1(Number(event.target.value));
   }
 
   function handleOsc2Change(event) {
-    onChange(Number(event.target.value));
+    onChangeFreqOsc2(Number(event.target.value));
   }
 
   return (

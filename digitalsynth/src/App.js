@@ -83,15 +83,17 @@ export default function App() {
     oscRef1.current = new Tone.Oscillator(osc1Frequency, "square").start();
     oscRef2.current = new Tone.Oscillator(osc2Frequency, "square").start();
     filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
-    resonanceRef.current = new Tone.Filter(resonance.Q);
+    filterRef.current.Q.value = resonance;
+    // resonanceRef.current = new Tone.Filter(resonance.Q);
     ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(resonanceRef.current);
-    resonanceRef.current.connect(revRef.current);
+    // filterRef.current.connect(resonanceRef.current);
+    // resonanceRef.current.connect(revRef.current);
+    filterRef.current.connect(revRef.current);
     revRef.current.connect(phaserRef.current);
     phaserRef.current.connect(Tone.getDestination());
     Tone.getDestination().volume.value = 30;
@@ -109,10 +111,6 @@ export default function App() {
   function handleOsc2FrequencyChange(Oscillator2) {
     setOsc2Frequency(Oscillator2); // <=
   }
-
-  // function handleFilterCutoffChange(event) {
-  //   setFilterFrequency(Number(event.target.value));
-  // }
 
   function handleFilterCutoffChange(CutOff) {
     setFilterFrequency(CutOff);
@@ -166,17 +164,16 @@ export default function App() {
               <Oscillators
                 Oscillator1={osc1Frequency}
                 Oscillator2={osc2Frequency}
-                onChange={
-                  (handleOsc1FrequencyChange, handleOsc2FrequencyChange)
-                }
+                onChangeFreqOsc1={handleOsc1FrequencyChange}
+                onChangeFreqOsc2={handleOsc2FrequencyChange}
               />
             </Route>
             <Route path="/filter">
               <FilterBoard
-                filterFrequency={filterFrequency}
-                onChange={
-                  (handleFilterCutoffChange, handleFilterResonanceChange)
-                }
+                CutOff={filterFrequency}
+                Resonance={resonance}
+                onChangeFreq={handleFilterCutoffChange}
+                onChangeRes={handleFilterResonanceChange}
               />
             </Route>
 
