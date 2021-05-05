@@ -37,7 +37,7 @@ export default function FilterBoard({
         onChange={handleResonanceChange}
         type="range"
         min="0"
-        max="20"
+        max="1"
         className="Value"
         step="0.1"
       />

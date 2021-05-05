@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header.js";
 import Oscillators from "./components/Oscillators.js";
 import FilterBoard from "./components/FilterBoard.js";
+import Reverb from "./components/Reverb.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import { useState, useEffect, useRef } from "react";
@@ -125,12 +126,12 @@ export default function App() {
     console.log(event.target.value);
   }
 
-  function handleReverbChange(event) {
-    setReverbDuration(Number(event.target.value));
+  function handleReverbChange(Reverb) {
+    setReverbDuration(Reverb);
   }
 
-  function handlePhaserChange(event) {
-    setPhaserDuration(Number(event.target.value));
+  function handlePhaserChange(Phaser) {
+    setPhaserDuration(Phaser);
   }
 
   return (
@@ -197,31 +198,12 @@ export default function App() {
               </div>
             </Route>
             <Route path="/vfx">
-              <div className="Function-Board">
-                <div className="Amp-bar">
-                  <h2>SET AUDIO EFFECTS</h2>
-                </div>{" "}
-                <h2> Reverb </h2>
-                <input
-                  value={reverbDuration} // to local storage 6
-                  onChange={handleReverbChange}
-                  type="range"
-                  min="0.1"
-                  max="10"
-                  className="Value"
-                  step="1"
-                />
-                <h2> Phaser </h2>
-                <input
-                  value={phaserDuration} // to local storage 7
-                  onChange={handlePhaserChange}
-                  type="range"
-                  min="0"
-                  max="10"
-                  step="0.1"
-                  className="Value"
-                />
-              </div>
+              <Reverb
+                Reverb={reverbDuration}
+                Phaser={phaserRef}
+                onChangeReverb={handleReverbChange}
+                onChangePhaser={handlePhaserChange}
+              />
             </Route>
           </Switch>
 
