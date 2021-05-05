@@ -15,8 +15,10 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const [osc1Frequency, setOsc1Frequency] = useState(110); // <========= BEI LOAD _ HIER EIN NEUER USE_STATE !
-  const [osc2Frequency, setOsc2Frequency] = useState(110);
+  const [osc1Frequency, setOsc1Frequency] = useState(220); // <========= BEI LOAD _ HIER EIN NEUER USE_STATE !
+  const [osc2Frequency, setOsc2Frequency] = useState(220);
+  const [osc1Type, setOsc1Type] = useState("sawtooth");
+  const [osc2Type, setOsc2Type] = useState("sawtooth");
 
   const [filterFrequency, setFilterFrequency] = useState(1500);
   const [resonance, setResonance] = useState(0);
@@ -26,7 +28,7 @@ export default function App() {
     decay: 100,
   });
 
-  const [reverbDuration, setReverbDuration] = useState(0.1);
+  const [reverbDuration, setReverbDuration] = useState(0.01);
   const [phaserDuration, setPhaserDuration] = useState(0);
 
   const oscRef1 = useRef(null);
@@ -36,6 +38,72 @@ export default function App() {
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
+
+  function onClickStart() {
+    Tone.start();
+    oscRef1.current = new Tone.Oscillator(osc1Frequency).start();
+    oscRef1.current.type = "sawtooth";
+    oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
+    oscRef2.current.type = "sawtooth";
+
+    filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
+    filterRef.current.Q.value = resonance;
+    // resonanceRef.current = new Tone.Filter(resonance.Q);
+    ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
+    revRef.current = new Tone.Reverb(reverbDuration);
+    phaserRef.current = new Tone.Phaser(phaserDuration);
+
+    oscRef1.current.connect(filterRef.current);
+    oscRef2.current.connect(filterRef.current);
+    // filterRef.current.connect(resonanceRef.current);
+    // resonanceRef.current.connect(revRef.current);
+    filterRef.current.connect(revRef.current);
+    revRef.current.connect(phaserRef.current);
+    phaserRef.current.connect(Tone.getDestination());
+    Tone.getDestination().volume.value = 30;
+  }
+
+  function onClickStop() {
+    oscRef1.current.stop();
+    oscRef2.current.stop();
+  }
+
+  function handleOsc1Type(event) {
+    setOsc1Type(event);
+  }
+
+  function handleOsc2Type(event) {
+    setOsc2Type(event);
+  }
+
+  function handleOsc1FrequencyChange(Oscillator1) {
+    setOsc1Frequency(Oscillator1); // <=
+  }
+
+  function handleOsc2FrequencyChange(Oscillator2) {
+    setOsc2Frequency(Oscillator2); // <=
+  }
+
+  function handleFilterCutoffChange(CutOff) {
+    setFilterFrequency(CutOff);
+  }
+
+  function handleFilterResonanceChange(Resonance) {
+    setResonance(Resonance);
+  }
+
+  function handleAttackChange(event) {
+    setAmpEnvelope({ ...ampEnvelope, attack: Number(event.target.value) });
+    console.log(event.target.value);
+  }
+
+  function handleReverbChange(Reverb) {
+    setReverbDuration(Reverb);
+  }
+
+  function handlePhaserChange(Phaser) {
+    setPhaserDuration(Phaser);
+  }
 
   useEffect(() => {
     if (oscRef1.current) {
@@ -79,59 +147,17 @@ export default function App() {
     }
   }, [phaserDuration]);
 
-  function onClickStart() {
-    Tone.start();
-    oscRef1.current = new Tone.Oscillator(osc1Frequency, "square").start();
-    oscRef2.current = new Tone.Oscillator(osc2Frequency, "square").start();
-    filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
-    filterRef.current.Q.value = resonance;
-    // resonanceRef.current = new Tone.Filter(resonance.Q);
-    ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
-    revRef.current = new Tone.Reverb(reverbDuration);
-    phaserRef.current = new Tone.Phaser(phaserDuration);
+  const savedPitch = {
+    osc1PitchSave: osc1Frequency,
+    osc2PitchSave: osc2Frequency,
+  };
 
-    oscRef1.current.connect(filterRef.current);
-    oscRef2.current.connect(filterRef.current);
-    // filterRef.current.connect(resonanceRef.current);
-    // resonanceRef.current.connect(revRef.current);
-    filterRef.current.connect(revRef.current);
-    revRef.current.connect(phaserRef.current);
-    phaserRef.current.connect(Tone.getDestination());
-    Tone.getDestination().volume.value = 30;
+  function handleSave() {
+    localStorage.setItem(JSON.stringify("Patch"), JSON.stringify(savedPitch));
   }
 
-  function onClickStop() {
-    oscRef1.current.stop();
-    oscRef2.current.stop();
-  }
-
-  function handleOsc1FrequencyChange(Oscillator1) {
-    setOsc1Frequency(Oscillator1); // <=
-  }
-
-  function handleOsc2FrequencyChange(Oscillator2) {
-    setOsc2Frequency(Oscillator2); // <=
-  }
-
-  function handleFilterCutoffChange(CutOff) {
-    setFilterFrequency(CutOff);
-  }
-
-  function handleFilterResonanceChange(Resonance) {
-    setResonance(Resonance);
-  }
-
-  function handleAttackChange(event) {
-    setAmpEnvelope({ ...ampEnvelope, attack: Number(event.target.value) });
-    console.log(event.target.value);
-  }
-
-  function handleReverbChange(Reverb) {
-    setReverbDuration(Reverb);
-  }
-
-  function handlePhaserChange(Phaser) {
-    setPhaserDuration(Phaser);
+  function handleLoad() {
+    localStorage.getItem(JSON.parse("Tone"));
   }
 
   return (
@@ -165,6 +191,8 @@ export default function App() {
               <Oscillators
                 Oscillator1={osc1Frequency}
                 Oscillator2={osc2Frequency}
+                changeOsc1Type={handleOsc1Type}
+                changeOsc2Type={handleOsc2Type}
                 onChangeFreqOsc1={handleOsc1FrequencyChange}
                 onChangeFreqOsc2={handleOsc2FrequencyChange}
               />
@@ -219,7 +247,7 @@ export default function App() {
             </button>
           </div>
         </main>
-        <Footer />
+        <Footer onClickSave={handleSave} />
       </div>
     </Router>
   );
