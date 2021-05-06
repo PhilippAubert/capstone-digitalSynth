@@ -119,6 +119,18 @@ export default function App() {
   }, [osc2Frequency]);
 
   useEffect(() => {
+    if (oscRef1.current) {
+      oscRef1.current.type = osc1Type;
+    }
+  }, [osc1Type]);
+
+  useEffect(() => {
+    if (oscRef2.current) {
+      oscRef2.current.type = osc2Type;
+    }
+  }, [osc2Type]);
+
+  useEffect(() => {
     if (filterRef.current) {
       filterRef.current.frequency.value = filterFrequency;
     }
