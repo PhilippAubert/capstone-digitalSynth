@@ -1,7 +1,11 @@
 import "./css/Footer.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({ onClickSave }) {
+  function onSave() {
+    onClickSave();
+  }
+
   return (
     <div className="Footer">
       <Router>
@@ -15,7 +19,7 @@ export default function Footer() {
             </Route>
 
             <Route>
-              <h2>SAVE</h2>
+              <h2 onClick={onSave}>SAVE</h2>
             </Route>
           </div>
         </Switch>

@@ -42,9 +42,7 @@ export default function App() {
   function onClickStart() {
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency).start();
-    oscRef1.current.type = "sawtooth";
     oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
-    oscRef2.current.type = "sawtooth";
 
     filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
     filterRef.current.Q.value = resonance;
@@ -154,10 +152,6 @@ export default function App() {
 
   function handleSave() {
     localStorage.setItem(JSON.stringify("Patch"), JSON.stringify(savedPitch));
-  }
-
-  function handleLoad() {
-    localStorage.getItem(JSON.parse("Tone"));
   }
 
   return (
