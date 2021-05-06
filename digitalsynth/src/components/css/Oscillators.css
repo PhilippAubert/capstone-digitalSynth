@@ -1,0 +1,7 @@
+.Change {
+  border-radius: 6px;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid aquamarine;
+}

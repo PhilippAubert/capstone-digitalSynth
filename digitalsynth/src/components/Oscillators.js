@@ -1,6 +1,7 @@
 import Saw from "./Icons/Saw.js";
 import Square from "./Icons/Square.js";
 import Sine from "./Icons/Sine.js";
+import "./css/Oscillators.css";
 
 export default function Oscillators({
   osc1Frequency,
