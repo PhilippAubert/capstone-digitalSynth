@@ -18,8 +18,13 @@ export default function Oscillators({
   }
 
   function handleChangeOsc1Type(event) {
-    changeOsc1Type(console.log());
+    changeOsc1Type(console.log("Icon Clicked"));
   }
+
+  function handleChangeOsc2Type(event) {
+    changeOsc1Type(console.log("Icon Clicked"));
+  }
+
   return (
     <div className="Function-Board">
       <h2>SET OSCILLATOR</h2>
@@ -51,9 +56,15 @@ export default function Oscillators({
       <div className="Vco-bar">
         <h2>OSC 2</h2>
         <div className="Icons">
-          <Saw />
-          <Square />
-          <Sine />
+          <div id="saw" className="Change" onClick={handleChangeOsc2Type}>
+            <Saw />
+          </div>{" "}
+          <div id="square" className="Change" onClick={handleChangeOsc2Type}>
+            <Square />
+          </div>{" "}
+          <div id="sine" className="Change" onClick={handleChangeOsc2Type}>
+            <Sine />
+          </div>
         </div>
       </div>
 

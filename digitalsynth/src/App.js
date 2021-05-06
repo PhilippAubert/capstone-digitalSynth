@@ -17,8 +17,8 @@ import {
 export default function App() {
   const [osc1Frequency, setOsc1Frequency] = useState(220); // <========= BEI LOAD _ HIER EIN NEUER USE_STATE !
   const [osc2Frequency, setOsc2Frequency] = useState(220);
-  const [osc1Type, setOsc1Type] = useState("sawtooth");
-  const [osc2Type, setOsc2Type] = useState("sawtooth");
+  const [osc1Type, setOsc1Type] = useState("square");
+  const [osc2Type, setOsc2Type] = useState("square");
 
   const [filterFrequency, setFilterFrequency] = useState(1500);
   const [resonance, setResonance] = useState(0);
@@ -42,7 +42,9 @@ export default function App() {
   function onClickStart() {
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency).start();
+    oscRef1.current.type = "square";
     oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
+    oscRef2.current.type = "square";
 
     filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
     filterRef.current.Q.value = resonance;
@@ -145,13 +147,17 @@ export default function App() {
     }
   }, [phaserDuration]);
 
-  const savedPitch = {
+  const savedPatch = {
     osc1PitchSave: osc1Frequency,
     osc2PitchSave: osc2Frequency,
+    filterSave: filterFrequency,
+    resonance: resonance,
+    reverb: reverbDuration,
+    phaser: phaserDuration,
   };
 
   function handleSave() {
-    localStorage.setItem(JSON.stringify("Patch"), JSON.stringify(savedPitch));
+    localStorage.setItem(JSON.stringify("Patch"), JSON.stringify(savedPatch));
   }
 
   return (
