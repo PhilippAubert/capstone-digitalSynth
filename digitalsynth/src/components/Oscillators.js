@@ -61,15 +61,19 @@ export default function Oscillators({
       <div className="Vco-bar">
         <h2>OSC 2</h2>
         <div className="Icons">
-          <div id="sawtooth" className="Change" onClick={handleChangeOsc2Type}>
+          <button
+            id="sawtooth"
+            className="Change"
+            onClick={handleChangeOsc2Type}
+          >
             <Saw />
-          </div>{" "}
-          <div id="square" className="Change" onClick={handleChangeOsc2Type}>
+          </button>{" "}
+          <button id="square" className="Change" onClick={handleChangeOsc2Type}>
             <Square />
-          </div>{" "}
-          <div id="sine" className="Change" onClick={handleChangeOsc2Type}>
+          </button>{" "}
+          <button id="sine" className="Change" onClick={handleChangeOsc2Type}>
             <Sine />
-          </div>
+          </button>
         </div>
       </div>
 
