@@ -7,7 +7,8 @@ export default function Oscillators({
   osc2Frequency,
   onChangeFreqOsc1,
   onChangeFreqOsc2,
-  changeOsc1Type,
+  onChangeOsc1Type,
+  onChangeOsc2Type,
 }) {
   function handleOsc1Change(event) {
     onChangeFreqOsc1(Number(event.target.value));
@@ -18,11 +19,11 @@ export default function Oscillators({
   }
 
   function handleChangeOsc1Type(event) {
-    changeOsc1Type(console.log("Icon Clicked"));
+    onChangeOsc1Type(event.currentTarget.id);
   }
 
   function handleChangeOsc2Type(event) {
-    changeOsc1Type(console.log("Icon Clicked"));
+    onChangeOsc2Type(event.currentTarget.id);
   }
 
   return (
@@ -32,15 +33,19 @@ export default function Oscillators({
       <div className="Vco-bar">
         <h2>OSC 1</h2>
         <div className="Icons">
-          <div id="saw" className="Change" onClick={handleChangeOsc1Type}>
+          <button
+            id="sawtooth"
+            className="Change"
+            onClick={handleChangeOsc1Type}
+          >
             <Saw />
-          </div>{" "}
-          <div id="square" className="Change" onClick={handleChangeOsc1Type}>
+          </button>{" "}
+          <button id="square" className="Change" onClick={handleChangeOsc1Type}>
             <Square />
-          </div>{" "}
-          <div id="sine" className="Change" onClick={handleChangeOsc1Type}>
+          </button>{" "}
+          <button id="sine" className="Change" onClick={handleChangeOsc1Type}>
             <Sine />
-          </div>
+          </button>
         </div>
       </div>
 
@@ -56,7 +61,7 @@ export default function Oscillators({
       <div className="Vco-bar">
         <h2>OSC 2</h2>
         <div className="Icons">
-          <div id="saw" className="Change" onClick={handleChangeOsc2Type}>
+          <div id="sawtooth" className="Change" onClick={handleChangeOsc2Type}>
             <Saw />
           </div>{" "}
           <div id="square" className="Change" onClick={handleChangeOsc2Type}>
