@@ -24,10 +24,10 @@ export default function FilterBoard({
       <div className="Filter-bar">
         <h2>SET FILTER </h2>
         <button id="lowpass" onClick={changeFilterType} className={"FilterButton"}>
-          <h2 className="Filter-Box"> LP </h2>
+          <p className="Filter-Box"> LP </p>
         </button>
         <button id="highpass" onClick={changeFilterType} className={"FilterButton"}>
-          <h2 className="Filter-Box"> HP </h2>
+          <p className="Filter-Box"> HP </p>
         </button>
       </div>
 

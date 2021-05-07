@@ -1,14 +1,16 @@
-.FilterBox{
+.FilterButton{
     border-radius: 6px;
-    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 0 2px;
-    background-color: #fc0303;
+    background: #fc0303;
   }
 
-  .Filter-Box h2{
-    background-color: #ccc;
-    font-size:1.5em;
+  .Filter-Box {
+    margin:0;
+    color:#000;
+    font-weight:800;
+    font-family:"Toxigenesis";
   }
+

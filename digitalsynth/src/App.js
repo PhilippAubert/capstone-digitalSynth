@@ -21,7 +21,7 @@ export default function App() {
   const [osc2Type, setOsc2Type] = useState("sawtooth");
 
   const [filterFrequency, setFilterFrequency] = useState(1500);
-  const [resonance, setResonance] = useState(0);
+  const [resonance, setResonance] = useState(0.01);
   const [filterType, setFilterType] = useState("lowpass");
 
   const [ampEnvelope, setAmpEnvelope] = useState({
@@ -36,6 +36,7 @@ export default function App() {
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
   const resonanceRef = useRef(null);
+  const filterTypeRef = useRef(null);
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
@@ -150,8 +151,8 @@ export default function App() {
   }, [resonance]);
 
   useEffect(() => {
-    if (filterType.current) {
-      filterType.current.type = filterType;
+    if (filterTypeRef.current) {
+      filterTypeRef.current.type = filterType;
     }
   }, [filterType]);
 
@@ -238,7 +239,7 @@ export default function App() {
                 </div>{" "}
                 <h2> Attack </h2>
                 <input
-                  value={ampEnvelope.decay} // to local storage 5
+                  value={ampEnvelope.attack} // to local storage 5
                   onChange={handleAttackChange}
                   type="range"
                   min="0.1"
