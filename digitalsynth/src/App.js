@@ -168,6 +168,11 @@ export default function App() {
     }
   }, [phaserDuration]);
 
+
+
+
+
+
   const savedPatch = {
     osc1PitchSave: osc1Frequency,
     osc2PitchSave: osc2Frequency,
@@ -178,12 +183,19 @@ export default function App() {
   };
 
   function handleSave() {
-    localStorage.setItem(JSON.stringify("Patch"), JSON.stringify(savedPatch));
+    localStorage.setItem("Patch", JSON.stringify(savedPatch));
   }
 
   function handleLoad() {
-    localStorage.getItem(JSON.parse(savedPatch));
+    console.log(localStorage.getItem("Patch"));
   }
+
+
+
+
+
+
+
 
   return (
     <Router>
@@ -260,6 +272,10 @@ export default function App() {
               />
             </Route>
           </Switch>
+
+
+
+
 
           <Touchpad />
           <div className="OnOff_Board">

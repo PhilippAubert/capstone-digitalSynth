@@ -37,7 +37,7 @@ export default function FilterBoard({
         onChange={handleCutoffChange}
         type="range"
         min="0"
-        max="1500"
+        max="2000"
         className="Value"
         step="0.1"
       />
