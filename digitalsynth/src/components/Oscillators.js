@@ -11,7 +11,6 @@ export default function Oscillators({
   onChangeFreqOsc2,
   onChangeOsc1Type,
   onChangeOsc2Type,
-  wavetype
 }) {
   const [active, setActive] = useState("false");
 
@@ -23,8 +22,8 @@ export default function Oscillators({
     onChangeFreqOsc2(Number(event.target.value));
   }
 
-  function handleChangeOsc1Type(wavetype) {
-    onChangeOsc1Type(wavetype.currentTarget.id);
+  function handleChangeOsc1Type(event) {
+    onChangeOsc1Type(event.currentTarget.id);
     setActive(!active);
   }
 
@@ -42,7 +41,7 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={wavetype === "sawtooth" ? "Active" : "Change"}
+            className={"Change"}
             onClick={handleChangeOsc1Type}
           >
             <Saw />
@@ -74,21 +73,21 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={active ? "Active" : "Change"}
+            className={"Change"}
             onClick={handleChangeOsc2Type}
           >
             <Saw />
           </button>{" "}
           <button
             id="square"
-            className={active ? "Active" : "Change"}
+            className={"Change"}
             onClick={handleChangeOsc2Type}
           >
             <Square />
           </button>{" "}
           <button
             id="sine"
-            className={active ? "Active" : "Change"}
+            className={"Change"}
             onClick={handleChangeOsc2Type}
           >
             <Sine />

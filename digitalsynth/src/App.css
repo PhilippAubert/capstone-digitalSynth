@@ -127,10 +127,6 @@ input {
   align-items: center;
 }
 
-.Filter-Box {
-  background-color: #ccc;
-}
-
 .Amp-bar {
   display: flex;
   flex-direction: row;

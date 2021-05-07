@@ -1,0 +1,14 @@
+.FilterBox{
+    border-radius: 6px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 2px;
+    background-color: #fc0303;
+  }
+
+  .Filter-Box h2{
+    background-color: #ccc;
+    font-size:1.5em;
+  }
