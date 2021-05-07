@@ -22,6 +22,7 @@ export default function App() {
 
   const [filterFrequency, setFilterFrequency] = useState(1500);
   const [resonance, setResonance] = useState(0);
+  const [filterType, setFilterType] = useState("lowpass");
 
   const [ampEnvelope, setAmpEnvelope] = useState({
     attack: 0.1,
@@ -46,7 +47,8 @@ export default function App() {
     oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
     oscRef2.current.type = osc2Type;
 
-    filterRef.current = new Tone.Filter(filterFrequency, "lowpass");
+    filterRef.current = new Tone.Filter(filterFrequency);
+    filterRef.current.type = filterType;
     filterRef.current.Q.value = resonance;
     // resonanceRef.current = new Tone.Filter(resonance.Q);
     ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
@@ -73,8 +75,9 @@ export default function App() {
     console.log(wavetype);
   }
 
-  function handleOsc2Type(event) {
-    setOsc2Type(event);
+  function handleOsc2Type(wavetype) {
+    setOsc2Type(wavetype);
+    console.log(wavetype);
   }
 
   function handleOsc1FrequencyChange(Oscillator1) {
@@ -91,6 +94,10 @@ export default function App() {
 
   function handleFilterResonanceChange(Resonance) {
     setResonance(Resonance);
+  }
+
+  function handleFilterTypeChange(FilterType) {
+    setFilterType(FilterType);
   }
 
   function handleAttackChange(event) {
@@ -140,13 +147,13 @@ export default function App() {
     if (resonanceRef.current) {
       resonanceRef.current.Q.value = resonance;
     }
-  });
+  }, [resonance]);
 
-  // useEffect(() => {
-  //   if (ampEnvRef.current) {
-  //     ampEnvRef.current.attack.value = ampEnvelope;
-  //   }
-  // }, [ampEnvelope]);
+  useEffect(() => {
+    if (filterType.current) {
+      filterType.current.type = filterType;
+    }
+  }, [filterType]);
 
   useEffect(() => {
     if (revRef.current) {
@@ -220,6 +227,7 @@ export default function App() {
                 Resonance={resonance}
                 onChangeFreq={handleFilterCutoffChange}
                 onChangeRes={handleFilterResonanceChange}
+                onChangeFilterType={handleFilterTypeChange}
               />
             </Route>
 

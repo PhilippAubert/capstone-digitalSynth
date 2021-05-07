@@ -11,6 +11,7 @@ export default function Oscillators({
   onChangeFreqOsc2,
   onChangeOsc1Type,
   onChangeOsc2Type,
+  wavetype
 }) {
   const [active, setActive] = useState("false");
 
@@ -22,8 +23,8 @@ export default function Oscillators({
     onChangeFreqOsc2(Number(event.target.value));
   }
 
-  function handleChangeOsc1Type(event) {
-    onChangeOsc1Type(event.currentTarget.id);
+  function handleChangeOsc1Type(wavetype) {
+    onChangeOsc1Type(wavetype.currentTarget.id);
     setActive(!active);
   }
 
@@ -41,23 +42,19 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={!active ? "Change" : "Active"}
+            className={wavetype === "sawtooth" ? "Active" : "Change"}
             onClick={handleChangeOsc1Type}
           >
             <Saw />
           </button>{" "}
           <button
             id="square"
-            className={!active ? "Change" : "Active"}
+            className={"Change"}
             onClick={handleChangeOsc1Type}
           >
             <Square />
           </button>{" "}
-          <button
-            id="sine"
-            className={!active ? "Change" : "Active"}
-            onClick={handleChangeOsc1Type}
-          >
+          <button id="sine" className={"Change"} onClick={handleChangeOsc1Type}>
             <Sine />
           </button>
         </div>
@@ -77,21 +74,21 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={!active ? "Change" : "Active"}
+            className={active ? "Active" : "Change"}
             onClick={handleChangeOsc2Type}
           >
             <Saw />
           </button>{" "}
           <button
             id="square"
-            className={!active ? "Change" : "Active"}
+            className={active ? "Active" : "Change"}
             onClick={handleChangeOsc2Type}
           >
             <Square />
           </button>{" "}
           <button
             id="sine"
-            className={!active ? "Change" : "Active"}
+            className={active ? "Active" : "Change"}
             onClick={handleChangeOsc2Type}
           >
             <Sine />
