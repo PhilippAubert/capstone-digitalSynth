@@ -9,8 +9,7 @@ export default function Touchpad() {
     const domRect = event.target.getBoundingClientRect();
 
     setPointPos({ x: clientX - domRect.x, y: clientY - domRect.y });
-    console.log({ x: clientX - domRect.x, y: clientY - domRect.y });
-  }
+   }
 
   return (
     <div className="Touchpad" onMouseMove={handlePointerMove}>

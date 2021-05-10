@@ -71,13 +71,11 @@ export default function App() {
 
   function handleOsc1Type(waverform1) {
     setOsc1Type(waverform1);
-    console.log(waverform1);
-  }
+   }
 
   function handleOsc2Type(waveform2) {
     setOsc2Type(waveform2);
-    console.log(waveform2);
-  }
+   }
 
   function handleOsc1FrequencyChange(oscillator1) {
     setOsc1Frequency(oscillator1);
@@ -101,8 +99,7 @@ export default function App() {
 
   function handleAttackChange(event) {
     setAmpEnvelope({ ...ampEnvelope, attack: Number(event.target.value) });
-    console.log(event.target.value);
-  }
+   }
 
   function handleReverbChange(reverb) {
     setReverbDuration(reverb);
@@ -186,8 +183,7 @@ export default function App() {
   
   function handleSave() {
     localStorage.setItem("Patch", JSON.stringify(savedPatch));
-    console.log(savedPatch);
-  }
+   }
 
    
 
@@ -202,8 +198,7 @@ export default function App() {
     setResonance(loadedPatch.resonance)
     setReverbDuration(loadedPatch.reverbDuration)
     setPhaserDuration(loadedPatch.phaserDuration)
-    console.log(loadedPatch);
-  }
+   }
 
   return (
     <Router>
