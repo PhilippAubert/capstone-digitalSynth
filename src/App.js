@@ -40,6 +40,7 @@ export default function App() {
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
+  const limiterRef = useRef(null);
 
   function onClickStart() {
     Tone.start();
@@ -55,13 +56,14 @@ export default function App() {
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
+    limiterRef.current = new Tone.Limiter(-20);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
     filterRef.current.connect(revRef.current);
     revRef.current.connect(phaserRef.current);
-    phaserRef.current.connect(Tone.getDestination());
-    Tone.getDestination().volume.value = 30;
+    phaserRef.current.connect(limiterRef.current);
+    limiterRef.current.connect(Tone.getDestination());
   }
 
   function onClickStop() {

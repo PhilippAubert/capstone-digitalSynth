@@ -63,7 +63,7 @@ export default function Oscillators({
         type="range"
         min="0"
         max="440"
-        value={oscillator1}  
+        value={oscillator1}
         onChange={handleOsc1Change}
         className="Value"
       />
@@ -85,18 +85,14 @@ export default function Oscillators({
           >
             <Square />
           </button>{" "}
-          <button
-            id="sine"
-            className={"Change"}
-            onClick={handleChangeOsc2Type}
-          >
+          <button id="sine" className={"Change"} onClick={handleChangeOsc2Type}>
             <Sine />
           </button>
         </div>
       </div>
 
       <input
-        value={oscillator2}  
+        value={oscillator2}
         onChange={handleOsc2Change}
         type="range"
         min="0"
