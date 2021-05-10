@@ -15,9 +15,9 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const [osc1Frequency, setOsc1Frequency] = useState(220); // <========= BEI LOAD _ HIER EIN NEUER USE_STATE !
-  const [osc2Frequency, setOsc2Frequency] = useState(220);
+  const [osc1Frequency, setOsc1Frequency] = useState(220);  
   const [osc1Type, setOsc1Type] = useState("sawtooth");
+  const [osc2Frequency, setOsc2Frequency] = useState(220);
   const [osc2Type, setOsc2Type] = useState("sawtooth");
 
   const [filterFrequency, setFilterFrequency] = useState(1500);
@@ -29,8 +29,8 @@ export default function App() {
     decay: 100,
   });
 
-  const [reverbDuration, setReverbDuration] = useState(0.01);
-  const [phaserDuration, setPhaserDuration] = useState(0);
+  const [reverbDuration, setReverbDuration] = useState(0.001);
+  const [phaserDuration, setPhaserDuration] = useState(0.001);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
@@ -51,15 +51,13 @@ export default function App() {
     filterRef.current = new Tone.Filter(filterFrequency);
     filterRef.current.type = filterType;
     filterRef.current.Q.value = resonance;
-    // resonanceRef.current = new Tone.Filter(resonance.Q);
     ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
+
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
-    // filterRef.current.connect(resonanceRef.current);
-    // resonanceRef.current.connect(revRef.current);
     filterRef.current.connect(revRef.current);
     revRef.current.connect(phaserRef.current);
     phaserRef.current.connect(Tone.getDestination());
@@ -71,34 +69,34 @@ export default function App() {
     oscRef2.current.stop();
   }
 
-  function handleOsc1Type(wavetype) {
-    setOsc1Type(wavetype);
-    console.log(wavetype);
+  function handleOsc1Type(waverform1) {
+    setOsc1Type(waverform1);
+    console.log(waverform1);
   }
 
-  function handleOsc2Type(wavetype) {
-    setOsc2Type(wavetype);
-    console.log(wavetype);
+  function handleOsc2Type(waveform2) {
+    setOsc2Type(waveform2);
+    console.log(waveform2);
   }
 
-  function handleOsc1FrequencyChange(Oscillator1) {
-    setOsc1Frequency(Oscillator1); // <=
+  function handleOsc1FrequencyChange(oscillator1) {
+    setOsc1Frequency(oscillator1);
   }
 
-  function handleOsc2FrequencyChange(Oscillator2) {
-    setOsc2Frequency(Oscillator2); // <=
+  function handleOsc2FrequencyChange(oscillator2) {
+    setOsc2Frequency(oscillator2); 
   }
 
-  function handleFilterCutoffChange(CutOff) {
-    setFilterFrequency(CutOff);
+  function handleFilterCutoffChange(cutOff) {
+    setFilterFrequency(cutOff);
   }
 
-  function handleFilterResonanceChange(Resonance) {
-    setResonance(Resonance);
+  function handleFilterResonanceChange(resonance) {
+    setResonance(resonance);
   }
 
-  function handleFilterTypeChange(FilterType) {
-    setFilterType(FilterType);
+  function handleFilterTypeChange(filterType) {
+    setFilterType(filterType);
   }
 
   function handleAttackChange(event) {
@@ -106,12 +104,12 @@ export default function App() {
     console.log(event.target.value);
   }
 
-  function handleReverbChange(Reverb) {
-    setReverbDuration(Reverb);
+  function handleReverbChange(reverb) {
+    setReverbDuration(reverb);
   }
 
-  function handlePhaserChange(Phaser) {
-    setPhaserDuration(Phaser);
+  function handlePhaserChange(phaser) {
+    setPhaserDuration(phaser);
   }
 
   useEffect(() => {
@@ -174,28 +172,38 @@ export default function App() {
 
 
   const savedPatch = {
-    osc1PitchSave: osc1Frequency,
-    osc2PitchSave: osc2Frequency,
-    filterSave: filterFrequency,
-    resonance: resonance,
-    reverb: reverbDuration,
-    phaser: phaserDuration,
+     osc1Frequency,
+     osc1Type,
+     osc2Frequency,
+     osc2Type,
+     filterFrequency,
+     filterType,
+     resonance,
+     reverbDuration,
+     phaserDuration,
   };
 
+  
   function handleSave() {
     localStorage.setItem("Patch", JSON.stringify(savedPatch));
+    console.log(savedPatch);
   }
+
+   
 
   function handleLoad() {
-    console.log(localStorage.getItem("Patch"));
+    const loadedPatch =  JSON.parse(localStorage.getItem("Patch"));
+    setOsc1Frequency(loadedPatch.osc1Frequency)
+    setOsc1Type(loadedPatch.osc1Type)
+    setOsc2Frequency(loadedPatch.osc2Frequency)
+    setOsc2Type(loadedPatch.osc2Type)
+    setFilterFrequency(loadedPatch.filterFrequency)
+    setFilterType(loadedPatch.filterType)
+    setResonance(loadedPatch.resonance)
+    setReverbDuration(loadedPatch.reverbDuration)
+    setPhaserDuration(loadedPatch.phaserDuration)
+    console.log(loadedPatch);
   }
-
-
-
-
-
-
-
 
   return (
     <Router>
@@ -226,8 +234,8 @@ export default function App() {
           <Switch>
             <Route path="/oscillator">
               <Oscillators
-                Oscillator1={osc1Frequency}
-                Oscillator2={osc2Frequency}
+                oscillator1={osc1Frequency}
+                oscillator2={osc2Frequency}
                 onChangeOsc1Type={handleOsc1Type}
                 onChangeOsc2Type={handleOsc2Type}
                 onChangeFreqOsc1={handleOsc1FrequencyChange}
@@ -236,8 +244,8 @@ export default function App() {
             </Route>
             <Route path="/filter">
               <FilterBoard
-                CutOff={filterFrequency}
-                Resonance={resonance}
+                cutOff={filterFrequency}
+                resonance={resonance}
                 onChangeFreq={handleFilterCutoffChange}
                 onChangeRes={handleFilterResonanceChange}
                 onChangeFilterType={handleFilterTypeChange}
@@ -251,7 +259,7 @@ export default function App() {
                 </div>{" "}
                 <h2> Attack </h2>
                 <input
-                  value={ampEnvelope.attack} // to local storage 5
+                  value={ampEnvelope.attack}  
                   onChange={handleAttackChange}
                   type="range"
                   min="0.1"
@@ -265,8 +273,8 @@ export default function App() {
             </Route>
             <Route path="/vfx">
               <Effects
-                Reverb={reverbDuration}
-                Phaser={phaserRef}
+                reverb={reverbDuration}
+                phaser={phaserDuration}
                 onChangeReverb={handleReverbChange}
                 onChangePhaser={handlePhaserChange}
               />
@@ -289,7 +297,9 @@ export default function App() {
             </button>
           </div>
         </main>
-        <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
+        <Footer 
+        onClickSave={handleSave} 
+        onClickLoad={handleLoad} />
       </div>
     </Router>
   );

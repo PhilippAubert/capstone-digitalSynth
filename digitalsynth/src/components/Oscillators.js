@@ -5,8 +5,8 @@ import "./css/Oscillators.css";
 import { useState } from "react";
 
 export default function Oscillators({
-  osc1Frequency,
-  osc2Frequency,
+  oscillator1,
+  oscillator2,
   onChangeFreqOsc1,
   onChangeFreqOsc2,
   onChangeOsc1Type,
@@ -63,7 +63,7 @@ export default function Oscillators({
         type="range"
         min="0"
         max="440"
-        value={osc1Frequency} // to local storage 1
+        value={oscillator1}  
         onChange={handleOsc1Change}
         className="Value"
       />
@@ -96,7 +96,7 @@ export default function Oscillators({
       </div>
 
       <input
-        value={osc2Frequency} // to local storage 2
+        value={oscillator2}  
         onChange={handleOsc2Change}
         type="range"
         min="0"

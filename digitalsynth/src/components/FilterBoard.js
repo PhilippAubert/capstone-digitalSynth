@@ -3,7 +3,7 @@ import  "./css/FilterBoard.css";
 export default function FilterBoard({
   onChangeFreq,
   onChangeRes,
-  filterFrequency,
+  cutOff,
   resonance,
   onChangeFilterType,
 }) {
@@ -33,7 +33,7 @@ export default function FilterBoard({
 
       <h2> Cutoff </h2>
       <input
-        value={filterFrequency} // to local storage 3
+        value={cutOff} 
         onChange={handleCutoffChange}
         type="range"
         min="0"
@@ -44,7 +44,7 @@ export default function FilterBoard({
 
       <h2> Resonance </h2>
       <input
-        value={resonance} // to local storage 4
+        value={resonance}  
         onChange={handleResonanceChange}
         type="range"
         min="0"

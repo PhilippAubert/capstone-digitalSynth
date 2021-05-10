@@ -1,6 +1,6 @@
 export default function Effects({
-  reverbDuration,
-  phaserDuration,
+  reverb,
+  phaser,
   onChangeReverb,
   onChangePhaser,
 }) {
@@ -19,7 +19,7 @@ export default function Effects({
       </div>{" "}
       <h2> Reverb </h2>
       <input
-        value={reverbDuration} // to local storage 6
+        value={reverb}  
         onChange={handleReverbChange}
         type="range"
         min="0.1"
@@ -29,7 +29,7 @@ export default function Effects({
       />
       <h2> Phaser </h2>
       <input
-        value={phaserDuration} // to local storage 7
+        value={phaser}  
         onChange={handlePhaserChange}
         type="range"
         min="0"
