@@ -1,0 +1,20 @@
+.Change {
+  border-radius: 6px;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 2px;
+  background-color: #fc0303;
+}
+
+.Active {
+  border-radius: 6px;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 2px;
+  color: aquamarine;
+  border: 1px solid aquamarine;
+}

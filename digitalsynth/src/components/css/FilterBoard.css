@@ -1,0 +1,16 @@
+.FilterButton{
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 2px;
+    background: #fc0303;
+  }
+
+  .Filter-Box {
+    margin:0;
+    color:#000;
+    font-weight:800;
+    font-family:"Toxigenesis";
+  }
+

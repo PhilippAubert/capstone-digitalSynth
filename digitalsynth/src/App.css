@@ -6,24 +6,27 @@
   display: grid;
   grid-template-rows: 15vh auto 10vh;
   height: 100vh;
+  background: #fc0303;
 }
 
 .App-Header {
-  font-family: "Press Start 2P";
-  font-size: 2.2em;
-  color: #f00;
   grid-row: 1/2;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
-  margin: 0 15%;
+  border-radius: 5px;
+  border: 2px solid white;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #f00030, inset -5px -5px 10px #f00010;
 }
 
 .Nav-Bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 20px;
+  font-size: 1.2em;
 }
 
 .App-Main {
@@ -37,28 +40,38 @@
 .App-Footer {
   grid-row: 3/4;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  color: #f00;
+
+  border: 3px solid white;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Touchpad {
   height: 30%;
   width: 30%;
-  border: 3px solid #f00;
-  border-radius: 15px;
   margin: 0 auto;
+  border: 3px solid white;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00090;
 }
 
 .Slider {
   text-decoration: none;
-  font-family: "Orbitron";
-  color: #f00;
+  font-family: "Toxigenesis";
+  color: white;
   font-weight: 800;
-  border: 3px solid #f00;
-  border-radius: 8px;
+  border: 3px solid white;
+  border-radius: 10px;
   margin: 0 7%;
   padding: 2%;
   font-size: 90%;
+  font-weight: 200;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 input {
@@ -69,24 +82,21 @@ input {
   color: #f00;
 }
 
-.App-Footer {
-  color: #f00;
-  display: flex;
-  justify-content: space-between;
-}
-
 .Function-Board {
-  border: 3px solid #f00;
-  font-family: Orbitron;
-  color: #f00;
+  border: 2px solid white;
+  font-family: "Toxigenesis";
+  color: white;
   border-radius: 15px;
   width: 250px;
   height: 200px;
-  margin: 4vh auto;
+  margin: 0 auto;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Function-Board h2 {
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .Function-Board input {
@@ -96,7 +106,7 @@ input {
 .Icons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .Vco-bar {
@@ -113,11 +123,23 @@ input {
 .Filter-bar {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .Amp-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.OnOff_Board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.OnOff {
+  margin: 0 10%;
+  font-size: 1.5em;
 }

@@ -1,10 +1,18 @@
+.Footer {
+  grid-row: 3/4;
+  width: 98vw;
+  border: 3px solid white;
+  border-radius: 15px;
+  background: #b6000c;
+  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
+}
+
 .FooterNav {
-  width: 100vw;
+  margin-top: 0.5vh;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin: 0 auto;
-  font-family: "Press Start 2P";
-  font-size: 1.3vh;
+  font-family: "Toxigenesis";
+  font-size: 1.8vh;
+  color: white;
 }

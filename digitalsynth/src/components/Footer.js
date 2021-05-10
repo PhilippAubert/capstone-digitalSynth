@@ -1,30 +1,27 @@
 import "./css/Footer.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  NavLink,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Switch, Route } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({ onClickSave, onClickLoad }) {
+
+
   return (
     <div className="Footer">
-      <Router>
         <Switch>
           <div className="FooterNav">
             <Route>
-              <h2>Config</h2>
+              <h2>CONFIG</h2>
             </Route>
             <Route>
-              <h2>Load</h2>
+              <h2 onClick={onClickLoad}>LOAD</h2>
             </Route>
 
             <Route>
-              <h2>Save</h2>
+              <h2 onClick={onClickSave}>SAVE</h2>
             </Route>
           </div>
         </Switch>
-      </Router>
     </div>
   );
 }
+
+
