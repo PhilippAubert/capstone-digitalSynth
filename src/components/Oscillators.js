@@ -41,19 +41,15 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={"Change"}
+            className="Change"
             onClick={handleChangeOsc1Type}
           >
             <Saw />
           </button>{" "}
-          <button
-            id="square"
-            className={"Change"}
-            onClick={handleChangeOsc1Type}
-          >
+          <button id="square" className="Change" onClick={handleChangeOsc1Type}>
             <Square />
           </button>{" "}
-          <button id="sine" className={"Change"} onClick={handleChangeOsc1Type}>
+          <button id="sine" className="Change" onClick={handleChangeOsc1Type}>
             <Sine />
           </button>
         </div>
@@ -73,19 +69,15 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={"Change"}
+            className="Change"
             onClick={handleChangeOsc2Type}
           >
             <Saw />
           </button>{" "}
-          <button
-            id="square"
-            className={"Change"}
-            onClick={handleChangeOsc2Type}
-          >
+          <button id="square" className="Change" onClick={handleChangeOsc2Type}>
             <Square />
           </button>{" "}
-          <button id="sine" className={"Change"} onClick={handleChangeOsc2Type}>
+          <button id="sine" className="Change" onClick={handleChangeOsc2Type}>
             <Sine />
           </button>
         </div>

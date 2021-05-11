@@ -2,10 +2,14 @@ import { useState } from "react";
 import "./css/Touchpad.css";
 
 export default function Touchpad({ onTouchChange, onTouchStart, onTouchEnd }) {
-  const [pointPos, setPointPos] = useState({ x: 15, y: 200 });
+  const [pointPos, setPointPos] = useState({ x: 15, y: 300 });
+  const [trackTouchpad, setTrackTouchpad] = useState("false");
 
   function handlePointerDown() {
     onTouchStart();
+    if (trackTouchpad === "false") {
+      setTrackTouchpad("true");
+    }
   }
 
   function handlePointerMove(event) {
@@ -19,6 +23,9 @@ export default function Touchpad({ onTouchChange, onTouchStart, onTouchEnd }) {
 
   function handlePointerUp() {
     onTouchEnd();
+    if (trackTouchpad === "true") {
+      setTrackTouchpad("false");
+    }
   }
 
   return (

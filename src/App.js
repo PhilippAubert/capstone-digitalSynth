@@ -5,6 +5,7 @@ import FilterBoard from "./components/FilterBoard.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
+
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import {
@@ -42,8 +43,7 @@ export default function App() {
   const phaserRef = useRef(null);
   const limiterRef = useRef(null);
 
-  function onClickStart() {
-    Tone.start();
+  function handleTouchStart() {
     oscRef1.current = new Tone.Oscillator(osc1Frequency).start();
     oscRef1.current.type = osc1Type;
     oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
@@ -56,7 +56,7 @@ export default function App() {
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
-    limiterRef.current = new Tone.Limiter(-20);
+    limiterRef.current = new Tone.Limiter(-30);
 
     oscRef1.current.connect(filterRef.current);
     oscRef2.current.connect(filterRef.current);
@@ -66,7 +66,7 @@ export default function App() {
     limiterRef.current.connect(Tone.getDestination());
   }
 
-  function onClickStop() {
+  function handleTouchStop() {
     oscRef1.current.stop();
     oscRef2.current.stop();
   }
@@ -188,15 +188,19 @@ export default function App() {
 
   function handleLoad() {
     const loadedPatch = JSON.parse(localStorage.getItem("Patch"));
-    setOsc1Frequency(loadedPatch.osc1Frequency);
-    setOsc1Type(loadedPatch.osc1Type);
-    setOsc2Frequency(loadedPatch.osc2Frequency);
-    setOsc2Type(loadedPatch.osc2Type);
-    setFilterFrequency(loadedPatch.filterFrequency);
-    setFilterType(loadedPatch.filterType);
-    setResonance(loadedPatch.resonance);
-    setReverbDuration(loadedPatch.reverbDuration);
-    setPhaserDuration(loadedPatch.phaserDuration);
+    if (loadedPatch === null) {
+      alert("no patch saved yet");
+    } else {
+      setOsc1Frequency(loadedPatch.osc1Frequency);
+      setOsc1Type(loadedPatch.osc1Type);
+      setOsc2Frequency(loadedPatch.osc2Frequency);
+      setOsc2Type(loadedPatch.osc2Type);
+      setFilterFrequency(loadedPatch.filterFrequency);
+      setFilterType(loadedPatch.filterType);
+      setResonance(loadedPatch.resonance);
+      setReverbDuration(loadedPatch.reverbDuration);
+      setPhaserDuration(loadedPatch.phaserDuration);
+    }
   }
 
   return (
@@ -277,8 +281,8 @@ export default function App() {
 
           <Touchpad
             onTouchChange={handleTouchChange}
-            onTouchStart={onClickStart}
-            onTouchEnd={onClickStop}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchStop}
           />
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
