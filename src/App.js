@@ -280,16 +280,6 @@ export default function App() {
             onTouchStart={onClickStart}
             onTouchEnd={onClickStop}
           />
-          <div className="OnOff_Board">
-            <button className="OnOff" onClick={onClickStart}>
-              {" "}
-              Start{" "}
-            </button>
-            <button className="OnOff" onClick={onClickStop}>
-              {" "}
-              Stop{" "}
-            </button>
-          </div>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
       </div>

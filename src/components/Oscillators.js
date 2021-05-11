@@ -62,7 +62,7 @@ export default function Oscillators({
       <input
         type="range"
         min="0"
-        max="440"
+        max="300"
         value={oscillator1}
         onChange={handleOsc1Change}
         className="Value"
@@ -96,7 +96,7 @@ export default function Oscillators({
         onChange={handleOsc2Change}
         type="range"
         min="0"
-        max="440"
+        max="300"
         className="Value"
       />
     </div>
