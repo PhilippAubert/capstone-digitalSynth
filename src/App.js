@@ -116,10 +116,6 @@ export default function App() {
     setOsc2Frequency(coordinates.x);
   }
 
-  function handleTouchStart() {
-    console.log("touch start");
-  }
-
   useEffect(() => {
     if (oscRef1.current) {
       oscRef1.current.frequency.value = osc1Frequency;
@@ -282,6 +278,7 @@ export default function App() {
           <Touchpad
             onTouchChange={handleTouchChange}
             onTouchStart={onClickStart}
+            onTouchEnd={onClickStop}
           />
           <div className="OnOff_Board">
             <button className="OnOff" onClick={onClickStart}>
