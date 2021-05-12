@@ -5,6 +5,7 @@ import FilterBoard from "./components/FilterBoard.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
+import { savePatch, loadPatch } from "./components/services/patches.js";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -16,6 +17,7 @@ import {
 } from "react-router-dom";
 
 export default function App() {
+  Tone.start();
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc1Type, setOsc1Type] = useState("sawtooth");
   const [osc2Frequency, setOsc2Frequency] = useState(220);
@@ -44,6 +46,7 @@ export default function App() {
   const limiterRef = useRef(null);
 
   function handleTouchStart() {
+    Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency).start();
     oscRef1.current.type = osc1Type;
     oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
@@ -170,24 +173,23 @@ export default function App() {
     }
   }, [phaserDuration]);
 
-  const savedPatch = {
-    osc1Frequency,
-    osc1Type,
-    osc2Frequency,
-    osc2Type,
-    filterFrequency,
-    filterType,
-    resonance,
-    reverbDuration,
-    phaserDuration,
-  };
-
   function handleSave() {
-    localStorage.setItem("Patch", JSON.stringify(savedPatch));
+    const savedPatch = {
+      osc1Frequency,
+      osc1Type,
+      osc2Frequency,
+      osc2Type,
+      filterFrequency,
+      filterType,
+      resonance,
+      reverbDuration,
+      phaserDuration,
+    };
+    savePatch(savedPatch);
   }
 
   function handleLoad() {
-    const loadedPatch = JSON.parse(localStorage.getItem("Patch"));
+    const loadedPatch = loadPatch();
     if (loadedPatch === null) {
       alert("no patch saved yet");
     } else {
