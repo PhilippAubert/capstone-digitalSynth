@@ -1,9 +1,10 @@
 .Touchpad {
-  height: 200px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   border: 3px solid white;
   border-radius: 15px;
   position: relative;
+  touch-action: none;
 }
 
 .box {
@@ -15,5 +16,6 @@
   box-shadow: 2px 2px 8px #73be52, -1px -1px 8px #9bff70;
   position: absolute;
   transform: translate(-15px, -15px);
+  touch-action: none;
   pointer-events: none;
 }

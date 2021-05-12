@@ -41,19 +41,15 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={"Change"}
+            className="Change"
             onClick={handleChangeOsc1Type}
           >
             <Saw />
           </button>{" "}
-          <button
-            id="square"
-            className={"Change"}
-            onClick={handleChangeOsc1Type}
-          >
+          <button id="square" className="Change" onClick={handleChangeOsc1Type}>
             <Square />
           </button>{" "}
-          <button id="sine" className={"Change"} onClick={handleChangeOsc1Type}>
+          <button id="sine" className="Change" onClick={handleChangeOsc1Type}>
             <Sine />
           </button>
         </div>
@@ -62,8 +58,8 @@ export default function Oscillators({
       <input
         type="range"
         min="0"
-        max="440"
-        value={oscillator1}  
+        max="300"
+        value={oscillator1}
         onChange={handleOsc1Change}
         className="Value"
       />
@@ -73,34 +69,26 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className={"Change"}
+            className="Change"
             onClick={handleChangeOsc2Type}
           >
             <Saw />
           </button>{" "}
-          <button
-            id="square"
-            className={"Change"}
-            onClick={handleChangeOsc2Type}
-          >
+          <button id="square" className="Change" onClick={handleChangeOsc2Type}>
             <Square />
           </button>{" "}
-          <button
-            id="sine"
-            className={"Change"}
-            onClick={handleChangeOsc2Type}
-          >
+          <button id="sine" className="Change" onClick={handleChangeOsc2Type}>
             <Sine />
           </button>
         </div>
       </div>
 
       <input
-        value={oscillator2}  
+        value={oscillator2}
         onChange={handleOsc2Change}
         type="range"
         min="0"
-        max="440"
+        max="300"
         className="Value"
       />
     </div>

@@ -1,18 +1,47 @@
 import { useState } from "react";
 import "./css/Touchpad.css";
 
-export default function Touchpad() {
-  const [pointPos, setPointPos] = useState({ left: 0, top: 0 });
+export default function Touchpad({ onTouchChange, onTouchStart, onTouchEnd }) {
+  const [pointPos, setPointPos] = useState({ x: 15, y: 300 });
+  const [isTouchpadPressed, setIsTouchpadPressed] = useState(false);
+
+  function handlePointerDown() {
+    if (isTouchpadPressed === false) {
+      onTouchStart();
+      setIsTouchpadPressed(true);
+    }
+  }
 
   function handlePointerMove(event) {
-    const { clientX, clientY } = event;
-    const domRect = event.target.getBoundingClientRect();
+    if (isTouchpadPressed) {
+      const { clientX, clientY } = event;
+      const domRect = event.target.getBoundingClientRect();
+      const coordinates = { x: clientX - domRect.x, y: clientY - domRect.y };
+      if (coordinates.x < 0) {
+        coordinates.x = 0;
+      }
+      if (coordinates.y < 0) {
+        coordinates.y = 0;
+      }
+      setPointPos(coordinates);
+      onTouchChange(coordinates);
+    }
+  }
 
-    setPointPos({ x: clientX - domRect.x, y: clientY - domRect.y });
-   }
+  function handlePointerUp() {
+    if (isTouchpadPressed === true) {
+      onTouchEnd();
+      setIsTouchpadPressed(false);
+    }
+  }
 
   return (
-    <div className="Touchpad" onMouseMove={handlePointerMove}>
+    <div
+      className="Touchpad"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+    >
       <div
         className={`box`}
         style={{ top: `${pointPos.y}px`, left: `${pointPos.x}px` }}
