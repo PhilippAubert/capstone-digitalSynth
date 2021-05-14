@@ -46,10 +46,14 @@ export default function App() {
   const limiterRef = useRef(null);
 
   function handleTouchStart() {
-    Tone.start();
-    oscRef1.current = new Tone.Oscillator(osc1Frequency).start();
+    if (oscRef1.current) {
+      oscRef1.current.mute = false;
+      oscRef2.current.mute = false;
+      return;
+    }
+    oscRef1.current = new Tone.Oscillator(osc1Frequency);
     oscRef1.current.type = osc1Type;
-    oscRef2.current = new Tone.Oscillator(osc2Frequency).start();
+    oscRef2.current = new Tone.Oscillator(osc2Frequency);
     oscRef2.current.type = osc2Type;
 
     filterRef.current = new Tone.Filter(filterFrequency);
@@ -67,11 +71,13 @@ export default function App() {
     revRef.current.connect(phaserRef.current);
     phaserRef.current.connect(limiterRef.current);
     limiterRef.current.connect(Tone.getDestination());
+    oscRef1.currrent.start();
+    oscRef2.current.start();
   }
 
   function handleTouchStop() {
-    oscRef1.current.stop();
-    oscRef2.current.stop();
+    oscRef1.current.mute = true;
+    oscRef2.current.mute = true;
   }
 
   function handleOsc1Type(waverform1) {
@@ -286,6 +292,10 @@ export default function App() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchStop}
           />
+          <button className="OnOff" onClick={(e) => Tone.start()}>
+            {" "}
+            Start Synth
+          </button>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
       </div>
