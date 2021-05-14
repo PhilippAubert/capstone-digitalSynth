@@ -4,18 +4,17 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-rows: 15vh auto 10vh;
+  grid-template-rows: 10vh auto 10vh;
   height: 100vh;
   background: #fc0303;
 }
 
 .App-Header {
   grid-row: 1/2;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 2px solid white;
   background: #b6000c;
   box-shadow: inset 5px 5px 10px #f00030, inset -5px -5px 10px #f00010;

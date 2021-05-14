@@ -71,8 +71,6 @@ export default function App() {
     revRef.current.connect(phaserRef.current);
     phaserRef.current.connect(limiterRef.current);
     limiterRef.current.connect(Tone.getDestination());
-    oscRef1.currrent.start();
-    oscRef2.current.start();
   }
 
   function handleTouchStop() {
@@ -292,10 +290,6 @@ export default function App() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchStop}
           />
-          <button className="OnOff" onClick={(e) => Tone.start()}>
-            {" "}
-            Start Synth
-          </button>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
       </div>
