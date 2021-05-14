@@ -8,9 +8,6 @@ export default function Footer({ onClickSave, onClickLoad }) {
       <Switch>
         <div className="FooterNav">
           <Route>
-            <h2>CONFIG</h2>
-          </Route>
-          <Route>
             <h2 onClick={onClickLoad}>LOAD</h2>
           </Route>
 
