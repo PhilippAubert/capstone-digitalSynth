@@ -23,8 +23,8 @@ export default function Touchpad({ onTouchChange, onTouchStart, onTouchEnd }) {
       if (coordinates.y < 0) {
         coordinates.y = 0;
       }
-      if (coordinates.x > 200) {
-        coordinates.x = 200;
+      if (coordinates.x > 250) {
+        coordinates.x = 250;
       }
       if (coordinates.y > 200) {
         coordinates.y = 200;
