@@ -7,10 +7,6 @@
   background: #fc0303;
 }
 
-.FilterButton p {
-  font-size: 1em;
-}
-
 .Filter-Box {
   margin: 0;
   color: #000;
@@ -23,4 +19,9 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.Filter-Value {
+  padding: 0;
+  margin: 3%;
 }

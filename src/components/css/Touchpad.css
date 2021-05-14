@@ -5,13 +5,9 @@
   border-radius: 15px;
   position: relative;
   touch-action: none;
-}
-
-.Touchpad {
-  margin: 0 auto;
-  border-radius: 15px;
   background: #b6000c;
   box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00090;
+  margin-bottom: 2%;
 }
 
 .box {

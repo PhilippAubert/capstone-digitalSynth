@@ -6,7 +6,7 @@
   display: grid;
   grid-template-rows: 10vh auto 10vh;
   height: 100vh;
-  background: #fc0303;
+  background: #0c0d0d;
 }
 
 .App-Header {
@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 10px;
+  margin-top: 2%;
   font-size: 1.2em;
 }
 
@@ -54,8 +54,8 @@
   font-weight: 800;
   border: 2px solid white;
   border-radius: 10px;
-  padding: 1% 2%;
-  margin: 0 7%;
+  padding: 1% 2.5%;
+  margin: 0 2.1%;
   font-size: 90%;
   background: #b6000c;
   box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
@@ -75,13 +75,14 @@ input {
   color: white;
   border-radius: 15px;
   width: 250px;
-  margin: 0;
+  margin: 2%;
   background: #b6000c;
   box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }
 
 .Function-Board p {
   font-size: 1em;
+  padding: 1%;
 }
 
 .Function-Board input {

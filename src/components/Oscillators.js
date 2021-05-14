@@ -35,7 +35,6 @@ export default function Oscillators({
   return (
     <div className="Function-Board">
       <p>SET OSCILLATOR</p>
-
       <div className="Vco-bar">
         <p>OSC 1</p>
         <div className="Icons">
