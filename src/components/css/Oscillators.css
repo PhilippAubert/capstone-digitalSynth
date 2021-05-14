@@ -1,3 +1,15 @@
+.Vco-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+}
+
+.Vco-bar p {
+  text-align: left;
+}
+
 .Change {
   border-radius: 6px;
   width: 50%;

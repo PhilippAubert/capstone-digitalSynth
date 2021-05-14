@@ -1,8 +1,8 @@
 .Footer {
   grid-row: 3/4;
-  width: 98vw;
-  border: 3px solid white;
-  border-radius: 15px;
+  width: 99vw;
+  border: 2px solid white;
+  border-radius: 5px;
   background: #b6000c;
   box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
 }

@@ -1,4 +1,4 @@
-import  "./css/FilterBoard.css";
+import "./css/FilterBoard.css";
 
 export default function FilterBoard({
   onChangeFreq,
@@ -22,18 +22,26 @@ export default function FilterBoard({
   return (
     <div className="Function-Board">
       <div className="Filter-bar">
-        <h2>SET FILTER </h2>
-        <button id="lowpass" onClick={changeFilterType} className={"FilterButton"}>
+        <p>SET FILTER </p>
+        <button
+          id="lowpass"
+          onClick={changeFilterType}
+          className={"FilterButton"}
+        >
           <p className="Filter-Box"> LP </p>
         </button>
-        <button id="highpass" onClick={changeFilterType} className={"FilterButton"}>
+        <button
+          id="highpass"
+          onClick={changeFilterType}
+          className={"FilterButton"}
+        >
           <p className="Filter-Box"> HP </p>
         </button>
       </div>
 
-      <h2> Cutoff </h2>
+      <p> Cutoff </p>
       <input
-        value={cutOff} 
+        value={cutOff}
         onChange={handleCutoffChange}
         type="range"
         min="0"
@@ -42,9 +50,9 @@ export default function FilterBoard({
         step="0.1"
       />
 
-      <h2> Resonance </h2>
+      <p> Resonance </p>
       <input
-        value={resonance}  
+        value={resonance}
         onChange={handleResonanceChange}
         type="range"
         min="0"
