@@ -65,8 +65,24 @@ input {
   margin: 20px;
 }
 
-.Value {
-  color: #f00;
+.Value[type="range"] {
+  -webkit-appearance: none;
+  width: 75%;
+  background: #ff0000;
+  height: 1.5%;
+  margin-bottom: 1.5%;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #ff0015, 0px 0px 1px #8d0000;
+}
+
+.Value[type="range"]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #2afd00, 0px 0px 1px #b1fd00;
+  border: 1px solid #00fc15;
+  height: 400%;
+  width: 10%;
+  border-radius: 50px;
+  background: #34eb67;
+  cursor: pointer;
 }
 
 .Function-Board {
