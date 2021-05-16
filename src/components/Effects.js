@@ -17,9 +17,9 @@ export default function Effects({
   return (
     <div className="Function-Board">
       <div className="Effects-Bar">
-        <p className="Effects-Headline">SET AUDIO EFFECTS</p>
+        <h2 className="Effects-Headline">SET EFFECTS</h2>
       </div>{" "}
-      <p className="Effect-Value"> REVERB </p>
+      <label className="Effect-Label"> REVERB </label>
       <input
         value={reverb}
         onChange={handleReverbChange}
@@ -29,7 +29,7 @@ export default function Effects({
         className="Value"
         step="1"
       />
-      <p className="Effect-Value"> PHASER </p>
+      <label className="Effect-Label"> PHASER </label>
       <input
         value={phaser}
         onChange={handlePhaserChange}

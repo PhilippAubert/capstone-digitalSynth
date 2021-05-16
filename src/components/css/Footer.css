@@ -1,18 +1,15 @@
 .Footer {
   grid-row: 3/4;
-  width: 99vw;
-  border: 2px solid white;
-  border-radius: 5px;
-  background: #b6000c;
-  box-shadow: inset 5px 5px 10px #7c0008, inset -5px -5px 10px #f00010;
+  margin-top: 1px;
 }
 
 .FooterNav {
-  margin-top: 0.5vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-family: "Toxigenesis";
   font-size: 1.8vh;
-  color: white;
+  color: var(--general-font-color);
+  border: 2px solid var(--general-border-color);
+  background: var(--general-box-color);
 }

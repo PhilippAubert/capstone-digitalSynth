@@ -1,5 +1,5 @@
 .Header h1 {
   font-size: 2.5em;
   font-family: "Toxigenesis";
-  color: white;
+  color: var(--general-font-color);
 }

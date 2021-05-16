@@ -1,27 +1,30 @@
 .FilterButton {
   border-radius: 6px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   margin: 0 2px;
-  background: #fc0303;
+  background: var(--general-body-color);
+  border: 1px solid var(--general-border-color);
 }
 
 .Filter-Box {
   margin: 0;
-  color: #000;
+  color: var(--general-font-color);
   font-weight: 800;
   font-family: "Toxigenesis";
 }
 
 .Filter-bar {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.Filter-Value {
-  padding: 0;
-  margin: 3%;
+.Filter-bar h2 {
+  font-size: 20px;
+}
+
+.Filter-label {
+  display: inline-block;
+  margin: 2%;
 }

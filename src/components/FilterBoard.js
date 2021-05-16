@@ -22,7 +22,7 @@ export default function FilterBoard({
   return (
     <div className="Function-Board">
       <div className="Filter-bar">
-        <p>SET FILTER </p>
+        <h2>SET FILTER </h2>
 
         <button
           id="lowpass"
@@ -40,7 +40,7 @@ export default function FilterBoard({
         </button>
       </div>
 
-      <p className="Filter-Value"> CUTOFF </p>
+      <label className="Filter-label"> CUTOFF </label>
       <input
         value={cutOff}
         onChange={handleCutoffChange}
@@ -51,7 +51,7 @@ export default function FilterBoard({
         step="0.1"
       />
 
-      <p className="Filter-Value"> RESONANCE </p>
+      <label className="Filter-label"> RESONANCE </label>
       <input
         value={resonance}
         onChange={handleResonanceChange}

@@ -34,9 +34,10 @@ export default function Oscillators({
 
   return (
     <div className="Function-Board">
-      <p>SET OSCILLATOR</p>
+      <h2>SET OSCILLATOR</h2>
+
       <div className="Vco-bar">
-        <p>OSC 1</p>
+        <label className="Input-Label">OSC 1</label>
         <div className="Icons">
           <button
             id="sawtooth"
@@ -64,7 +65,7 @@ export default function Oscillators({
       />
 
       <div className="Vco-bar">
-        <p>OSC 2</p>
+        <label className="Input-Label">OSC 2</label>
         <div className="Icons">
           <button
             id="sawtooth"

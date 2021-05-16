@@ -1,8 +1,12 @@
-.Effect-Value {
-  padding: 0%;
-  margin: 3%;
+.Effects-Headline {
+  margin-bottom: 6.6%;
 }
 
-.Effects-Headline {
-  margin-bottom: 9.5%;
+h2 {
+  font-size: 20px;
+}
+
+.Effect-Label {
+  display: inline-block;
+  margin: 2%;
 }
