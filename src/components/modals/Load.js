@@ -1,7 +1,12 @@
 export default function Load() {
   return (
     <div>
-      <h1>LOAD</h1>
+      <h2>LOAD</h2>
+      <label>Load A Sound</label>
+      <ul>
+        <li> Pad Eerie</li>
+        <li> Hancock Bass</li>
+      </ul>
     </div>
   );
 }
