@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import "./components/css/Color.css";
 
 .App {
@@ -47,11 +45,15 @@
   color: var(--general-font-color);
   font-weight: 800;
   border: 2px solid var(--general-border-color);
-  border-radius: 10px;
-  padding: 2.5%;
-  margin: 0 5%;
-  font-size: 90%;
+  border-radius: 15px;
+  margin: 0 3%;
+  padding: 2% 4%;
   background: var(--general-box-color);
+}
+
+.Nav-Bar-Font {
+  text-align: center;
+  margin: 0;
 }
 
 input {
@@ -83,7 +85,7 @@ input {
   font-family: "Toxigenesis";
   color: var(--general-font-color);
   border-radius: 15px;
-  width: 250px;
+  width: 300px;
   margin: 2%;
   background: var(--background-body-color);
 }

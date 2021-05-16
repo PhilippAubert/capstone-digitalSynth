@@ -17,7 +17,6 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  Tone.start();
   const [osc1Frequency, setOsc1Frequency] = useState(220);
   const [osc1Type, setOsc1Type] = useState("sawtooth");
   const [osc2Frequency, setOsc2Frequency] = useState(220);
@@ -51,6 +50,7 @@ export default function App() {
       oscRef2.current.mute = false;
       return;
     }
+    Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency);
     oscRef1.current.type = osc1Type;
     oscRef2.current = new Tone.Oscillator(osc2Frequency);
@@ -219,19 +219,19 @@ export default function App() {
           <nav className="Nav-Bar">
             <NavLink className="Slider" to="/oscillator">
               {" "}
-              VCO{" "}
+              <h2 className="Nav-Bar-Font"> VCO </h2>
             </NavLink>
             <NavLink className="Slider" to="/filter">
               {" "}
-              VCF{" "}
+              <h2 className="Nav-Bar-Font"> VCF </h2>
             </NavLink>
             <NavLink className="Slider" to="/amp">
               {" "}
-              VCA{" "}
+              <h2 className="Nav-Bar-Font"> VCA </h2>
             </NavLink>
             <NavLink className="Slider" to="/vfx">
               {" "}
-              EFX{" "}
+              <h2 className="Nav-Bar-Font"> EFX </h2>
             </NavLink>
           </nav>
 
@@ -290,6 +290,9 @@ export default function App() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchStop}
           />
+          <button className="Start-Button" onClick={(e) => Tone.start()}>
+            START ENGINE
+          </button>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
       </div>
