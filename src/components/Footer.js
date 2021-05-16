@@ -1,4 +1,6 @@
 import "./css/Footer.css";
+import Save from "./modals/Save.js";
+import Load from "./modals/Load.js";
 
 export default function Footer({ onClickSave, onClickLoad }) {
   return (
