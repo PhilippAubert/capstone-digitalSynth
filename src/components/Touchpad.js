@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./css/Touchpad.css";
 
 export default function Touchpad({ onTouchChange, onTouchStart, onTouchEnd }) {
-  const [pointPos, setPointPos] = useState({ x: 15, y: 300 });
+  const [pointPos, setPointPos] = useState({ x: 15, y: 200 });
   const [isTouchpadPressed, setIsTouchpadPressed] = useState(false);
 
   function handlePointerDown() {
@@ -23,6 +23,13 @@ export default function Touchpad({ onTouchChange, onTouchStart, onTouchEnd }) {
       if (coordinates.y < 0) {
         coordinates.y = 0;
       }
+      if (coordinates.x > 350) {
+        coordinates.x = 350;
+      }
+      if (coordinates.y > 200) {
+        coordinates.y = 200;
+      }
+
       setPointPos(coordinates);
       onTouchChange(coordinates);
     }

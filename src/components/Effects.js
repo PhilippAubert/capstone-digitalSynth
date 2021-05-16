@@ -1,3 +1,5 @@
+import "./css/Effects.css";
+
 export default function Effects({
   reverb,
   phaser,
@@ -14,22 +16,22 @@ export default function Effects({
 
   return (
     <div className="Function-Board">
-      <div className="Amp-bar">
-        <h2>SET AUDIO EFFECTS</h2>
+      <div className="Effects-Bar">
+        <h2 className="Effects-Headline">SET EFFECTS</h2>
       </div>{" "}
-      <h2> Reverb </h2>
+      <label className="Effect-Label"> REVERB </label>
       <input
-        value={reverb}  
+        value={reverb}
         onChange={handleReverbChange}
         type="range"
         min="0.1"
         max="10"
         className="Value"
-        step="1"
+        step="0.1"
       />
-      <h2> Phaser </h2>
+      <label className="Effect-Label"> PHASER </label>
       <input
-        value={phaser}  
+        value={phaser}
         onChange={handlePhaserChange}
         type="range"
         min="0"

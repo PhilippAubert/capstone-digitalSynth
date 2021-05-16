@@ -37,7 +37,7 @@ export default function Oscillators({
       <h2>SET OSCILLATOR</h2>
 
       <div className="Vco-bar">
-        <h2>OSC 1</h2>
+        <label className="Input-Label">OSC 1</label>
         <div className="Icons">
           <button
             id="sawtooth"
@@ -58,14 +58,14 @@ export default function Oscillators({
       <input
         type="range"
         min="0"
-        max="300"
+        max="200"
         value={oscillator1}
         onChange={handleOsc1Change}
         className="Value"
       />
 
       <div className="Vco-bar">
-        <h2>OSC 2</h2>
+        <label className="Input-Label">OSC 2</label>
         <div className="Icons">
           <button
             id="sawtooth"
@@ -88,7 +88,7 @@ export default function Oscillators({
         onChange={handleOsc2Change}
         type="range"
         min="0"
-        max="300"
+        max="250"
         className="Value"
       />
     </div>

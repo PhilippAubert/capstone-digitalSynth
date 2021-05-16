@@ -20,6 +20,6 @@ code {
 
 @font-face {
   font-family: "Toxigenesis";
-  src: local("Toxigenesis"), url("./fonts/Toxigenesis.ttf") format ("truetype");
+  src: local("Toxigenesis"), url("./fonts/Toxigenesis.ttf");
   font-weight: bold;
 }
