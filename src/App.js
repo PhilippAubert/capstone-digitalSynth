@@ -5,6 +5,8 @@ import FilterBoard from "./components/FilterBoard.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
+import Save from "./components/modals/Save.js";
+import Load from "./components/modals/Load.js";
 import { savePatch, loadPatch } from "./components/services/patches.js";
 
 import { useState, useEffect, useRef } from "react";
@@ -295,6 +297,8 @@ export default function App() {
           </button>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
+        <Save></Save>
+        <Load></Load>
       </div>
     </Router>
   );
