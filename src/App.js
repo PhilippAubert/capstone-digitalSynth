@@ -62,7 +62,7 @@ export default function App() {
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
-    limiterRef.current = new Tone.Limiter(-10);
+    limiterRef.current = new Tone.Limiter(-0);
 
     oscRef1.current.connect(ampEnvRef.current);
     oscRef2.current.connect(ampEnvRef.current);
@@ -241,7 +241,10 @@ export default function App() {
     <Router>
       <div className="App">
         <header className="App-Header">
-          <Header />
+          <button className="Start-Button" onClick={handleStartEngine}>
+            START ENGINE
+          </button>
+          <Header></Header>
         </header>
         <main className="App-Main">
           <nav className="Nav-Bar">
@@ -307,9 +310,6 @@ export default function App() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchStop}
           />
-          <button className="Start-Button" onClick={handleStartEngine}>
-            START ENGINE
-          </button>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
       </div>
