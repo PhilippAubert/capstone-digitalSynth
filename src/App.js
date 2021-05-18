@@ -37,8 +37,6 @@ export default function App() {
   const [reverbDuration, setReverbDuration] = useState(0.001);
   const [phaserDuration, setPhaserDuration] = useState(0.001);
 
-  const [isOpen, setIsOpen] = useState(false);
-
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
