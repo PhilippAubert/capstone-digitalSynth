@@ -5,7 +5,6 @@ import FilterBoard from "./components/FilterBoard.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
-import Modal from "./components/modals/Modal.js";
 
 import { savePatch, loadPatch } from "./components/services/patches.js";
 
@@ -307,13 +306,8 @@ export default function App() {
           <button className="Start-Button" onClick={handleStartEngine}>
             START ENGINE
           </button>
-          <div>
-            {" "}
-            <button onClick={() => setIsOpen(true)}> Open Modal </button>
-          </div>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
-        <Modal open={isOpen}>YO</Modal>
       </div>
     </Router>
   );
