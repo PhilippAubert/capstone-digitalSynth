@@ -1,0 +1,14 @@
+.Amp-bar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.Amp-label {
+  display: inline-block;
+  margin: 2%;
+}
