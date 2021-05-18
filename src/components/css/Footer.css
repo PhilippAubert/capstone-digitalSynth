@@ -15,7 +15,6 @@
 }
 
 .FooterButton {
-  margin: 0 2rem;
   background: var(--background-body-color);
   color: var(--general-font-color);
   font-family: "Toxigenesis";
