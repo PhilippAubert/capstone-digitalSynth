@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header.js";
 import Oscillators from "./components/Oscillators.js";
 import FilterBoard from "./components/FilterBoard.js";
+import Amp from "./components/Amp.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
@@ -30,9 +31,12 @@ export default function App() {
   const [ampEnvelope, setAmpEnvelope] = useState({
     attack: 0.5,
     decay: 2,
-    sustain: 0.5,
+    sustain: 1,
     release: 5,
   });
+
+  const [attack, setAttack] = useState(0.5);
+  const [decay, setDecay] = useState(2);
 
   const [reverbDuration, setReverbDuration] = useState(0.001);
   const [phaserDuration, setPhaserDuration] = useState(0.001);
@@ -58,6 +62,8 @@ export default function App() {
     filterRef.current.type = filterType;
     filterRef.current.Q.value = resonance;
     ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
+    ampEnvRef.current.attack.value = attack;
+    ampEnvRef.current.decay.value = decay;
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
@@ -117,8 +123,12 @@ export default function App() {
     setFilterType(filterType);
   }
 
-  function handleAttackChange(event) {
-    setAmpEnvelope({ ...ampEnvelope, attack: Number(event.target.value) });
+  function handleAmpAttackChange(attack) {
+    setAmpEnvelope.attack(attack);
+  }
+
+  function handleAmpDecayChange(decay) {
+    setAmpEnvelope.decay(decay);
   }
 
   function handleReverbChange(reverb) {
@@ -175,6 +185,18 @@ export default function App() {
       filterTypeRef.current.type = filterType;
     }
   }, [filterType]);
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.attack.value = attack;
+    }
+  }, [attack]);
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.decay.value = decay;
+    }
+  }, [decay]);
 
   useEffect(() => {
     if (revRef.current) {
@@ -268,23 +290,12 @@ export default function App() {
             </Route>
 
             <Route path="/amp">
-              <div className="Function-Board">
-                <div className="Amp-bar">
-                  <h2>SET AMP ENVELOPE</h2>
-                </div>{" "}
-                <h2> Attack </h2>
-                <input
-                  value={ampEnvelope.attack}
-                  onChange={handleAttackChange}
-                  type="range"
-                  min="0.1"
-                  max="1000"
-                  className="Value"
-                  step="0.1"
-                />
-                <h2> Decay </h2>
-                <input type="range" min="0" max="100" className="Value" />
-              </div>
+              <Amp
+                attack={attack}
+                decay={decay}
+                onChangeAttack={handleAmpAttackChange}
+                onChangeDecay={handleAmpDecayChange}
+              />{" "}
             </Route>
             <Route path="/vfx">
               <Effects
