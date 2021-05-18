@@ -61,7 +61,7 @@ input {
   -webkit-appearance: none;
   width: 75%;
   background: var(--general-body-color);
-  height: 2%;
+  height: 0.2em;
   margin-bottom: 1.5%;
   cursor: pointer;
   box-shadow: 1px 1px 1px #000, 0px 0px 1px #000;
@@ -70,8 +70,8 @@ input {
 .Value[type="range"]::-moz-range-thumb {
   box-shadow: 1px 1px 1px #2afd00, 0px 0px 1px #b1fd00;
   border: 1px solid #00fc15;
-  height: 400%;
-  width: 10%;
+  height: 1.5em;
+  width: 1em;
   border-radius: 50px;
   background: #34eb67;
   cursor: pointer;
