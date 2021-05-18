@@ -35,9 +35,6 @@ export default function App() {
     release: 5,
   });
 
-  const [attack, setAttack] = useState(0.5);
-  const [decay, setDecay] = useState(2);
-
   const [reverbDuration, setReverbDuration] = useState(0.001);
   const [phaserDuration, setPhaserDuration] = useState(0.001);
 
@@ -62,12 +59,10 @@ export default function App() {
     filterRef.current.type = filterType;
     filterRef.current.Q.value = resonance;
     ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
-    ampEnvRef.current.attack.value = attack;
-    ampEnvRef.current.decay.value = decay;
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
-    limiterRef.current = new Tone.Limiter(-30);
+    limiterRef.current = new Tone.Limiter(-10);
 
     oscRef1.current.connect(ampEnvRef.current);
     oscRef2.current.connect(ampEnvRef.current);
@@ -124,11 +119,11 @@ export default function App() {
   }
 
   function handleAmpAttackChange(attack) {
-    setAmpEnvelope.attack(attack);
+    setAmpEnvelope(attack);
   }
 
   function handleAmpDecayChange(decay) {
-    setAmpEnvelope.decay(decay);
+    setAmpEnvelope(decay);
   }
 
   function handleReverbChange(reverb) {
@@ -188,15 +183,15 @@ export default function App() {
 
   useEffect(() => {
     if (ampEnvRef.current) {
-      ampEnvRef.current.attack.value = attack;
+      ampEnvRef.current.attack.value = ampEnvelope.attack;
     }
-  }, [attack]);
+  }, [ampEnvelope.attack]);
 
   useEffect(() => {
     if (ampEnvRef.current) {
-      ampEnvRef.current.decay.value = decay;
+      ampEnvRef.current.decay.value = ampEnvelope.decay;
     }
-  }, [decay]);
+  }, [ampEnvelope.decay]);
 
   useEffect(() => {
     if (revRef.current) {
@@ -291,8 +286,8 @@ export default function App() {
 
             <Route path="/amp">
               <Amp
-                attack={attack}
-                decay={decay}
+                attack={ampEnvelope.attack}
+                decay={ampEnvelope.decay}
                 onChangeAttack={handleAmpAttackChange}
                 onChangeDecay={handleAmpDecayChange}
               />{" "}
