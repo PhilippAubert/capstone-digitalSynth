@@ -5,6 +5,8 @@ import FilterBoard from "./components/FilterBoard.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
+import Modal from "./components/modals/Modal.js";
+
 import { savePatch, loadPatch } from "./components/services/patches.js";
 
 import { useState, useEffect, useRef } from "react";
@@ -27,12 +29,16 @@ export default function App() {
   const [filterType, setFilterType] = useState("lowpass");
 
   const [ampEnvelope, setAmpEnvelope] = useState({
-    attack: 0.1,
-    decay: 100,
+    attack: 0.5,
+    decay: 2,
+    sustain: 0.5,
+    release: 5,
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.001);
   const [phaserDuration, setPhaserDuration] = useState(0.001);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
@@ -44,12 +50,7 @@ export default function App() {
   const phaserRef = useRef(null);
   const limiterRef = useRef(null);
 
-  function handleTouchStart() {
-    if (oscRef1.current) {
-      oscRef1.current.mute = false;
-      oscRef2.current.mute = false;
-      return;
-    }
+  function handleStartEngine() {
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency);
     oscRef1.current.type = osc1Type;
@@ -65,17 +66,30 @@ export default function App() {
     phaserRef.current = new Tone.Phaser(phaserDuration);
     limiterRef.current = new Tone.Limiter(-30);
 
-    oscRef1.current.connect(filterRef.current);
-    oscRef2.current.connect(filterRef.current);
-    filterRef.current.connect(revRef.current);
-    revRef.current.connect(phaserRef.current);
-    phaserRef.current.connect(limiterRef.current);
-    limiterRef.current.connect(Tone.getDestination());
+    oscRef1.current.connect(ampEnvRef.current);
+    oscRef2.current.connect(ampEnvRef.current);
+    ampEnvRef.current.chain(
+      filterRef.current,
+      revRef.current,
+      phaserRef.current,
+      limiterRef.current,
+      Tone.getDestination()
+    );
+
+    oscRef1.current.start();
+    oscRef2.current.start();
+  }
+
+  function handleTouchStart() {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.triggerAttack(Tone.now());
+    }
   }
 
   function handleTouchStop() {
-    oscRef1.current.mute = true;
-    oscRef2.current.mute = true;
+    if (ampEnvRef.current) {
+      ampEnvRef.current.triggerRelease(Tone.now());
+    }
   }
 
   function handleOsc1Type(waverform1) {
@@ -290,11 +304,16 @@ export default function App() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchStop}
           />
-          <button className="Start-Button" onClick={(e) => Tone.start()}>
+          <button className="Start-Button" onClick={handleStartEngine}>
             START ENGINE
           </button>
+          <div>
+            {" "}
+            <button onClick={() => setIsOpen(true)}> Open Modal </button>
+          </div>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
+        <Modal open={isOpen}>YO</Modal>
       </div>
     </Router>
   );
