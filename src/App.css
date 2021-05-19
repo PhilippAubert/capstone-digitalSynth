@@ -52,7 +52,9 @@
   border: 2px solid var(--general-border-color);
   border-radius: 10px;
   background: var (--general-box-color);
+  font-family: "Toxigenesis";
   font-weight: 800;
+  font-size: 1em;
 }
 
 .Nav-Bar-Font {

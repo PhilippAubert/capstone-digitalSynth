@@ -36,7 +36,7 @@ export default function App() {
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.001);
-  const [phaserDuration, setPhaserDuration] = useState(0.001);
+  const [phaserDuration, setPhaserDuration] = useState(0.1);
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
@@ -44,7 +44,6 @@ export default function App() {
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
-  const limiterRef = useRef(null);
 
   function handleStartEngine() {
     Tone.start();
@@ -60,7 +59,6 @@ export default function App() {
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
-    limiterRef.current = new Tone.Limiter(-0);
 
     oscRef1.current.connect(ampEnvRef.current);
     oscRef2.current.connect(ampEnvRef.current);
@@ -68,7 +66,6 @@ export default function App() {
       filterRef.current,
       revRef.current,
       phaserRef.current,
-      limiterRef.current,
       Tone.getDestination()
     );
 
@@ -118,7 +115,6 @@ export default function App() {
 
   function handleAmpAttackChange(attack) {
     const newAmpEnv = { ...ampEnvelope, attack };
-
     setAmpEnvelope(newAmpEnv);
   }
 
@@ -215,10 +211,12 @@ export default function App() {
       filterFrequency,
       filterType,
       resonance,
+      ampEnvelope,
       reverbDuration,
       phaserDuration,
     };
     savePatch(savedPatch);
+    console.log(savedPatch);
   }
 
   function handleLoad() {
@@ -232,6 +230,7 @@ export default function App() {
       setOsc2Type(loadedPatch.osc2Type);
       setFilterFrequency(loadedPatch.filterFrequency);
       setFilterType(loadedPatch.filterType);
+      setAmpEnvelope(loadedPatch.ampEnvelope);
       setResonance(loadedPatch.resonance);
       setReverbDuration(loadedPatch.reverbDuration);
       setPhaserDuration(loadedPatch.phaserDuration);

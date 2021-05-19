@@ -35,8 +35,8 @@ export default function Effects({
         onChange={handlePhaserChange}
         type="range"
         min="0"
-        max="100"
-        step="0.1"
+        max="10"
+        step="0.01"
         className="Value"
       />
     </div>
