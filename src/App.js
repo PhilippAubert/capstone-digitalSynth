@@ -32,7 +32,7 @@ export default function App() {
     attack: 0.5,
     decay: 2,
     sustain: 1,
-    release: 5,
+    release: 2,
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.001);
@@ -41,8 +41,6 @@ export default function App() {
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
-  const resonanceRef = useRef(null);
-  const filterTypeRef = useRef(null);
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
@@ -170,28 +168,28 @@ export default function App() {
   }, [filterFrequency]);
 
   useEffect(() => {
-    if (resonanceRef.current) {
-      resonanceRef.current.Q.value = resonance;
+    if (filterRef.current) {
+      filterRef.current.Q.value = resonance;
     }
   }, [resonance]);
 
   useEffect(() => {
-    if (filterTypeRef.current) {
-      filterTypeRef.current.type = filterType;
+    if (filterRef.current) {
+      filterRef.current.type = filterType;
     }
   }, [filterType]);
 
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.attack.value = ampEnvelope.attack;
-    }
-  }, [ampEnvelope.attack]);
+  // useEffect(() => {
+  //   if (ampEnvRef.current) {
+  //     ampEnvRef.current.attack.value = ampEnvelope;
+  //   }
+  // }, [ampEnvelope]);
 
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.decay.value = ampEnvelope.decay;
-    }
-  }, [ampEnvelope.decay]);
+  // useEffect(() => {
+  //   if (ampEnvRef.current) {
+  //     ampEnvRef.current.decay.value = ampEnvelope;
+  //   }
+  // }, [ampEnvelope]);
 
   useEffect(() => {
     if (revRef.current) {
@@ -242,7 +240,7 @@ export default function App() {
       <div className="App">
         <header className="App-Header">
           <button className="Start-Button" onClick={handleStartEngine}>
-            START ENGINE
+            ON
           </button>
           <Header></Header>
         </header>

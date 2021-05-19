@@ -15,7 +15,7 @@
   grid-column: 1/-1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border: 2px solid var(--general-border-color);
   background: var(--general-box-color);
 }
@@ -46,6 +46,13 @@
   border-radius: 15px;
   padding: 0.4rem;
   background: var(--general-box-color);
+}
+
+.Start-Button {
+  border: 2px solid var(--general-border-color);
+  border-radius: 10px;
+  background: var (--general-box-color);
+  font-weight: 800;
 }
 
 .Nav-Bar-Font {
