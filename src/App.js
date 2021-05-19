@@ -29,10 +29,10 @@ export default function App() {
   const [filterType, setFilterType] = useState("lowpass");
 
   const [ampEnvelope, setAmpEnvelope] = useState({
-    attack: 0.5,
-    decay: 2,
-    sustain: 1,
-    release: 2,
+    attack: 0,
+    decay: 0,
+    sustain: 0,
+    release: 0,
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.001);
@@ -123,7 +123,8 @@ export default function App() {
   }
 
   function handleAmpDecayChange(decay) {
-    setAmpEnvelope(decay);
+    const newAmpEnv = { ...ampEnvelope, decay };
+    setAmpEnvelope(newAmpEnv);
   }
 
   function handleReverbChange(reverb) {
@@ -187,11 +188,11 @@ export default function App() {
     }
   }, [ampEnvelope]);
 
-  // useEffect(() => {
-  //   if (ampEnvRef.current) {
-  //     ampEnvRef.current.decay.value = ampEnvelope;
-  //   }
-  // }, [ampEnvelope]);
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.decay = ampEnvelope.decay;
+    }
+  }, [ampEnvelope]);
 
   useEffect(() => {
     if (revRef.current) {
