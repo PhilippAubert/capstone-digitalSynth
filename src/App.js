@@ -117,7 +117,9 @@ export default function App() {
   }
 
   function handleAmpAttackChange(attack) {
-    setAmpEnvelope(attack);
+    const newAmpEnv = { ...ampEnvelope, attack };
+
+    setAmpEnvelope(newAmpEnv);
   }
 
   function handleAmpDecayChange(decay) {
@@ -179,11 +181,11 @@ export default function App() {
     }
   }, [filterType]);
 
-  // useEffect(() => {
-  //   if (ampEnvRef.current) {
-  //     ampEnvRef.current.attack.value = ampEnvelope;
-  //   }
-  // }, [ampEnvelope]);
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.attack = ampEnvelope.attack;
+    }
+  }, [ampEnvelope]);
 
   // useEffect(() => {
   //   if (ampEnvRef.current) {
