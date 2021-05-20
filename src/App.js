@@ -252,7 +252,7 @@ export default function App() {
           >
             {label}
           </button>
-          <Header></Header>
+          <Header />
         </header>
         <main className="App-Main">
           <nav className="Nav-Bar">
