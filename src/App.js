@@ -289,6 +289,7 @@ export default function App() {
               <FilterBoard
                 cutOff={filterFrequency}
                 resonance={resonance}
+                filterType={filterType}
                 onChangeFreq={handleFilterCutoffChange}
                 onChangeRes={handleFilterResonanceChange}
                 onChangeFilterType={handleFilterTypeChange}
