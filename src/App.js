@@ -38,6 +38,9 @@ export default function App() {
   const [reverbDuration, setReverbDuration] = useState(0.001);
   const [phaserDuration, setPhaserDuration] = useState(0.1);
 
+  const [active, setActive] = useState(false);
+  const label = !active ? "ON" : "OFF";
+
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
@@ -46,6 +49,8 @@ export default function App() {
   const phaserRef = useRef(null);
 
   function handleStartEngine() {
+    setActive(!active);
+
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency);
     oscRef1.current.type = osc1Type;
@@ -241,8 +246,11 @@ export default function App() {
     <Router>
       <div className="App">
         <header className="App-Header">
-          <button className="Start-Button" onClick={handleStartEngine}>
-            ON
+          <button
+            className={!active ? "Start-Button" : "Start-Button-Active"}
+            onClick={handleStartEngine}
+          >
+            {label}
           </button>
           <Header></Header>
         </header>
