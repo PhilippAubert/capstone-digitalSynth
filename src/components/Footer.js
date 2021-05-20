@@ -19,7 +19,6 @@ export default function Footer({ onClickSave, onClickLoad }) {
           <Route>
             <Load />
           </Route>
-
           <Route>
             <Save />
           </Route>
