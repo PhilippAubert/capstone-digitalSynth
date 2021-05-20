@@ -256,19 +256,36 @@ export default function App() {
         </header>
         <main className="App-Main">
           <nav className="Nav-Bar">
-            <NavLink className="Slider" to="/">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              exact
+              to="/"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> VCO </h2>
             </NavLink>
-            <NavLink className="Slider" to="/filter">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              to="/filter"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> VCF </h2>
             </NavLink>
-            <NavLink className="Slider" to="/amp">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              to="/amp"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> VCA </h2>
             </NavLink>
-            <NavLink className="Slider" to="/vfx">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              to="/vfx"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> EFX </h2>
             </NavLink>

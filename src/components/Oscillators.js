@@ -7,8 +7,6 @@ import { useState } from "react";
 export default function Oscillators({
   oscillator1,
   oscillator2,
-  osc1Type,
-  osc2Type,
   onChangeFreqOsc1,
   onChangeFreqOsc2,
   onChangeOsc1Type,

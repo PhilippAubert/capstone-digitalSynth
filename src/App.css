@@ -48,6 +48,17 @@
   background: var(--general-box-color);
 }
 
+.Slider-Active {
+  text-decoration: none;
+  font-family: "Toxigenesis";
+  color: var(--general-body-color);
+  font-weight: 800;
+  border: 2px solid var(--general-border-color);
+  border-radius: 15px;
+  padding: 0.4rem;
+  background: var(--general-border-color);
+}
+
 .Start-Button {
   border: 2px solid var(--general-font-color);
   border-radius: 10px;
