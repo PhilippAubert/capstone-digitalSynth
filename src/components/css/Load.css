@@ -1,0 +1,27 @@
+.Loaded-Patches {
+  font-family: "Toxigenesis";
+  position: absolute;
+  background-color: var(--background-body-color);
+  margin-bottom: 190%;
+  z-index: 9999;
+  border: 10px solid var(--general-border-color);
+  border-radius: 15px;
+  width: 80%;
+}
+
+.Loaded-List {
+  list-style-type: none;
+  text-align: left;
+  margin:0 3rem;
+}
+
+.Loaded-List-Item {
+  color: #f00;
+}
+
+button {
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-family:"Toxigenesis";
+  color:var(--bod)
+}

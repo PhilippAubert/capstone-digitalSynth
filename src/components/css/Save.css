@@ -1,0 +1,12 @@
+.Save-Patch {
+  font-family: "Toxigenesis";
+  position: absolute;
+  background-color: var(--background-body-color);
+  margin-bottom: 190%;
+  z-index: 9999;
+  border: 10px solid var(--general-border-color);
+  border-radius: 15px;
+  width: 80%;
+  height:60%;
+}
+

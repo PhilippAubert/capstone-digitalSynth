@@ -8,18 +8,18 @@ export default function Footer({ onClickSave, onClickLoad }) {
     <div className="Footer">
       <div className="FooterNav">
         <button className="FooterButton" onClick={onClickLoad}>
-          <Link>LOAD</Link>
+          <Link to="load">LOAD</Link>
         </button>
 
         <button className="FooterButton" onClick={onClickSave}>
-          <Link>SAVE</Link>
+          <Link to="save">SAVE</Link>
         </button>
 
         <Switch>
-          <Route>
+          <Route path="/load">
             <Load />
           </Route>
-          <Route>
+          <Route path="/save">
             <Save />
           </Route>
         </Switch>
