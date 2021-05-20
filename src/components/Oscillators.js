@@ -7,12 +7,15 @@ import { useState } from "react";
 export default function Oscillators({
   oscillator1,
   oscillator2,
+  osc1Type,
+  osc2Type,
   onChangeFreqOsc1,
   onChangeFreqOsc2,
   onChangeOsc1Type,
   onChangeOsc2Type,
 }) {
-  const [active, setActive] = useState("false");
+  const [oscillator1Id, setOscillator1Id] = useState("sawtooth");
+  const [oscillator2Id, setOscillator2Id] = useState("sawtooth");
 
   function handleOsc1Change(event) {
     onChangeFreqOsc1(Number(event.target.value));
@@ -24,12 +27,12 @@ export default function Oscillators({
 
   function handleChangeOsc1Type(event) {
     onChangeOsc1Type(event.currentTarget.id);
-    setActive(!active);
+    setOscillator1Id(event.currentTarget.id);
   }
 
   function handleChangeOsc2Type(event) {
     onChangeOsc2Type(event.currentTarget.id);
-    setActive(!active);
+    setOscillator2Id(event.currentTarget.id);
   }
 
   return (
@@ -41,15 +44,25 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className="Change"
+            className={
+              oscillator1Id === "sawtooth" ? "Change-Active" : "Change"
+            }
             onClick={handleChangeOsc1Type}
           >
             <Saw />
           </button>{" "}
-          <button id="square" className="Change" onClick={handleChangeOsc1Type}>
+          <button
+            id="square"
+            className={oscillator1Id === "square" ? "Change-Active" : "Change"}
+            onClick={handleChangeOsc1Type}
+          >
             <Square />
           </button>{" "}
-          <button id="sine" className="Change" onClick={handleChangeOsc1Type}>
+          <button
+            id="sine"
+            className={oscillator1Id === "sine" ? "Change-Active" : "Change"}
+            onClick={handleChangeOsc1Type}
+          >
             <Sine />
           </button>
         </div>
@@ -69,15 +82,25 @@ export default function Oscillators({
         <div className="Icons">
           <button
             id="sawtooth"
-            className="Change"
+            className={
+              oscillator2Id === "sawtooth" ? "Change-Active" : "Change"
+            }
             onClick={handleChangeOsc2Type}
           >
             <Saw />
           </button>{" "}
-          <button id="square" className="Change" onClick={handleChangeOsc2Type}>
+          <button
+            id="square"
+            className={oscillator2Id === "square" ? "Change-Active" : "Change"}
+            onClick={handleChangeOsc2Type}
+          >
             <Square />
           </button>{" "}
-          <button id="sine" className="Change" onClick={handleChangeOsc2Type}>
+          <button
+            id="sine"
+            className={oscillator2Id === "sine" ? "Change-Active" : "Change"}
+            onClick={handleChangeOsc2Type}
+          >
             <Sine />
           </button>
         </div>

@@ -17,7 +17,7 @@
   border: 1px solid var(--general-border-color);
 }
 
-.Active {
+.Change-Active {
   border-radius: 6px;
   width: 50%;
   display: flex;

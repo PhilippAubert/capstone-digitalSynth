@@ -279,6 +279,8 @@ export default function App() {
               <Oscillators
                 oscillator1={osc1Frequency}
                 oscillator2={osc2Frequency}
+                osc1Type={osc1Type}
+                osc2Type={osc2Type}
                 onChangeOsc1Type={handleOsc1Type}
                 onChangeOsc2Type={handleOsc2Type}
                 onChangeFreqOsc1={handleOsc1FrequencyChange}
