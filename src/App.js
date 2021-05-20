@@ -39,7 +39,7 @@ export default function App() {
   const [phaserDuration, setPhaserDuration] = useState(0.1);
 
   const [active, setActive] = useState(false);
-  const label = !active ? "ON" : "OFF";
+  const label = !active ? "OFF" : "ON";
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
@@ -256,7 +256,7 @@ export default function App() {
         </header>
         <main className="App-Main">
           <nav className="Nav-Bar">
-            <NavLink className="Slider" to="/oscillator">
+            <NavLink className="Slider" to="/">
               {" "}
               <h2 className="Nav-Bar-Font"> VCO </h2>
             </NavLink>
@@ -275,7 +275,7 @@ export default function App() {
           </nav>
 
           <Switch>
-            <Route path="/oscillator">
+            <Route exact path="/">
               <Oscillators
                 oscillator1={osc1Frequency}
                 oscillator2={osc2Frequency}
