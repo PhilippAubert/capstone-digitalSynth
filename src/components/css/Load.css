@@ -1,27 +1,38 @@
+ 
 .Loaded-Patches {
   font-family: "Toxigenesis";
   position: absolute;
   background-color: var(--background-body-color);
-  margin-bottom: 190%;
+  margin-bottom: 160%;
   z-index: 9999;
-  border: 10px solid var(--general-border-color);
+  border: 5px solid var(--general-border-color);
   border-radius: 15px;
-  width: 80%;
+  width: 85%;
+  height:70%;
+}
+
+.List-Container{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+    margin:0 auto;
 }
 
 .Loaded-List {
-  list-style-type: none;
-  text-align: left;
-  margin:0 3rem;
+  text-align:left;
 }
+
 
 .Loaded-List-Item {
-  color: #f00;
+    list-style-type: none;
+    color: var(--general-border-color);  
 }
 
-button {
-  border-radius: 5px;
-  font-size: 1.2em;
-  font-family:"Toxigenesis";
-  color:var(--bod)
+.LoadButton{
+    border: 4px solid var(--general-border-color);
+    font-family:"Toxigenesis";
+    font-size:1.3em;
+    border-radius:10px;
+    margin:3%;
 }

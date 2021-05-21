@@ -1,28 +1,50 @@
 import React from "react";
 import "./css/Load.css";
-import { Link } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+
 
 export default function Load() {
+
+  let history = useHistory();
+
+  function handleClick(){
+    history.push("/");
+  }
+
+
+
   return (
     <div className="Loaded-Patches">
       <h2>LOAD PATCH</h2>
-      <ul className="Loaded-List">
-        <li className="Loaded-List-Item"> Eerie Pad</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
+      <div className="List-Container">
 
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
-        <li className="Loaded-List-Item"> Short String</li>
+      <ul className="Loaded-List">
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
+        <Patch /> 
       </ul>
-      <h2>CLICK</h2> <button>
-        <Link to="/oscillator">HERE</Link>
-        </button> <h2>TO LOAD</h2>
+      </div>
+
+        <button className="LoadButton" type="button" onClick={handleClick}>LOAD HERE</button>
     </div>
   );
+
+
+}
+
+function Patch(){
+  return (
+    <li className="Loaded-List-Item"> Eerie Pad</li>
+
+  )
 }
