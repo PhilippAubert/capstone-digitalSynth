@@ -1,6 +1,7 @@
 import "./css/Amp.css";
 
 export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
+  
   function handleAttackChange(event) {
     onChangeAttack(Number(event.target.value));
   }

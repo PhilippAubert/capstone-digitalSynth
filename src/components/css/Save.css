@@ -1,5 +1,3 @@
-
-
 .Save-Patch {
   font-family: "Toxigenesis";
   position: absolute;
@@ -8,15 +6,13 @@
   border: 5px solid var(--general-border-color);
   border-radius: 15px;
   width: 85%;
-  height:70%;
-  margin-bottom:160%;
-  
+  height: 70%;
+  margin-bottom: 190%;
 }
 
-
-.SaveButton{
-    border: 4px solid var(--general-border-color);
-    font-family:"Toxigenesis";
-    font-size:1.3em;
-    border-radius:10px;
+.SaveButton {
+  border: 4px solid var(--general-border-color);
+  font-family: "Toxigenesis";
+  font-size: 1.3em;
+  border-radius: 10px;
 }
