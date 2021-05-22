@@ -1,7 +1,6 @@
 import "./css/Amp.css";
 
 export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
-  
   function handleAttackChange(event) {
     onChangeAttack(Number(event.target.value));
   }
@@ -14,7 +13,7 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
     <div className="Function-Board">
       <div className="Amp-bar">
         <h2>SET AMP ENVELOPE</h2>
-      </div>{" "}
+      </div>
       <label className="Amp-label"> ATTACK</label>
       <input
         value={attack}

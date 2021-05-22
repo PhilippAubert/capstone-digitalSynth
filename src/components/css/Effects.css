@@ -1,12 +1,8 @@
-.Effects-Headline {
-  margin-bottom: 5.5%;
-}
-
 h2 {
   font-size: 20px;
 }
 
 .Effect-Label {
   display: inline-block;
-  margin: 2%;
+  margin: 0.4em;
 }

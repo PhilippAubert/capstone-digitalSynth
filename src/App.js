@@ -262,7 +262,6 @@ export default function App() {
               exact
               to="/"
             >
-              {" "}
               <h2 className="Nav-Bar-Font"> VCO </h2>
             </NavLink>
             <NavLink
@@ -270,7 +269,6 @@ export default function App() {
               activeClassName="Slider-Active"
               to="/filter"
             >
-              {" "}
               <h2 className="Nav-Bar-Font"> VCF </h2>
             </NavLink>
             <NavLink
@@ -278,7 +276,6 @@ export default function App() {
               activeClassName="Slider-Active"
               to="/amp"
             >
-              {" "}
               <h2 className="Nav-Bar-Font"> VCA </h2>
             </NavLink>
             <NavLink
@@ -286,7 +283,6 @@ export default function App() {
               activeClassName="Slider-Active"
               to="/vfx"
             >
-              {" "}
               <h2 className="Nav-Bar-Font"> EFX </h2>
             </NavLink>
           </nav>
@@ -321,7 +317,7 @@ export default function App() {
                 decay={ampEnvelope.decay}
                 onChangeAttack={handleAmpAttackChange}
                 onChangeDecay={handleAmpDecayChange}
-              />{" "}
+              />
             </Route>
             <Route path="/vfx">
               <Effects
