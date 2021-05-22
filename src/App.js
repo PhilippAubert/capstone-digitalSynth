@@ -2,10 +2,10 @@ import "./App.css";
 import Header from "./components/Header.js";
 import Oscillators from "./components/Oscillators.js";
 import FilterBoard from "./components/FilterBoard.js";
+import Amp from "./components/Amp.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
-import Modal from "./components/modals/Modal.js";
 
 import { savePatch, loadPatch } from "./components/services/patches.js";
 
@@ -29,28 +29,28 @@ export default function App() {
   const [filterType, setFilterType] = useState("lowpass");
 
   const [ampEnvelope, setAmpEnvelope] = useState({
-    attack: 0.5,
-    decay: 2,
-    sustain: 0.5,
-    release: 5,
+    attack: 0,
+    decay: 0,
+    sustain: 0,
+    release: 0,
   });
 
   const [reverbDuration, setReverbDuration] = useState(0.001);
-  const [phaserDuration, setPhaserDuration] = useState(0.001);
+  const [phaserDuration, setPhaserDuration] = useState(0.1);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState(false);
+  const label = !active ? "OFF" : "ON";
 
   const oscRef1 = useRef(null);
   const oscRef2 = useRef(null);
   const filterRef = useRef(null);
-  const resonanceRef = useRef(null);
-  const filterTypeRef = useRef(null);
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
-  const limiterRef = useRef(null);
 
   function handleStartEngine() {
+    setActive(!active);
+
     Tone.start();
     oscRef1.current = new Tone.Oscillator(osc1Frequency);
     oscRef1.current.type = osc1Type;
@@ -64,7 +64,6 @@ export default function App() {
 
     revRef.current = new Tone.Reverb(reverbDuration);
     phaserRef.current = new Tone.Phaser(phaserDuration);
-    limiterRef.current = new Tone.Limiter(-30);
 
     oscRef1.current.connect(ampEnvRef.current);
     oscRef2.current.connect(ampEnvRef.current);
@@ -72,7 +71,6 @@ export default function App() {
       filterRef.current,
       revRef.current,
       phaserRef.current,
-      limiterRef.current,
       Tone.getDestination()
     );
 
@@ -120,8 +118,14 @@ export default function App() {
     setFilterType(filterType);
   }
 
-  function handleAttackChange(event) {
-    setAmpEnvelope({ ...ampEnvelope, attack: Number(event.target.value) });
+  function handleAmpAttackChange(attack) {
+    const newAmpEnv = { ...ampEnvelope, attack };
+    setAmpEnvelope(newAmpEnv);
+  }
+
+  function handleAmpDecayChange(decay) {
+    const newAmpEnv = { ...ampEnvelope, decay };
+    setAmpEnvelope(newAmpEnv);
   }
 
   function handleReverbChange(reverb) {
@@ -168,16 +172,28 @@ export default function App() {
   }, [filterFrequency]);
 
   useEffect(() => {
-    if (resonanceRef.current) {
-      resonanceRef.current.Q.value = resonance;
+    if (filterRef.current) {
+      filterRef.current.Q.value = resonance;
     }
   }, [resonance]);
 
   useEffect(() => {
-    if (filterTypeRef.current) {
-      filterTypeRef.current.type = filterType;
+    if (filterRef.current) {
+      filterRef.current.type = filterType;
     }
   }, [filterType]);
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.attack = ampEnvelope.attack;
+    }
+  }, [ampEnvelope]);
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.decay = ampEnvelope.decay;
+    }
+  }, [ampEnvelope]);
 
   useEffect(() => {
     if (revRef.current) {
@@ -200,10 +216,12 @@ export default function App() {
       filterFrequency,
       filterType,
       resonance,
+      ampEnvelope,
       reverbDuration,
       phaserDuration,
     };
     savePatch(savedPatch);
+    console.log(savedPatch);
   }
 
   function handleLoad() {
@@ -217,6 +235,7 @@ export default function App() {
       setOsc2Type(loadedPatch.osc2Type);
       setFilterFrequency(loadedPatch.filterFrequency);
       setFilterType(loadedPatch.filterType);
+      setAmpEnvelope(loadedPatch.ampEnvelope);
       setResonance(loadedPatch.resonance);
       setReverbDuration(loadedPatch.reverbDuration);
       setPhaserDuration(loadedPatch.phaserDuration);
@@ -227,33 +246,58 @@ export default function App() {
     <Router>
       <div className="App">
         <header className="App-Header">
-          <Header />
+          <button
+            className={!active ? "Start-Button" : "Start-Button-Active"}
+            onClick={handleStartEngine}
+          >
+            {label}
+          </button>
+          <Header></Header>
         </header>
         <main className="App-Main">
           <nav className="Nav-Bar">
-            <NavLink className="Slider" to="/oscillator">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              exact
+              to="/"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> VCO </h2>
             </NavLink>
-            <NavLink className="Slider" to="/filter">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              to="/filter"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> VCF </h2>
             </NavLink>
-            <NavLink className="Slider" to="/amp">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              to="/amp"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> VCA </h2>
             </NavLink>
-            <NavLink className="Slider" to="/vfx">
+            <NavLink
+              className="Slider"
+              activeClassName="Slider-Active"
+              to="/vfx"
+            >
               {" "}
               <h2 className="Nav-Bar-Font"> EFX </h2>
             </NavLink>
           </nav>
 
           <Switch>
-            <Route path="/oscillator">
+            <Route exact path="/">
               <Oscillators
                 oscillator1={osc1Frequency}
                 oscillator2={osc2Frequency}
+                osc1Type={osc1Type}
+                osc2Type={osc2Type}
                 onChangeOsc1Type={handleOsc1Type}
                 onChangeOsc2Type={handleOsc2Type}
                 onChangeFreqOsc1={handleOsc1FrequencyChange}
@@ -264,6 +308,7 @@ export default function App() {
               <FilterBoard
                 cutOff={filterFrequency}
                 resonance={resonance}
+                filterType={filterType}
                 onChangeFreq={handleFilterCutoffChange}
                 onChangeRes={handleFilterResonanceChange}
                 onChangeFilterType={handleFilterTypeChange}
@@ -271,23 +316,12 @@ export default function App() {
             </Route>
 
             <Route path="/amp">
-              <div className="Function-Board">
-                <div className="Amp-bar">
-                  <h2>SET AMP ENVELOPE</h2>
-                </div>{" "}
-                <h2> Attack </h2>
-                <input
-                  value={ampEnvelope.attack}
-                  onChange={handleAttackChange}
-                  type="range"
-                  min="0.1"
-                  max="1000"
-                  className="Value"
-                  step="0.1"
-                />
-                <h2> Decay </h2>
-                <input type="range" min="0" max="100" className="Value" />
-              </div>
+              <Amp
+                attack={ampEnvelope.attack}
+                decay={ampEnvelope.decay}
+                onChangeAttack={handleAmpAttackChange}
+                onChangeDecay={handleAmpDecayChange}
+              />{" "}
             </Route>
             <Route path="/vfx">
               <Effects
@@ -304,16 +338,8 @@ export default function App() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchStop}
           />
-          <button className="Start-Button" onClick={handleStartEngine}>
-            START ENGINE
-          </button>
-          <div>
-            {" "}
-            <button onClick={() => setIsOpen(true)}> Open Modal </button>
-          </div>
         </main>
         <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
-        <Modal open={isOpen}>YO</Modal>
       </div>
     </Router>
   );

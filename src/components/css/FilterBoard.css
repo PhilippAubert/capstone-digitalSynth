@@ -1,9 +1,18 @@
-.FilterButton {
+.Filter-Button {
   border-radius: 6px;
   display: flex;
   align-items: center;
   margin: 0 2px;
   background: var(--general-body-color);
+  border: 1px solid var(--general-border-color);
+}
+
+.Filter-Button-Active {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  margin: 0 2px;
+  background: var(--general-border-color);
   border: 1px solid var(--general-border-color);
 }
 

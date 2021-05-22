@@ -6,6 +6,7 @@ export default function FilterBoard({
   cutOff,
   resonance,
   onChangeFilterType,
+  filterType,
 }) {
   function handleCutoffChange(event) {
     onChangeFreq(Number(event.target.value));
@@ -27,14 +28,18 @@ export default function FilterBoard({
         <button
           id="lowpass"
           onClick={changeFilterType}
-          className="FilterButton"
+          className={
+            filterType === "lowpass" ? "Filter-Button-Active" : "Filter-Button"
+          }
         >
           <p className="Filter-Box"> LP </p>
         </button>
         <button
           id="highpass"
           onClick={changeFilterType}
-          className="FilterButton"
+          className={
+            filterType === "highpass" ? "Filter-Button-Active" : "Filter-Button"
+          }
         >
           <p className="Filter-Box"> HP </p>
         </button>
