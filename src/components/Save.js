@@ -1,8 +1,6 @@
 import React from "react";
 import "./css/Save.css";
 import { useHistory } from "react-router-dom";
-// import { useState } from "react";
-import { useSavePatch } from "./services/patches.js";
 
 export default function Save({ patch }) {
   let history = useHistory();
@@ -15,7 +13,6 @@ export default function Save({ patch }) {
     console.log(patch);
     const patches = JSON.parse(localStorage.getItem("Patches")) || [];
     patches.push(patch);
-
     localStorage.setItem("Patches", JSON.stringify(patches));
     console.log(input.value);
     history.push("/");

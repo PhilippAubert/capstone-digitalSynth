@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./css/Load.css";
 import { useHistory } from "react-router-dom";
 
-export default function Load() {
+export default function Load({
+  setOsc1Frequency,
+  setOsc1Type,
+  setOsc2Frequency,
+  setOsc2Type,
+  setFilterFrequency,
+  setFilterType,
+  setAmpEnvelope,
+  setResonance,
+  setReverbDuration,
+  setPhaserDuration,
+}) {
+  const [patchesFromLocal, setPatchesFromLocal] = useState([]);
+
+  useEffect(() => {
+    const patches = JSON.parse(localStorage.getItem("Patches")) || [];
+    setPatchesFromLocal(patches);
+  }, []);
+
   let history = useHistory();
 
   function handleClick() {
     history.push("/");
   }
 
-  const patches = [];
-
   function renderPatches() {
-    const arrayOfPatches = patches.map((patch) => {
-      return <Patch patchName={patch} />;
+    const arrayOfPatches = patchesFromLocal.map((localpatch) => {
+      return <Patch patchName={localpatch.name} />;
     });
     return arrayOfPatches;
   }

@@ -7,7 +7,7 @@ import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 
-import { useSavePatch, loadPatch } from "./components/services/patches.js";
+import { loadPatch } from "./components/services/patches.js";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -223,22 +223,25 @@ export default function App() {
     console.log(savedPatch);
   }
 
+  const loadedPatch = loadPatch();
+
+  if (loadedPatch === null) {
+    alert("no patch saved yet");
+  } else {
+    setOsc1Frequency(loadedPatch.osc1Frequency);
+    setOsc1Type(loadedPatch.osc1Type);
+    setOsc2Frequency(loadedPatch.osc2Frequency);
+    setOsc2Type(loadedPatch.osc2Type);
+    setFilterFrequency(loadedPatch.filterFrequency);
+    setFilterType(loadedPatch.filterType);
+    setAmpEnvelope(loadedPatch.ampEnvelope);
+    setResonance(loadedPatch.resonance);
+    setReverbDuration(loadedPatch.reverbDuration);
+    setPhaserDuration(loadedPatch.phaserDuration);
+  }
+
   function handleLoad() {
-    const loadedPatch = loadPatch();
-    if (loadedPatch === null) {
-      alert("no patch saved yet");
-    } else {
-      setOsc1Frequency(loadedPatch.osc1Frequency);
-      setOsc1Type(loadedPatch.osc1Type);
-      setOsc2Frequency(loadedPatch.osc2Frequency);
-      setOsc2Type(loadedPatch.osc2Type);
-      setFilterFrequency(loadedPatch.filterFrequency);
-      setFilterType(loadedPatch.filterType);
-      setAmpEnvelope(loadedPatch.ampEnvelope);
-      setResonance(loadedPatch.resonance);
-      setReverbDuration(loadedPatch.reverbDuration);
-      setPhaserDuration(loadedPatch.phaserDuration);
-    }
+    console.log(loadedPatch);
   }
 
   return (
@@ -338,6 +341,17 @@ export default function App() {
           onClickSave={handleSave}
           onClickLoad={handleLoad}
           patch={savedPatch}
+          loadedPatch={loadedPatch}
+          setOsc1Frequency={setOsc1Frequency}
+          setOsc1Type={setOsc1Type}
+          setOsc2Frequency={setOsc2Frequency}
+          setOsc2Type={setOsc2Type}
+          setFilterFrequency={setFilterFrequency}
+          setFilterType={setFilterType}
+          setAmpEnvelope={setAmpEnvelope}
+          setResonance={setResonance}
+          setReverbDuration={setReverbDuration}
+          setPhaserDuration={setPhaserDuration}
         />
       </div>
     </Router>

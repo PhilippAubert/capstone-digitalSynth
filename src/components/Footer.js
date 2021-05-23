@@ -3,7 +3,21 @@ import { Switch, Route, Link } from "react-router-dom";
 import Load from "./Load.js";
 import Save from "./Save.js";
 
-export default function Footer({ onClickSave, onClickLoad, patch }) {
+export default function Footer({
+  onClickSave,
+  onClickLoad,
+  patch,
+  setOsc1Frequency,
+  setOsc1Type,
+  setOsc2Frequency,
+  setOsc2Type,
+  setFilterFrequency,
+  setFilterType,
+  setAmpEnvelope,
+  setResonance,
+  setReverbDuration,
+  setPhaserDuration,
+}) {
   return (
     <div className="Footer">
       <div className="FooterNav">
@@ -17,7 +31,18 @@ export default function Footer({ onClickSave, onClickLoad, patch }) {
 
         <Switch>
           <Route path="/load">
-            <Load />
+            <Load
+              setOsc1Frequency={setOsc1Frequency}
+              setOsc1Type={setOsc1Type}
+              setOsc2Frequency={setOsc2Frequency}
+              setOsc2Type={setOsc2Type}
+              setFilterFrequency={setFilterFrequency}
+              setFilterType={setFilterType}
+              setAmpEnvelope={setAmpEnvelope}
+              setResonance={setResonance}
+              setReverbDuration={setReverbDuration}
+              setPhaserDuration={setPhaserDuration}
+            />
           </Route>
           <Route path="/save">
             <Save patch={patch} />
