@@ -6,8 +6,8 @@ import Amp from "./components/Amp.js";
 import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
-
-import { loadPatch } from "./components/services/patches.js";
+import Load from "./components/Load.js";
+import Save from "./components/Save.js";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -19,24 +19,44 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const [osc1Frequency, setOsc1Frequency] = useState(220);
-  const [osc1Type, setOsc1Type] = useState("sawtooth");
-  const [osc2Frequency, setOsc2Frequency] = useState(220);
-  const [osc2Type, setOsc2Type] = useState("sawtooth");
-
-  const [filterFrequency, setFilterFrequency] = useState(1500);
-  const [resonance, setResonance] = useState(0.01);
-  const [filterType, setFilterType] = useState("lowpass");
-
-  const [ampEnvelope, setAmpEnvelope] = useState({
-    attack: 0,
-    decay: 0,
-    sustain: 0,
-    release: 0,
+  const [patch, setPatch] = useState({
+    name: "",
+    osc1Frequency: 220,
+    osc1Type: "sawtooth",
+    osc2Frequency: 220,
+    osc2Type: "sawtooth",
+    filterFrequency: 1500,
+    resonance: 0.01,
+    filterType: "lowpass",
+    ampEnvelope: {
+      attack: 0,
+      decay: 0,
+      sustain: 0,
+      release: 0,
+    },
+    reverbDuration: 0.001,
+    phaserDuration: 0.1,
   });
 
-  const [reverbDuration, setReverbDuration] = useState(0.001);
-  const [phaserDuration, setPhaserDuration] = useState(0.1);
+  function changePatch(key, value) {
+    setPatch((patch) => ({
+      ...patch,
+      [key]: value,
+    }));
+  }
+
+  const {
+    osc1Frequency,
+    osc1Type,
+    osc2Frequency,
+    osc2Type,
+    filterFrequency,
+    resonance,
+    filterType,
+    ampEnvelope,
+    reverbDuration,
+    phaserDuration,
+  } = patch;
 
   const [active, setActive] = useState(false);
   const label = !active ? "OFF" : "ON";
@@ -89,55 +109,42 @@ export default function App() {
       ampEnvRef.current.triggerRelease(Tone.now());
     }
   }
-  function handleOsc1Type(waverform1) {
-    setOsc1Type(waverform1);
+
+  function createChangePatch(key) {
+    return (value) => {
+      changePatch(key, value);
+    };
   }
 
-  function handleOsc2Type(waveform2) {
-    setOsc2Type(waveform2);
+  function handleFilterResonanceChange(value) {
+    changePatch("resonance", value);
   }
 
-  function handleOsc1FrequencyChange(oscillator1) {
-    setOsc1Frequency(oscillator1);
+  function handleFilterTypeChange(value) {
+    changePatch("filterType", value);
   }
 
-  function handleOsc2FrequencyChange(oscillator2) {
-    setOsc2Frequency(oscillator2);
+  function handleReverbChange(value) {
+    changePatch("reverbDuration", value);
   }
 
-  function handleFilterCutoffChange(cutOff) {
-    setFilterFrequency(cutOff);
-  }
-
-  function handleFilterResonanceChange(resonance) {
-    setResonance(resonance);
-  }
-
-  function handleFilterTypeChange(filterType) {
-    setFilterType(filterType);
+  function handlePhaserChange(value) {
+    changePatch("phaserDuration", value);
   }
 
   function handleAmpAttackChange(attack) {
-    const newAmpEnv = { ...ampEnvelope, attack };
-    setAmpEnvelope(newAmpEnv);
+    const value = { ...ampEnvelope, attack };
+    changePatch("ampEnvelope", value);
   }
 
   function handleAmpDecayChange(decay) {
-    const newAmpEnv = { ...ampEnvelope, decay };
-    setAmpEnvelope(newAmpEnv);
-  }
-
-  function handleReverbChange(reverb) {
-    setReverbDuration(reverb);
-  }
-
-  function handlePhaserChange(phaser) {
-    setPhaserDuration(phaser);
+    const value = { ...ampEnvelope, decay };
+    changePatch("ampEnvelope", value);
   }
 
   function handleTouchChange(coordinates) {
-    setOsc1Frequency(coordinates.y);
-    setOsc2Frequency(coordinates.x);
+    changePatch("osc1Frequency", coordinates.y);
+    changePatch("osc2Frequency", coordinates.x);
   }
 
   useEffect(() => {
@@ -206,43 +213,21 @@ export default function App() {
     }
   }, [phaserDuration]);
 
-  const savedPatch = {
-    osc1Frequency,
-    osc1Type,
-    osc2Frequency,
-    osc2Type,
-    filterFrequency,
-    filterType,
-    resonance,
-    ampEnvelope,
-    reverbDuration,
-    phaserDuration,
-  };
-
   function handleSave() {
-    console.log(savedPatch);
+    console.log(patch);
   }
 
-  const loadedPatch = loadPatch();
+  // const loadedPatch = loadPatch();
 
-  if (loadedPatch === null) {
-    alert("no patch saved yet");
-  } else {
-    setOsc1Frequency(loadedPatch.osc1Frequency);
-    setOsc1Type(loadedPatch.osc1Type);
-    setOsc2Frequency(loadedPatch.osc2Frequency);
-    setOsc2Type(loadedPatch.osc2Type);
-    setFilterFrequency(loadedPatch.filterFrequency);
-    setFilterType(loadedPatch.filterType);
-    setAmpEnvelope(loadedPatch.ampEnvelope);
-    setResonance(loadedPatch.resonance);
-    setReverbDuration(loadedPatch.reverbDuration);
-    setPhaserDuration(loadedPatch.phaserDuration);
-  }
+  // if (loadedPatch === null) {
+  //   alert("no patch saved yet");
+  // } else {
+  //   setPatch(loadedPatch);
+  // }
 
-  function handleLoad() {
-    console.log(loadedPatch);
-  }
+  // function handleLoad() {
+  //   console.log(loadedPatch);
+  // }
 
   return (
     <Router>
@@ -296,10 +281,10 @@ export default function App() {
                 oscillator2={osc2Frequency}
                 osc1Type={osc1Type}
                 osc2Type={osc2Type}
-                onChangeOsc1Type={setOsc1Type}
-                onChangeOsc2Type={handleOsc2Type}
-                onChangeFreqOsc1={handleOsc1FrequencyChange}
-                onChangeFreqOsc2={handleOsc2FrequencyChange}
+                onChangeOsc1Type={createChangePatch("osc1Type")}
+                onChangeOsc2Type={createChangePatch("osc2Type")}
+                onChangeFreqOsc1={createChangePatch("osc1Frequency")}
+                onChangeFreqOsc2={createChangePatch("osc2Frequency")}
               />
             </Route>
             <Route path="/filter">
@@ -307,7 +292,7 @@ export default function App() {
                 cutOff={filterFrequency}
                 resonance={resonance}
                 filterType={filterType}
-                onChangeFreq={handleFilterCutoffChange}
+                onChangeFreq={createChangePatch("filterFrequency")}
                 onChangeRes={handleFilterResonanceChange}
                 onChangeFilterType={handleFilterTypeChange}
               />
@@ -337,22 +322,16 @@ export default function App() {
             onTouchEnd={handleTouchStop}
           />
         </main>
-        <Footer
-          onClickSave={handleSave}
-          onClickLoad={handleLoad}
-          patch={savedPatch}
-          loadedPatch={loadedPatch}
-          setOsc1Frequency={setOsc1Frequency}
-          setOsc1Type={setOsc1Type}
-          setOsc2Frequency={setOsc2Frequency}
-          setOsc2Type={setOsc2Type}
-          setFilterFrequency={setFilterFrequency}
-          setFilterType={setFilterType}
-          setAmpEnvelope={setAmpEnvelope}
-          setResonance={setResonance}
-          setReverbDuration={setReverbDuration}
-          setPhaserDuration={setPhaserDuration}
-        />
+        <Footer onClickSave={handleSave}>
+          <Switch>
+            <Route path="/load">
+              <Load onPatchLoad={setPatch} />
+            </Route>
+            <Route path="/save">
+              <Save patch={patch} />
+            </Route>
+          </Switch>
+        </Footer>
       </div>
     </Router>
   );

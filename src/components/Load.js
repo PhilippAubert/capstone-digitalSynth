@@ -2,18 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./css/Load.css";
 import { useHistory } from "react-router-dom";
 
-export default function Load({
-  setOsc1Frequency,
-  setOsc1Type,
-  setOsc2Frequency,
-  setOsc2Type,
-  setFilterFrequency,
-  setFilterType,
-  setAmpEnvelope,
-  setResonance,
-  setReverbDuration,
-  setPhaserDuration,
-}) {
+export default function Load({ onPatchLoad }) {
   const [patchesFromLocal, setPatchesFromLocal] = useState([]);
 
   useEffect(() => {
@@ -27,18 +16,24 @@ export default function Load({
     history.push("/");
   }
 
-  function renderPatches() {
-    const arrayOfPatches = patchesFromLocal.map((localpatch) => {
-      return <Patch patchName={localpatch.name} />;
-    });
-    return arrayOfPatches;
-  }
-
   return (
     <div className="Loaded-Patches">
       <h2>LOAD PATCH</h2>
       <div className="List-Container">
-        <ul className="Loaded-List">{renderPatches()}</ul>
+        <ul className="Loaded-List">
+          {patchesFromLocal.map((patch) => (
+            <li
+              key={patch.name}
+              className="Loaded-List-Item"
+              onClick={() => {
+                onPatchLoad(patch);
+                history.push("/");
+              }}
+            >
+              {patch.name}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <button className="LoadButton" type="button" onClick={handleClick}>
@@ -46,8 +41,4 @@ export default function Load({
       </button>
     </div>
   );
-}
-
-function Patch({ patchName }) {
-  return <li className="Loaded-List-Item">{patchName}</li>;
 }
