@@ -18,13 +18,28 @@
 }
 
 .Loaded-List {
+  display: flex;
+  flex-direction: column;
   margin-right: 2.5em;
   text-align: left;
+  width: 80%;
 }
 
 .Loaded-List-Item {
   list-style-type: none;
   color: var(--general-border-color);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.DeleteButton {
+  font-family: "Toxigenesis";
+  border: 2px solid var(--general-border-color);
+  position: absolute;
+  margin-left: 12.9rem;
+  font-size: 0.65em;
+  font-weight: 800;
+  border-radius: 4px;
 }
 
 .LoadButton {

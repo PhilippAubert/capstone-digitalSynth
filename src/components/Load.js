@@ -31,6 +31,12 @@ export default function Load({ onPatchLoad }) {
               }}
             >
               {patch.name}
+              <button
+                className="DeleteButton"
+                onClick={console.log(patch.name)}
+              >
+                X
+              </button>
             </li>
           ))}
         </ul>
