@@ -16,6 +16,13 @@ export default function Load({ onPatchLoad }) {
     history.push("/");
   }
 
+  function handleDelete(patches) {
+    const newPatches = patches.filter((patch) => {
+      return patch !== patch.name;
+    });
+    setPatchesFromLocal(newPatches);
+  }
+
   return (
     <div className="Loaded-Patches">
       <h2>LOAD PATCH</h2>
@@ -24,17 +31,14 @@ export default function Load({ onPatchLoad }) {
           {patchesFromLocal.map((patch) => (
             <li
               key={patch.name}
+              name={patch.name}
               className="Loaded-List-Item"
               onClick={() => {
                 onPatchLoad(patch);
-                history.push("/");
               }}
             >
               {patch.name}
-              <button
-                className="DeleteButton"
-                onClick={console.log(patch.name)}
-              >
+              <button className="DeleteButton" onClick={handleDelete}>
                 X
               </button>
             </li>
