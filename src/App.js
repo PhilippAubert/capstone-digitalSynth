@@ -35,7 +35,7 @@ export default function App() {
       release: 0,
     },
     reverbDuration: 0.001,
-    phaserDuration: 0.1,
+    phaserDuration: 0.01,
   });
 
   function changePatch(key, value) {
