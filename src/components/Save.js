@@ -1,28 +1,24 @@
 import React from "react";
 import "./css/Save.css";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
+import { useSavePatch } from "./services/patches.js";
 
-export default function Save() {
+export default function Save({ patch }) {
   let history = useHistory();
-
-  function handleClick(event) {
-    history.push("/");
-  }
-
-  const [patches, setPatches] = useState([]);
 
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const input = form["patchName"];
+    patch.name = input.value;
+    console.log(patch);
+    const patches = JSON.parse(localStorage.getItem("Patches")) || [];
+    patches.push(patch);
+
+    localStorage.setItem("Patches", JSON.stringify(patches));
     console.log(input.value);
-
-    const newPatches = [...patches, input.value];
-
-    setPatches(newPatches);
-
-    form.reset();
+    history.push("/");
   }
 
   return (
@@ -37,10 +33,10 @@ export default function Save() {
             id="Patch-Save"
             name="patchName"
           ></input>
+          <button className="SaveButton" type="submit">
+            SAVE HERE
+          </button>{" "}
         </form>
-        <button className="SaveButton" type="submit" onClick={handleClick}>
-          SAVE HERE
-        </button>
       </div>
     </div>
   );

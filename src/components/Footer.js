@@ -3,7 +3,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import Load from "./Load.js";
 import Save from "./Save.js";
 
-export default function Footer({ onClickSave, onClickLoad }) {
+export default function Footer({ onClickSave, onClickLoad, patch }) {
   return (
     <div className="Footer">
       <div className="FooterNav">
@@ -20,7 +20,7 @@ export default function Footer({ onClickSave, onClickLoad }) {
             <Load />
           </Route>
           <Route path="/save">
-            <Save />
+            <Save patch={patch} />
           </Route>
         </Switch>
       </div>

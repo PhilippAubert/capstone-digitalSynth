@@ -9,15 +9,7 @@ export default function Load() {
     history.push("/");
   }
 
-  const patches = [
-    "Eerie Pad",
-    "Sine Bass",
-    "Brass",
-    "Strong String Pad",
-    "Highpass Pad",
-    "Guitar Saw",
-    "Shrieking Phaser",
-  ];
+  const patches = [];
 
   function renderPatches() {
     const arrayOfPatches = patches.map((patch) => {

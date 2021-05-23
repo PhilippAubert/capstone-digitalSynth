@@ -1,5 +1,9 @@
-export function savePatch(patch) {
-  localStorage.setItem("Patch", JSON.stringify(patch));
+import { useState } from "react";
+
+export function useSavePatch(patch) {
+  const [savedPatches, setSavedPatches] = useState(loadPatch());
+  savedPatches.push(patch);
+  localStorage.setItem("Patches", JSON.stringify(patch));
 }
 
 export function loadPatch() {

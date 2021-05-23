@@ -7,7 +7,7 @@ import Effects from "./components/Effects.js";
 import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 
-import { savePatch, loadPatch } from "./components/services/patches.js";
+import { useSavePatch, loadPatch } from "./components/services/patches.js";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -89,7 +89,6 @@ export default function App() {
       ampEnvRef.current.triggerRelease(Tone.now());
     }
   }
-
   function handleOsc1Type(waverform1) {
     setOsc1Type(waverform1);
   }
@@ -207,20 +206,20 @@ export default function App() {
     }
   }, [phaserDuration]);
 
+  const savedPatch = {
+    osc1Frequency,
+    osc1Type,
+    osc2Frequency,
+    osc2Type,
+    filterFrequency,
+    filterType,
+    resonance,
+    ampEnvelope,
+    reverbDuration,
+    phaserDuration,
+  };
+
   function handleSave() {
-    const savedPatch = {
-      osc1Frequency,
-      osc1Type,
-      osc2Frequency,
-      osc2Type,
-      filterFrequency,
-      filterType,
-      resonance,
-      ampEnvelope,
-      reverbDuration,
-      phaserDuration,
-    };
-    savePatch(savedPatch);
     console.log(savedPatch);
   }
 
@@ -294,7 +293,7 @@ export default function App() {
                 oscillator2={osc2Frequency}
                 osc1Type={osc1Type}
                 osc2Type={osc2Type}
-                onChangeOsc1Type={handleOsc1Type}
+                onChangeOsc1Type={setOsc1Type}
                 onChangeOsc2Type={handleOsc2Type}
                 onChangeFreqOsc1={handleOsc1FrequencyChange}
                 onChangeFreqOsc2={handleOsc2FrequencyChange}
@@ -335,7 +334,11 @@ export default function App() {
             onTouchEnd={handleTouchStop}
           />
         </main>
-        <Footer onClickSave={handleSave} onClickLoad={handleLoad} />
+        <Footer
+          onClickSave={handleSave}
+          onClickLoad={handleLoad}
+          patch={savedPatch}
+        />
       </div>
     </Router>
   );
