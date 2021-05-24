@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/Load.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export default function Load({ onPatchLoad }) {
   let history = useHistory();
@@ -20,7 +20,7 @@ export default function Load({ onPatchLoad }) {
       (patchesToDelete) => patchesToDelete.name === patch.name
     );
 
-    const clone = [...patchesFromLocal];
+    const clone = patchesFromLocal.slice();
     clone.splice(patchToDelete, 1);
     setPatchesFromLocal(clone);
     localStorage.setItem("Patches", JSON.stringify(clone));
@@ -57,6 +57,9 @@ export default function Load({ onPatchLoad }) {
 
       <button className="LoadButton" type="button" onClick={handleBackToMain}>
         PRESS LOAD
+      </button>
+      <button className="ExitButton" type="button">
+        <Link to="/">BACK TO MAIN</Link>
       </button>
     </div>
   );
