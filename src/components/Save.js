@@ -32,7 +32,7 @@ export default function Save({ patch }) {
           ></input>
           <button className="SaveButton" type="submit">
             SAVE HERE
-          </button>{" "}
+          </button>
         </form>
       </div>
     </div>

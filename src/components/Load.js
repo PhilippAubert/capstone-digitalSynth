@@ -3,6 +3,11 @@ import "./css/Load.css";
 import { useHistory } from "react-router-dom";
 
 export default function Load({ onPatchLoad }) {
+  let history = useHistory();
+  function handleBackToMain() {
+    history.push("/");
+  }
+
   const [patchesFromLocal, setPatchesFromLocal] = useState([]);
 
   useEffect(() => {
@@ -10,17 +15,11 @@ export default function Load({ onPatchLoad }) {
     setPatchesFromLocal(patches);
   }, []);
 
-  let history = useHistory();
-
-  function handleClick() {
-    history.push("/");
-  }
-
-  function handleDelete(patches) {
-    const newPatches = patches.filter((patch) => {
-      return patch !== patch.name;
-    });
-    setPatchesFromLocal(newPatches);
+  function handleDelete(patch) {
+    const patchesToDelete = patchesFromLocal.findIndex(
+      (patchToDelete) => patchToDelete.name === patch.name
+    );
+    console.log(patchesToDelete);
   }
 
   return (
@@ -38,7 +37,13 @@ export default function Load({ onPatchLoad }) {
               }}
             >
               {patch.name}
-              <button className="DeleteButton" onClick={handleDelete}>
+              <button
+                key={patch.name}
+                className="DeleteButton"
+                onClick={() => {
+                  handleDelete(patch);
+                }}
+              >
                 X
               </button>
             </li>
@@ -46,8 +51,8 @@ export default function Load({ onPatchLoad }) {
         </ul>
       </div>
 
-      <button className="LoadButton" type="button" onClick={handleClick}>
-        LOAD HERE
+      <button className="LoadButton" type="button" onClick={handleBackToMain}>
+        PRESS LOAD
       </button>
     </div>
   );

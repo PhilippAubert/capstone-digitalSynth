@@ -20,7 +20,6 @@ import {
 
 export default function App() {
   const [patch, setPatch] = useState({
-    name: "",
     osc1Frequency: 220,
     osc1Type: "sawtooth",
     osc2Frequency: 220,
@@ -216,18 +215,6 @@ export default function App() {
   function handleSave() {
     console.log(patch);
   }
-
-  // const loadedPatch = loadPatch();
-
-  // if (loadedPatch === null) {
-  //   alert("no patch saved yet");
-  // } else {
-  //   setPatch(loadedPatch);
-  // }
-
-  // function handleLoad() {
-  //   console.log(loadedPatch);
-  // }
 
   return (
     <Router>

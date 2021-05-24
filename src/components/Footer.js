@@ -9,7 +9,7 @@ export default function Footer({ onClickSave, children }) {
           <Link to="load">LOAD</Link>
         </button>
 
-        <button className="FooterButton" onClick={onClickSave}>
+        <button className="FooterButton">
           <Link to="save">SAVE</Link>
         </button>
         {children}
