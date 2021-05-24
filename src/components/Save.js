@@ -1,6 +1,7 @@
 import React from "react";
 import "./css/Save.css";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Save({ patch }) {
   let history = useHistory();
@@ -10,12 +11,15 @@ export default function Save({ patch }) {
     const form = event.target;
     const input = form["patchName"];
     patch.name = input.value;
-    console.log(patch);
-    const patches = JSON.parse(localStorage.getItem("Patches")) || [];
-    patches.push(patch);
-    localStorage.setItem("Patches", JSON.stringify(patches));
-    console.log(input.value);
-    history.push("/");
+    if (patch.name === "" || patch.name === undefined) {
+      alert("Enter Name For Patch");
+    } else {
+      const patches = JSON.parse(localStorage.getItem("Patches")) || [];
+      patches.push(patch);
+      localStorage.setItem("Patches", JSON.stringify(patches));
+      console.log(input.value);
+      history.push("/");
+    }
   }
 
   return (
@@ -32,6 +36,9 @@ export default function Save({ patch }) {
           ></input>
           <button className="SaveButton" type="submit">
             SAVE HERE
+          </button>
+          <button className="ExitButton" type="button">
+            <Link to="/">BACK TO MAIN</Link>
           </button>
         </form>
       </div>
