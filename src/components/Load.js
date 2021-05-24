@@ -16,10 +16,14 @@ export default function Load({ onPatchLoad }) {
   }, []);
 
   function handleDelete(patch) {
-    const patchesToDelete = patchesFromLocal.findIndex(
-      (patchToDelete) => patchToDelete.name === patch.name
+    const patchToDelete = patchesFromLocal.findIndex(
+      (patchesToDelete) => patchesToDelete.name === patch.name
     );
-    console.log(patchesToDelete);
+
+    const clone = [...patchesFromLocal];
+    clone.splice(patchToDelete, 1);
+    setPatchesFromLocal(clone);
+    localStorage.setItem("Patches", JSON.stringify(clone));
   }
 
   return (
