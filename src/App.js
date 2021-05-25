@@ -60,8 +60,27 @@ export default function App() {
   const [active, setActive] = useState(false);
   const label = !active ? "OFF" : "ON";
 
-  const oscRef1 = useRef(null);
-  const oscRef2 = useRef(null);
+  function useOscillator(frequency, type) {
+    const oscRef = useRef(null);
+
+    useEffect(() => {
+      if (oscRef.current) {
+        oscRef.current.frequency.value = frequency;
+      }
+    }, [frequency]);
+
+    useEffect(() => {
+      if (oscRef.current) {
+        oscRef.current.type = type;
+      }
+    }, [type]);
+
+    return oscRef;
+  }
+
+  const oscRef1 = useOscillator(osc1Frequency, osc1Type);
+  const oscRef2 = useOscillator(osc2Frequency, osc2Type);
+
   const filterRef = useRef(null);
   const ampEnvRef = useRef(null);
   const revRef = useRef(null);
