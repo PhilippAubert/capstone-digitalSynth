@@ -51,7 +51,7 @@ export default function FilterBoard({
         onChange={handleCutoffChange}
         type="range"
         min="0"
-        max="2000"
+        max="1500"
         className="Value"
         step="0.1"
       />
@@ -64,7 +64,7 @@ export default function FilterBoard({
         min="0"
         max="50"
         className="Value"
-        step="0.1"
+        step="0.01"
       />
     </div>
   );
