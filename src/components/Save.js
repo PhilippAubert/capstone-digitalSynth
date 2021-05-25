@@ -17,7 +17,6 @@ export default function Save({ patch }) {
       const patches = JSON.parse(localStorage.getItem("Patches")) || [];
       patches.push(patch);
       localStorage.setItem("Patches", JSON.stringify(patches));
-      console.log(input.value);
       history.push("/");
     }
   }

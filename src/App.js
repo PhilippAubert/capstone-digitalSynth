@@ -196,10 +196,6 @@ export default function App() {
     }
   }, [phaserDuration]);
 
-  function handleSave() {
-    console.log(patch);
-  }
-
   return (
     <Router>
       <div className="App">
@@ -293,7 +289,7 @@ export default function App() {
             onTouchEnd={handleTouchStop}
           />
         </main>
-        <Footer onClickSave={handleSave}>
+        <Footer>
           <Switch>
             <Route path="/load">
               <Load onPatchLoad={setPatch} />
