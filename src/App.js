@@ -78,11 +78,52 @@ export default function App() {
     return oscRef;
   }
 
+  function useFilter(type, frequency, resonance) {
+    const filterRef = useRef(null);
+
+    useEffect(() => {
+      if (filterRef.current) {
+        filterRef.current.frequency.value = frequency;
+      }
+    }, [frequency]);
+
+    useEffect(() => {
+      if (filterRef.current) {
+        filterRef.current.type = type;
+      }
+    }, [type]);
+
+    useEffect(() => {
+      if (filterRef.current) {
+        filterRef.current.Q.value = resonance;
+      }
+    }, [resonance]);
+
+    return filterRef;
+  }
+
+  function useAmpEnv(ampEnvelope) {
+    const ampEnvRef = useRef(null);
+
+    useEffect(() => {
+      if (ampEnvRef.current) {
+        ampEnvRef.current.attack = ampEnvelope.attack;
+      }
+    }, [ampEnvelope]);
+
+    useEffect(() => {
+      if (ampEnvRef.current) {
+        ampEnvRef.current.decay = ampEnvelope.decay;
+      }
+    }, [ampEnvelope]);
+
+    return ampEnvRef;
+  }
+
   const oscRef1 = useOscillator(osc1Frequency, osc1Type);
   const oscRef2 = useOscillator(osc2Frequency, osc2Type);
-
-  const filterRef = useRef(null);
-  const ampEnvRef = useRef(null);
+  const filterRef = useFilter(filterFrequency, filterType, resonance);
+  const ampEnvRef = useAmpEnv(ampEnvelope.attack, ampEnvelope.decay);
   const revRef = useRef(null);
   const phaserRef = useRef(null);
 
@@ -148,48 +189,6 @@ export default function App() {
     changePatch("osc1Frequency", coordinates.y);
     changePatch("osc2Frequency", coordinates.x);
   }
-
-  useEffect(() => {
-    if (oscRef1.current) {
-      oscRef1.current.frequency.value = osc1Frequency;
-    }
-  }, [osc1Frequency]);
-
-  useEffect(() => {
-    if (oscRef2.current) {
-      oscRef2.current.frequency.value = osc2Frequency;
-    }
-  }, [osc2Frequency]);
-
-  useEffect(() => {
-    if (oscRef1.current) {
-      oscRef1.current.type = osc1Type;
-    }
-  }, [osc1Type]);
-
-  useEffect(() => {
-    if (oscRef2.current) {
-      oscRef2.current.type = osc2Type;
-    }
-  }, [osc2Type]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.frequency.value = filterFrequency;
-    }
-  }, [filterFrequency]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.Q.value = resonance;
-    }
-  }, [resonance]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.type = filterType;
-    }
-  }, [filterType]);
 
   useEffect(() => {
     if (ampEnvRef.current) {
