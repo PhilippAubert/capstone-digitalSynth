@@ -36,20 +36,20 @@ function useOscillator(frequency, type) {
   return oscRef;
 }
 
-function useFilter(filterType, filterFrequency, resonance) {
+function useFilter(frequency, type, resonance) {
   let filterRef = useRef(null);
 
   useEffect(() => {
     if (filterRef.current) {
-      filterRef.current.frequency.value = filterFrequency;
+      filterRef.current.frequency.value = frequency;
     }
-  }, [filterFrequency]);
+  }, [frequency]);
 
   useEffect(() => {
     if (filterRef.current) {
-      filterRef.current.type = filterType;
+      filterRef.current.type = type;
     }
-  }, [filterType]);
+  }, [type]);
 
   useEffect(() => {
     if (filterRef.current) {
@@ -109,8 +109,8 @@ export default function App() {
     osc2Frequency: 220,
     osc2Type: "sawtooth",
     filterFrequency: 1500,
-    resonance: 0.01,
     filterType: "lowpass",
+    resonance: 0.01,
     ampEnvelope: {
       attack: 0,
       decay: 0,
@@ -146,7 +146,7 @@ export default function App() {
 
   const oscRef1 = useOscillator(osc1Frequency, osc1Type);
   const oscRef2 = useOscillator(osc2Frequency, osc2Type);
-  const filterRef = useFilter(filterFrequency, filterType);
+  const filterRef = useFilter(filterFrequency, filterType, resonance);
   const ampEnvRef = useAmpEnv(ampEnvelope);
   const revRef = useReverb(reverbDuration);
   const phaserRef = usePhaser(phaserDuration);
