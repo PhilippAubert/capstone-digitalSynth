@@ -1,0 +1,50 @@
+.Loaded-Patches {
+  font-family: "Toxigenesis";
+  position: absolute;
+  background-color: var(--background-body-color);
+  top: 15%;
+  border: 5px solid var(--general-border-color);
+  border-radius: 15px;
+  width: 85%;
+  height: 70%;
+}
+
+.List-Container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Loaded-List {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.5em;
+  text-align: left;
+  width: 80%;
+}
+
+.Loaded-List-Item {
+  list-style-type: none;
+  color: var(--general-border-color);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.DeleteButton {
+  font-family: "Toxigenesis";
+  border: 2px solid var(--general-border-color);
+  position: absolute;
+  margin-left: 12.9rem;
+  font-size: 0.65em;
+  font-weight: 800;
+  border-radius: 4px;
+}
+
+.LoadButton {
+  border: 4px solid var(--general-border-color);
+  font-family: "Toxigenesis";
+  font-size: 1.3em;
+  border-radius: 10px;
+  margin: 3%;
+}

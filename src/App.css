@@ -142,3 +142,14 @@ input {
   margin: 0 10%;
   font-size: 1.5em;
 }
+
+.On-Button {
+  color: var(--general-border-color);
+  position: absolute;
+  z-index: 9999;
+}
+
+a {
+  text-decoration: none;
+  color: var(--general-font-color);
+}

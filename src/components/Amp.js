@@ -13,14 +13,14 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
     <div className="Function-Board">
       <div className="Amp-bar">
         <h2>SET AMP ENVELOPE</h2>
-      </div>{" "}
+      </div>
       <label className="Amp-label"> ATTACK</label>
       <input
         value={attack}
         onChange={handleAttackChange}
         type="range"
         min="0.1"
-        max="100"
+        max="2"
         className="Value"
         step="0.1"
       />
@@ -30,7 +30,7 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
         onChange={handleDecayChange}
         type="range"
         min="0"
-        max="100"
+        max="2"
         className="Value"
         step="0.1"
       />

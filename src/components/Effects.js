@@ -18,7 +18,7 @@ export default function Effects({
     <div className="Function-Board">
       <div className="Effects-Bar">
         <h2 className="Effects-Headline">SET EFFECTS</h2>
-      </div>{" "}
+      </div>
       <label className="Effect-Label"> REVERB </label>
       <input
         value={reverb}
