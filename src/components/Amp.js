@@ -20,7 +20,7 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
         onChange={handleAttackChange}
         type="range"
         min="0.1"
-        max="100"
+        max="2"
         className="Value"
         step="0.1"
       />
@@ -30,7 +30,7 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
         onChange={handleDecayChange}
         type="range"
         min="0"
-        max="100"
+        max="2"
         className="Value"
         step="0.1"
       />

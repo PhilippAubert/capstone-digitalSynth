@@ -66,6 +66,7 @@
   font-family: "Toxigenesis";
   font-weight: 800;
   font-size: 1em;
+  position: relative;
 }
 
 .Start-Button-Active {
@@ -75,6 +76,7 @@
   font-family: "Toxigenesis";
   font-weight: 800;
   font-size: 1em;
+  position: relative;
 }
 
 .Nav-Bar-Font {
@@ -141,6 +143,12 @@ input {
 .OnOff {
   margin: 0 10%;
   font-size: 1.5em;
+}
+
+.On-Button {
+  color: var(--general-border-color);
+  position: absolute;
+  z-index: 9999;
 }
 
 a {

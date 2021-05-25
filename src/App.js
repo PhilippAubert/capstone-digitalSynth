@@ -115,22 +115,6 @@ export default function App() {
     };
   }
 
-  function handleFilterResonanceChange(value) {
-    changePatch("resonance", value);
-  }
-
-  function handleFilterTypeChange(value) {
-    changePatch("filterType", value);
-  }
-
-  function handleReverbChange(value) {
-    changePatch("reverbDuration", value);
-  }
-
-  function handlePhaserChange(value) {
-    changePatch("phaserDuration", value);
-  }
-
   function handleAmpAttackChange(attack) {
     const value = { ...ampEnvelope, attack };
     changePatch("ampEnvelope", value);
@@ -280,8 +264,8 @@ export default function App() {
                 resonance={resonance}
                 filterType={filterType}
                 onChangeFreq={createChangePatch("filterFrequency")}
-                onChangeRes={handleFilterResonanceChange}
-                onChangeFilterType={handleFilterTypeChange}
+                onChangeRes={createChangePatch("resonance")}
+                onChangeFilterType={createChangePatch("filterType")}
               />
             </Route>
 
@@ -297,8 +281,8 @@ export default function App() {
               <Effects
                 reverb={reverbDuration}
                 phaser={phaserDuration}
-                onChangeReverb={handleReverbChange}
-                onChangePhaser={handlePhaserChange}
+                onChangeReverb={createChangePatch("reverbDuration")}
+                onChangePhaser={createChangePatch("phaserDuration")}
               />
             </Route>
           </Switch>

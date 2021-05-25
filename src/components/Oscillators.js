@@ -48,14 +48,14 @@ export default function Oscillators({
             onClick={handleChangeOsc1Type}
           >
             <Saw />
-          </button>{" "}
+          </button>
           <button
             id="square"
             className={oscillator1Id === "square" ? "Change-Active" : "Change"}
             onClick={handleChangeOsc1Type}
           >
             <Square />
-          </button>{" "}
+          </button>
           <button
             id="sine"
             className={oscillator1Id === "sine" ? "Change-Active" : "Change"}
@@ -86,14 +86,14 @@ export default function Oscillators({
             onClick={handleChangeOsc2Type}
           >
             <Saw />
-          </button>{" "}
+          </button>
           <button
             id="square"
             className={oscillator2Id === "square" ? "Change-Active" : "Change"}
             onClick={handleChangeOsc2Type}
           >
             <Square />
-          </button>{" "}
+          </button>
           <button
             id="sine"
             className={oscillator2Id === "sine" ? "Change-Active" : "Change"}

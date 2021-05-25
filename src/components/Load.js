@@ -20,10 +20,10 @@ export default function Load({ onPatchLoad }) {
       (patchesToDelete) => patchesToDelete.name === patch.name
     );
 
-    const clone = patchesFromLocal.slice();
-    clone.splice(patchToDelete, 1);
-    setPatchesFromLocal(clone);
-    localStorage.setItem("Patches", JSON.stringify(clone));
+    const copyOfPatches = patchesFromLocal.slice();
+    copyOfPatches.splice(patchToDelete, 1);
+    setPatchesFromLocal(copyOfPatches);
+    localStorage.setItem("Patches", JSON.stringify(copyOfPatches));
   }
 
   return (
