@@ -22,24 +22,26 @@ export default function Save({ patch }) {
   }
 
   return (
-    <div className="Save-Patch">
-      <h2>SAVE PATCH</h2>
-      <div className="Save-Patch-Area">
-        <form onSubmit={handleSubmit}>
-          <label> NAME PATCH</label>
-          <input
-            type="text"
-            placeholder="Enter Patch Name"
-            id="Patch-Save"
-            name="patchName"
-          ></input>
-          <button className="SaveButton" type="submit">
-            SAVE HERE
-          </button>
-          <button className="ExitButton" type="button">
-            <Link to="/">BACK TO MAIN</Link>
-          </button>
-        </form>
+    <div className="Background-Blur">
+      <div className="Save-Patch">
+        <h2>SAVE PATCH</h2>
+        <div className="Save-Patch-Area">
+          <form onSubmit={handleSubmit}>
+            <label> NAME PATCH</label>
+            <input
+              type="text"
+              placeholder="Enter Patch Name"
+              id="Patch-Save"
+              name="patchName"
+            ></input>
+            <button className="SaveButton" type="submit">
+              SAVE HERE
+            </button>
+            <button className="ExitButton" type="button">
+              <Link to="/">BACK TO MAIN</Link>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

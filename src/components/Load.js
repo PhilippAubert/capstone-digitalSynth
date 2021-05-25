@@ -27,40 +27,42 @@ export default function Load({ onPatchLoad }) {
   }
 
   return (
-    <div className="Loaded-Patches">
-      <h2>LOAD PATCH</h2>
-      <div className="List-Container">
-        <ul className="Loaded-List">
-          {patchesFromLocal.map((patch) => (
-            <li
-              key={patch.name}
-              name={patch.name}
-              className="Loaded-List-Item"
-              onClick={() => {
-                onPatchLoad(patch);
-              }}
-            >
-              {patch.name}
-              <button
+    <div className="Background-Blur">
+      <div className="Loaded-Patches">
+        <h2>LOAD PATCH</h2>
+        <div className="List-Container">
+          <ul className="Loaded-List">
+            {patchesFromLocal.map((patch) => (
+              <li
                 key={patch.name}
-                className="DeleteButton"
+                name={patch.name}
+                className="Loaded-List-Item"
                 onClick={() => {
-                  handleDelete(patch);
+                  onPatchLoad(patch);
                 }}
               >
-                X
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+                {patch.name}
+                <button
+                  key={patch.name}
+                  className="DeleteButton"
+                  onClick={() => {
+                    handleDelete(patch);
+                  }}
+                >
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <button className="LoadButton" type="button" onClick={handleBackToMain}>
-        PRESS LOAD
-      </button>
-      <button className="ExitButton" type="button">
-        <Link to="/">BACK TO MAIN</Link>
-      </button>
+        <button className="LoadButton" type="button" onClick={handleBackToMain}>
+          PRESS LOAD
+        </button>
+        <button className="ExitButton" type="button">
+          <Link to="/">BACK TO MAIN</Link>
+        </button>
+      </div>
     </div>
   );
 }
