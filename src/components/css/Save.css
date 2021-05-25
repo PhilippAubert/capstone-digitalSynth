@@ -2,12 +2,11 @@
   font-family: "Toxigenesis";
   position: absolute;
   background-color: var(--background-body-color);
-  z-index: 9999;
   border: 5px solid var(--general-border-color);
   border-radius: 15px;
   width: 85%;
   height: 70%;
-  margin-bottom: 190%;
+  top: 15%;
 }
 
 .SaveButton {

@@ -2,8 +2,7 @@
   font-family: "Toxigenesis";
   position: absolute;
   background-color: var(--background-body-color);
-  margin-bottom: 190%;
-  z-index: 9999;
+  top: 15%;
   border: 5px solid var(--general-border-color);
   border-radius: 15px;
   width: 85%;
