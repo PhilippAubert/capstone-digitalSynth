@@ -12,6 +12,8 @@ import On from "./components/Icons/On.js";
 import useOscillator from "./customHooks/useOscillator";
 import useFilter from "./customHooks/useFilter";
 import useAmpEnv from "./customHooks/useAmpEnv";
+import useReverb from "./customHooks/useReverb";
+import usePhaser from "./customHooks/usePhaser";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -21,30 +23,6 @@ import {
   NavLink,
   Route,
 } from "react-router-dom";
-
-function useReverb(reverbDuration) {
-  const revRef = useRef(null);
-
-  useEffect(() => {
-    if (revRef.current) {
-      revRef.current.decay = reverbDuration;
-    }
-  }, [reverbDuration]);
-
-  return revRef;
-}
-
-function usePhaser(phaserDuration) {
-  const phaserRef = useRef(null);
-
-  useEffect(() => {
-    if (phaserRef.current) {
-      phaserRef.current.frequency.value = phaserDuration;
-    }
-  }, [phaserDuration]);
-
-  return phaserRef;
-}
 
 export default function App() {
   const [patch, setPatch] = useState({
