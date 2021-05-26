@@ -42,6 +42,14 @@
   justify-content: flex-start;
 }
 
+.Loaded-List-Item-Active {
+  list-style-type: none;
+  color: var(--general-border-color);
+  background-color: black;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .DeleteButton {
   font-family: "Toxigenesis";
   border: 2px solid var(--general-border-color);

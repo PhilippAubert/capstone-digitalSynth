@@ -4,11 +4,13 @@ import { useHistory, Link } from "react-router-dom";
 
 export default function Load({ onPatchLoad }) {
   let history = useHistory();
-  function handleBackToMain() {
+  function loadAndRedirect() {
+    onPatchLoad(selectedPatch);
     history.push("/");
   }
 
   const [patchesFromLocal, setPatchesFromLocal] = useState([]);
+  const [selectedPatch, setSelectedPatch] = useState({});
 
   useEffect(() => {
     const patches = JSON.parse(localStorage.getItem("Patches")) || [];
@@ -36,9 +38,13 @@ export default function Load({ onPatchLoad }) {
               <li
                 key={patch.name}
                 name={patch.name}
-                className="Loaded-List-Item"
+                className={
+                  selectedPatch.name === patch.name
+                    ? "Loaded-List-Item-Active"
+                    : "Loaded-List-Item"
+                }
                 onClick={() => {
-                  onPatchLoad(patch);
+                  setSelectedPatch(patch);
                 }}
               >
                 {patch.name}
@@ -56,7 +62,7 @@ export default function Load({ onPatchLoad }) {
           </ul>
         </div>
 
-        <button className="LoadButton" type="button" onClick={handleBackToMain}>
+        <button className="LoadButton" type="button" onClick={loadAndRedirect}>
           PRESS LOAD
         </button>
         <button className="ExitButton" type="button">
