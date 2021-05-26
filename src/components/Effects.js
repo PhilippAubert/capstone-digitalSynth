@@ -27,7 +27,7 @@ export default function Effects({
         min="0.1"
         max="10"
         className="Value"
-        step="0.1"
+        step="0.01"
       />
       <label className="Effect-Label"> PHASER </label>
       <input

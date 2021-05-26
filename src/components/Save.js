@@ -13,6 +13,8 @@ export default function Save({ patch }) {
     patch.name = input.value;
     if (patch.name === "" || patch.name === undefined) {
       alert("Enter Name For Patch");
+    } else if (patch.name === `${patch.name}`) {
+      alert("Patch Already Exists");
     } else {
       const patches = JSON.parse(localStorage.getItem("Patches")) || [];
       patches.push(patch);
