@@ -143,7 +143,7 @@ export default function App() {
             className={!active ? "Start-Button" : "Start-Button-Active"}
             onClick={handleStartEngine}
           >
-            <On className={"On-Button"} />
+            <On />
           </button>
           <Header />
         </header>
