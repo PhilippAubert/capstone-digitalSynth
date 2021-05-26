@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-around;
   color: var(--general-font-color);
-  border: 0.2em solid var(--general-border-color);
+  border: 0.13em solid var(--general-border-color);
   background: var(--background-body-color);
 }
 
@@ -15,10 +15,13 @@
 }
 
 .FooterButton {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0.5em;
   background: var(--background-body-color);
   color: var(--general-font-color);
   font-family: "Toxigenesis";
-  border: 0.2em solid var(--general-border-color);
+  border: 0.12em solid var(--general-border-color);
   border-radius: 0.5em;
   font-size: 1.5em;
 }

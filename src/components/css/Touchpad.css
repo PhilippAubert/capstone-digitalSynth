@@ -6,7 +6,7 @@
   position: relative;
   touch-action: none;
   background: var(--general-box-color);
-  border: 0.2em solid var(--general-border-color);
+  border: 0.15em solid var(--general-border-color);
   margin-bottom: 2%;
 }
 

@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 0.1em solid var(--general-border-color);
+  border: 0.13em solid var(--general-border-color);
   background: var(--general-box-color);
 }
 
@@ -42,7 +42,7 @@
   font-family: "Toxigenesis";
   color: var(--general-font-color);
   font-weight: 800;
-  border: 0.2em solid var(--general-border-color);
+  border: 0.15em solid var(--general-border-color);
   border-radius: 0.7em;
   padding: 0.4rem;
   background: var(--general-box-color);
@@ -53,7 +53,7 @@
   font-family: "Toxigenesis";
   color: var(--general-body-color);
   font-weight: 800;
-  border: 0.2em solid var(--general-border-color);
+  border: 0.15em solid var(--general-box-color);
   border-radius: 0.7em;
   padding: 0.4rem;
   background: var(--general-border-color);
@@ -101,7 +101,7 @@
 }
 
 .Function-Board {
-  border: 0.2em solid var(--general-border-color);
+  border: 0.15em solid var(--general-border-color);
   font-family: "Toxigenesis";
   color: var(--general-font-color);
   border-radius: 15px;
