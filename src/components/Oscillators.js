@@ -2,7 +2,6 @@ import Saw from "./Icons/Saw.js";
 import Square from "./Icons/Square.js";
 import Sine from "./Icons/Sine.js";
 import "./css/Oscillators.css";
-import { useState } from "react";
 
 export default function Oscillators({
   oscillator1,

@@ -15,7 +15,7 @@ import useAmpEnv from "./customHooks/useAmpEnv";
 import useReverb from "./customHooks/useReverb";
 import usePhaser from "./customHooks/usePhaser";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import * as Tone from "tone";
 import {
   BrowserRouter as Router,
