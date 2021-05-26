@@ -8,6 +8,7 @@ import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import Load from "./components/Load.js";
 import Save from "./components/Save.js";
+import On from "./components/Icons/On.js";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -95,7 +96,7 @@ function usePhaser(phaserDuration) {
 
   useEffect(() => {
     if (phaserRef.current) {
-      phaserRef.current.octave = phaserDuration;
+      phaserRef.current.frequency.value = phaserDuration;
     }
   }, [phaserDuration]);
 
@@ -118,7 +119,7 @@ export default function App() {
       release: 0,
     },
     reverbDuration: 0.001,
-    phaserDuration: 0.01,
+    phaserDuration: 0,
   });
 
   function changePatch(key, value) {
@@ -142,7 +143,6 @@ export default function App() {
   } = patch;
 
   const [active, setActive] = useState(false);
-  const label = !active ? "OFF" : "ON";
 
   const oscRef1 = useOscillator(osc1Frequency, osc1Type);
   const oscRef2 = useOscillator(osc2Frequency, osc2Type);
@@ -222,7 +222,7 @@ export default function App() {
             className={!active ? "Start-Button" : "Start-Button-Active"}
             onClick={handleStartEngine}
           >
-            {label}
+            <On className={"On-Button"} />
           </button>
           <Header />
         </header>

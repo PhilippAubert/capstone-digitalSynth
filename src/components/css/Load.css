@@ -10,7 +10,7 @@
 .Loaded-Patches {
   font-family: "Toxigenesis";
   position: absolute;
-  z-index: 130;
+  z-index: 100;
   background-color: var(--background-body-color);
   top: 7rem;
   left: 1.8rem;
