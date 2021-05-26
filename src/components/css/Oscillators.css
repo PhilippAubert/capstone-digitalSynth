@@ -14,7 +14,7 @@
   align-items: center;
   margin: 0 0.2em;
   background-color: var(--general-body-color);
-  border: 0.3em solid var(--general-border-color);
+  border: 0.15em solid var(--general-border-color);
 }
 
 .Change-Active {
@@ -25,7 +25,7 @@
   align-items: center;
   margin: 0 0.2em;
   color: aquamarine;
-  border: 0.3em solid aquamarine;
+  border: 0.15em solid aquamarine;
 }
 
 .Input-Label {

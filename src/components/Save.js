@@ -9,15 +9,16 @@ export default function Save({ patch }) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const form = event.target;
+    const input = form["patchName"];
+
     const newPatchToSave = { ...patch };
+    newPatchToSave.name = input.value;
+
     const patchesFromLocal = JSON.parse(localStorage.getItem("Patches")) || [];
     const existingPatch = patchesFromLocal.find(
       (patch) => patch.name === input.value
     );
-
-    const form = event.target;
-    const input = form["patchName"];
-    newPatchToSave.name = input.value;
 
     if (newPatchToSave.name === "" || newPatchToSave.name === undefined) {
       alert("Enter Name For Patch");
