@@ -18,6 +18,90 @@ import {
   Route,
 } from "react-router-dom";
 
+function useOscillator(frequency, type) {
+  const oscRef = useRef(null);
+
+  useEffect(() => {
+    if (oscRef.current) {
+      oscRef.current.frequency.value = frequency;
+    }
+  }, [frequency]);
+
+  useEffect(() => {
+    if (oscRef.current) {
+      oscRef.current.type = type;
+    }
+  }, [type]);
+
+  return oscRef;
+}
+
+function useFilter(frequency, type, resonance) {
+  let filterRef = useRef(null);
+
+  useEffect(() => {
+    if (filterRef.current) {
+      filterRef.current.frequency.value = frequency;
+    }
+  }, [frequency]);
+
+  useEffect(() => {
+    if (filterRef.current) {
+      filterRef.current.type = type;
+    }
+  }, [type]);
+
+  useEffect(() => {
+    if (filterRef.current) {
+      filterRef.current.Q.value = resonance;
+    }
+  }, [resonance]);
+
+  return filterRef;
+}
+
+function useAmpEnv(ampEnvelope) {
+  const ampEnvRef = useRef(null);
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.attack = ampEnvelope.attack;
+    }
+  }, [ampEnvelope]);
+
+  useEffect(() => {
+    if (ampEnvRef.current) {
+      ampEnvRef.current.decay = ampEnvelope.decay;
+    }
+  }, [ampEnvelope]);
+
+  return ampEnvRef;
+}
+
+function useReverb(reverbDuration) {
+  const revRef = useRef(null);
+
+  useEffect(() => {
+    if (revRef.current) {
+      revRef.current.decay = reverbDuration;
+    }
+  }, [reverbDuration]);
+
+  return revRef;
+}
+
+function usePhaser(phaserDuration) {
+  const phaserRef = useRef(null);
+
+  useEffect(() => {
+    if (phaserRef.current) {
+      phaserRef.current.octave = phaserDuration;
+    }
+  }, [phaserDuration]);
+
+  return phaserRef;
+}
+
 export default function App() {
   const [patch, setPatch] = useState({
     osc1Frequency: 220,
@@ -25,8 +109,8 @@ export default function App() {
     osc2Frequency: 220,
     osc2Type: "sawtooth",
     filterFrequency: 1500,
-    resonance: 0.01,
     filterType: "lowpass",
+    resonance: 0.01,
     ampEnvelope: {
       attack: 0,
       decay: 0,
@@ -60,12 +144,12 @@ export default function App() {
   const [active, setActive] = useState(false);
   const label = !active ? "OFF" : "ON";
 
-  const oscRef1 = useRef(null);
-  const oscRef2 = useRef(null);
-  const filterRef = useRef(null);
-  const ampEnvRef = useRef(null);
-  const revRef = useRef(null);
-  const phaserRef = useRef(null);
+  const oscRef1 = useOscillator(osc1Frequency, osc1Type);
+  const oscRef2 = useOscillator(osc2Frequency, osc2Type);
+  const filterRef = useFilter(filterFrequency, filterType, resonance);
+  const ampEnvRef = useAmpEnv(ampEnvelope);
+  const revRef = useReverb(reverbDuration);
+  const phaserRef = usePhaser(phaserDuration);
 
   function handleStartEngine() {
     setActive(!active);
@@ -129,72 +213,6 @@ export default function App() {
     changePatch("osc1Frequency", coordinates.y);
     changePatch("osc2Frequency", coordinates.x);
   }
-
-  useEffect(() => {
-    if (oscRef1.current) {
-      oscRef1.current.frequency.value = osc1Frequency;
-    }
-  }, [osc1Frequency]);
-
-  useEffect(() => {
-    if (oscRef2.current) {
-      oscRef2.current.frequency.value = osc2Frequency;
-    }
-  }, [osc2Frequency]);
-
-  useEffect(() => {
-    if (oscRef1.current) {
-      oscRef1.current.type = osc1Type;
-    }
-  }, [osc1Type]);
-
-  useEffect(() => {
-    if (oscRef2.current) {
-      oscRef2.current.type = osc2Type;
-    }
-  }, [osc2Type]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.frequency.value = filterFrequency;
-    }
-  }, [filterFrequency]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.Q.value = resonance;
-    }
-  }, [resonance]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.type = filterType;
-    }
-  }, [filterType]);
-
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.attack = ampEnvelope.attack;
-    }
-  }, [ampEnvelope]);
-
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.decay = ampEnvelope.decay;
-    }
-  }, [ampEnvelope]);
-
-  useEffect(() => {
-    if (revRef.current) {
-      revRef.current.decay = reverbDuration;
-    }
-  }, [reverbDuration]);
-
-  useEffect(() => {
-    if (phaserRef.current) {
-      phaserRef.current.octaves = phaserDuration;
-    }
-  }, [phaserDuration]);
 
   return (
     <Router>
