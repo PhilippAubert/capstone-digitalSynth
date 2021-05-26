@@ -9,6 +9,7 @@ import Footer from "./components/Footer.js";
 import Load from "./components/Load.js";
 import Save from "./components/Save.js";
 import On from "./components/Icons/On.js";
+import useOscillator from "./customHooks/useOscillator";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -18,24 +19,6 @@ import {
   NavLink,
   Route,
 } from "react-router-dom";
-
-function useOscillator(frequency, type) {
-  const oscRef = useRef(null);
-
-  useEffect(() => {
-    if (oscRef.current) {
-      oscRef.current.frequency.value = frequency;
-    }
-  }, [frequency]);
-
-  useEffect(() => {
-    if (oscRef.current) {
-      oscRef.current.type = type;
-    }
-  }, [type]);
-
-  return oscRef;
-}
 
 function useFilter(frequency, type, resonance) {
   let filterRef = useRef(null);
