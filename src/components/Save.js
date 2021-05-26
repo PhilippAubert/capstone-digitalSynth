@@ -8,17 +8,24 @@ export default function Save({ patch }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    const newPatchToSave = { ...patch };
+    const patchesFromLocal = JSON.parse(localStorage.getItem("Patches")) || [];
+    const existingPatch = patchesFromLocal.find(
+      (patch) => patch.name === input.value
+    );
+
     const form = event.target;
     const input = form["patchName"];
-    patch.name = input.value;
-    if (patch.name === "" || patch.name === undefined) {
+    newPatchToSave.name = input.value;
+
+    if (newPatchToSave.name === "" || newPatchToSave.name === undefined) {
       alert("Enter Name For Patch");
-    } else if (patch.name === `${patch.name}`) {
-      alert("Patch Already Exists");
+    } else if (existingPatch) {
+      alert("Patch already exists");
     } else {
-      const patches = JSON.parse(localStorage.getItem("Patches")) || [];
-      patches.push(patch);
-      localStorage.setItem("Patches", JSON.stringify(patches));
+      patchesFromLocal.push(newPatchToSave);
+      localStorage.setItem("Patches", JSON.stringify(patchesFromLocal));
       history.push("/");
     }
   }

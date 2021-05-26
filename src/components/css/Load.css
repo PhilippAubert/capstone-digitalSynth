@@ -40,14 +40,17 @@
   color: var(--general-border-color);
   display: flex;
   justify-content: flex-start;
+  user-select: none;
 }
 
 .Loaded-List-Item-Active {
   list-style-type: none;
   color: var(--general-border-color);
   background-color: black;
+  color: chartreuse;
   display: flex;
   justify-content: flex-start;
+  user-select: none;
 }
 
 .DeleteButton {
