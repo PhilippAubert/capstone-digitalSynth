@@ -10,6 +10,7 @@ import Load from "./components/Load.js";
 import Save from "./components/Save.js";
 import On from "./components/Icons/On.js";
 import useOscillator from "./customHooks/useOscillator";
+import useFilter from "./customHooks/useFilter";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -19,30 +20,6 @@ import {
   NavLink,
   Route,
 } from "react-router-dom";
-
-function useFilter(frequency, type, resonance) {
-  let filterRef = useRef(null);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.frequency.value = frequency;
-    }
-  }, [frequency]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.type = type;
-    }
-  }, [type]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.Q.value = resonance;
-    }
-  }, [resonance]);
-
-  return filterRef;
-}
 
 function useAmpEnv(ampEnvelope) {
   const ampEnvRef = useRef(null);
