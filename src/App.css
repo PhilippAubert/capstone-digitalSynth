@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 2px solid var(--general-border-color);
+  border: 0.1em solid var(--general-border-color);
   background: var(--general-box-color);
 }
 
@@ -42,8 +42,8 @@
   font-family: "Toxigenesis";
   color: var(--general-font-color);
   font-weight: 800;
-  border: 2px solid var(--general-border-color);
-  border-radius: 15px;
+  border: 0.2em solid var(--general-border-color);
+  border-radius: 0.7em;
   padding: 0.4rem;
   background: var(--general-box-color);
 }
@@ -53,37 +53,29 @@
   font-family: "Toxigenesis";
   color: var(--general-body-color);
   font-weight: 800;
-  border: 2px solid var(--general-border-color);
-  border-radius: 15px;
+  border: 0.2em solid var(--general-border-color);
+  border-radius: 0.7em;
   padding: 0.4rem;
   background: var(--general-border-color);
 }
 
 .Start-Button {
-  border: 2px solid var(--general-font-color);
-  border-radius: 10px;
+  border: 0.2em solid var(--general-font-color);
+  border-radius: 0.6em;
   background: var (--general-box-color);
-  font-family: "Toxigenesis";
-  font-weight: 800;
-  font-size: 1em;
+  padding: 0 0.3em;
 }
 
 .Start-Button-Active {
-  border: 2px solid var(--general-border-color);
+  border: 0.2em solid var(--general-border-color);
   border-radius: 10px;
   background: var (--general-border-color);
-  font-family: "Toxigenesis";
-  font-weight: 800;
-  font-size: 1em;
+  padding: 0 0.3em;
 }
 
 .Nav-Bar-Font {
   text-align: center;
   margin: 0;
-}
-
-input {
-  margin: 20px;
 }
 
 .Value[type="range"] {
@@ -109,11 +101,11 @@ input {
 }
 
 .Function-Board {
-  border: 2px solid var(--general-border-color);
+  border: 0.2em solid var(--general-border-color);
   font-family: "Toxigenesis";
   color: var(--general-font-color);
   border-radius: 15px;
-  width: 300px;
+  width: 19em;
   margin: 2%;
   padding: 2%;
   background: var(--background-body-color);
@@ -136,17 +128,6 @@ input {
 .OnOff_Board {
   display: flex;
   justify-content: space-around;
-}
-
-.OnOff {
-  margin: 0 10%;
-  font-size: 1.5em;
-}
-
-.On-Button {
-  color: var(--general-border-color);
-  margin-left: 0.1em;
-  margin-top: 0.1em;
 }
 
 a {

@@ -1,12 +1,12 @@
 .Touchpad {
   height: 200px;
-  width: 300px;
+  width: 19em;
   border: var(--general-border-color);
   border-radius: 15px;
   position: relative;
   touch-action: none;
   background: var(--general-box-color);
-  border: 2px solid var(--general-border-color);
+  border: 0.2em solid var(--general-border-color);
   margin-bottom: 2%;
 }
 

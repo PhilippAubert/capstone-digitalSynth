@@ -32,7 +32,7 @@ export default function FilterBoard({
             filterType === "lowpass" ? "Filter-Button-Active" : "Filter-Button"
           }
         >
-          <p className="Filter-Box"> LP </p>
+          <h2 className="Filter-Box"> LP </h2>
         </button>
         <button
           id="highpass"
@@ -41,7 +41,7 @@ export default function FilterBoard({
             filterType === "highpass" ? "Filter-Button-Active" : "Filter-Button"
           }
         >
-          <p className="Filter-Box"> HP </p>
+          <h2 className="Filter-Box"> HP </h2>
         </button>
       </div>
 
