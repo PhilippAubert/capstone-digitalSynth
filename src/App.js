@@ -11,6 +11,7 @@ import Save from "./components/Save.js";
 import On from "./components/Icons/On.js";
 import useOscillator from "./customHooks/useOscillator";
 import useFilter from "./customHooks/useFilter";
+import useAmpEnv from "./customHooks/useAmpEnv";
 
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
@@ -20,24 +21,6 @@ import {
   NavLink,
   Route,
 } from "react-router-dom";
-
-function useAmpEnv(ampEnvelope) {
-  const ampEnvRef = useRef(null);
-
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.attack = ampEnvelope.attack;
-    }
-  }, [ampEnvelope]);
-
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.decay = ampEnvelope.decay;
-    }
-  }, [ampEnvelope]);
-
-  return ampEnvRef;
-}
 
 function useReverb(reverbDuration) {
   const revRef = useRef(null);
