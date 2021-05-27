@@ -34,31 +34,35 @@ export default function Load({ onPatchLoad }) {
         <h2>LOAD PATCH</h2>
         <div className="List-Container">
           <ul className="Loaded-List">
-            {patchesFromLocal.map((patch) => (
-              <li
-                key={patch.name}
-                name={patch.name}
-                className={
-                  selectedPatch.name === patch.name
-                    ? "Loaded-List-Item-Active"
-                    : "Loaded-List-Item"
-                }
-                onClick={() => {
-                  setSelectedPatch(patch);
-                }}
-              >
-                {patch.name}
-                <button
+            {patchesFromLocal
+              .map((patch) => (
+                <li
                   key={patch.name}
-                  className="DeleteButton"
+                  name={patch.name}
+                  className={
+                    selectedPatch.name === patch.name
+                      ? "Loaded-List-Item-Active"
+                      : "Loaded-List-Item"
+                  }
                   onClick={() => {
-                    handleDelete(patch);
+                    setSelectedPatch(patch);
                   }}
                 >
-                  X
-                </button>
-              </li>
-            ))}
+                  {patch.name}
+                  <button
+                    key={patch.name}
+                    className="DeleteButton"
+                    onClick={() => {
+                      handleDelete(patch);
+                    }}
+                  >
+                    X
+                  </button>
+                </li>
+              ))
+              .sort((a, b) => {
+                return a - b;
+              })}
           </ul>
         </div>
 

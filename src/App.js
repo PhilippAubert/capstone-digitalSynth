@@ -36,7 +36,7 @@ export default function App() {
     ampEnvelope: {
       attack: 0,
       decay: 0,
-      sustain: 0,
+      sustain: 0.01,
       release: 0,
     },
     reverbDuration: 0.001,
@@ -64,6 +64,7 @@ export default function App() {
   } = patch;
 
   const [active, setActive] = useState(false);
+  const [onOff, setOnOff] = useState(true);
 
   const oscRef1 = useOscillator(osc1Frequency, osc1Type);
   const oscRef2 = useOscillator(osc2Frequency, osc2Type);
@@ -71,8 +72,6 @@ export default function App() {
   const ampEnvRef = useAmpEnv(ampEnvelope);
   const revRef = useReverb(reverbDuration);
   const phaserRef = usePhaser(phaserDuration);
-
-  const [onOff, setOnOff] = useState(true);
 
   function handleStartEngine() {
     setActive(!active);
