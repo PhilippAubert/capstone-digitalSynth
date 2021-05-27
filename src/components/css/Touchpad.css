@@ -21,4 +21,5 @@
   transform: translate(-15px, -15px);
   touch-action: none;
   pointer-events: none;
+  user-select: none;
 }

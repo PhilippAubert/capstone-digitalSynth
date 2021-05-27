@@ -145,8 +145,8 @@ input {
 
 .On-Button {
   color: var(--general-border-color);
-  position: absolute;
-  z-index: 9999;
+  margin-left: 0.1em;
+  margin-top: 0.1em;
 }
 
 a {

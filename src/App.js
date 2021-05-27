@@ -8,8 +8,14 @@ import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import Load from "./components/Load.js";
 import Save from "./components/Save.js";
+import On from "./components/Icons/On.js";
+import useOscillator from "./customHooks/useOscillator";
+import useFilter from "./customHooks/useFilter";
+import useAmpEnv from "./customHooks/useAmpEnv";
+import useReverb from "./customHooks/useReverb";
+import usePhaser from "./customHooks/usePhaser";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import * as Tone from "tone";
 import {
   BrowserRouter as Router,
@@ -17,90 +23,6 @@ import {
   NavLink,
   Route,
 } from "react-router-dom";
-
-function useOscillator(frequency, type) {
-  const oscRef = useRef(null);
-
-  useEffect(() => {
-    if (oscRef.current) {
-      oscRef.current.frequency.value = frequency;
-    }
-  }, [frequency]);
-
-  useEffect(() => {
-    if (oscRef.current) {
-      oscRef.current.type = type;
-    }
-  }, [type]);
-
-  return oscRef;
-}
-
-function useFilter(frequency, type, resonance) {
-  let filterRef = useRef(null);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.frequency.value = frequency;
-    }
-  }, [frequency]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.type = type;
-    }
-  }, [type]);
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.Q.value = resonance;
-    }
-  }, [resonance]);
-
-  return filterRef;
-}
-
-function useAmpEnv(ampEnvelope) {
-  const ampEnvRef = useRef(null);
-
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.attack = ampEnvelope.attack;
-    }
-  }, [ampEnvelope]);
-
-  useEffect(() => {
-    if (ampEnvRef.current) {
-      ampEnvRef.current.decay = ampEnvelope.decay;
-    }
-  }, [ampEnvelope]);
-
-  return ampEnvRef;
-}
-
-function useReverb(reverbDuration) {
-  const revRef = useRef(null);
-
-  useEffect(() => {
-    if (revRef.current) {
-      revRef.current.decay = reverbDuration;
-    }
-  }, [reverbDuration]);
-
-  return revRef;
-}
-
-function usePhaser(phaserDuration) {
-  const phaserRef = useRef(null);
-
-  useEffect(() => {
-    if (phaserRef.current) {
-      phaserRef.current.octave = phaserDuration;
-    }
-  }, [phaserDuration]);
-
-  return phaserRef;
-}
 
 export default function App() {
   const [patch, setPatch] = useState({
@@ -118,7 +40,7 @@ export default function App() {
       release: 0,
     },
     reverbDuration: 0.001,
-    phaserDuration: 0.01,
+    phaserDuration: 0,
   });
 
   function changePatch(key, value) {
@@ -142,7 +64,6 @@ export default function App() {
   } = patch;
 
   const [active, setActive] = useState(false);
-  const label = !active ? "OFF" : "ON";
 
   const oscRef1 = useOscillator(osc1Frequency, osc1Type);
   const oscRef2 = useOscillator(osc2Frequency, osc2Type);
@@ -222,7 +143,7 @@ export default function App() {
             className={!active ? "Start-Button" : "Start-Button-Active"}
             onClick={handleStartEngine}
           >
-            {label}
+            <On className={"On-Button"} />
           </button>
           <Header />
         </header>

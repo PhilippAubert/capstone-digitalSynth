@@ -1,8 +1,19 @@
+.Background-Blur {
+  background-color: rgb(0, 0, 0, 0.9);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
+
 .Loaded-Patches {
   font-family: "Toxigenesis";
   position: absolute;
+  z-index: 100;
   background-color: var(--background-body-color);
-  top: 15%;
+  top: 7rem;
+  left: 1.8rem;
   border: 5px solid var(--general-border-color);
   border-radius: 15px;
   width: 85%;
@@ -29,6 +40,17 @@
   color: var(--general-border-color);
   display: flex;
   justify-content: flex-start;
+  user-select: none;
+}
+
+.Loaded-List-Item-Active {
+  list-style-type: none;
+  color: var(--general-border-color);
+  background-color: black;
+  color: chartreuse;
+  display: flex;
+  justify-content: flex-start;
+  user-select: none;
 }
 
 .DeleteButton {
