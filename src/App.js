@@ -72,6 +72,8 @@ export default function App() {
   const revRef = useReverb(reverbDuration);
   const phaserRef = usePhaser(phaserDuration);
 
+  const [onOff, setOnOff] = useState(true);
+
   function handleStartEngine() {
     setActive(!active);
 
@@ -100,6 +102,21 @@ export default function App() {
 
     oscRef1.current.start();
     oscRef2.current.start();
+  }
+
+  function handleStopEngine() {
+    oscRef1.current.stop();
+    oscRef2.current.stop();
+  }
+
+  function handleOnOff() {
+    setActive(!active);
+    setOnOff(!onOff);
+    if (onOff) {
+      handleStartEngine();
+    } else {
+      handleStopEngine();
+    }
   }
 
   function handleTouchStart() {
@@ -141,10 +158,11 @@ export default function App() {
         <header className="App-Header">
           <button
             className={!active ? "Start-Button" : "Start-Button-Active"}
-            onClick={handleStartEngine}
+            onClick={handleOnOff}
           >
             <On />
           </button>
+
           <Header />
         </header>
         <main className="App-Main">

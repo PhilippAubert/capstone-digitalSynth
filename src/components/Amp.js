@@ -22,7 +22,7 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
         min="0.1"
         max="2"
         className="Value"
-        step="0.1"
+        step="0.01"
       />
       <label className="Amp-label"> DECAY </label>
       <input
