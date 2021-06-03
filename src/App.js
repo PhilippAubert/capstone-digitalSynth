@@ -8,7 +8,6 @@ import Touchpad from "./components/Touchpad.js";
 import Footer from "./components/Footer.js";
 import Load from "./components/Load.js";
 import Save from "./components/Save.js";
-import On from "./components/Icons/On.js";
 import useOscillator from "./customHooks/useOscillator";
 import useFilter from "./customHooks/useFilter";
 import useAmpEnv from "./customHooks/useAmpEnv";
@@ -36,7 +35,7 @@ export default function App() {
     ampEnvelope: {
       attack: 0,
       decay: 0,
-      sustain: 0,
+      sustain: 0.01,
       release: 0,
     },
     reverbDuration: 0.001,
@@ -72,34 +71,52 @@ export default function App() {
   const revRef = useReverb(reverbDuration);
   const phaserRef = usePhaser(phaserDuration);
 
-  function handleStartEngine() {
+  function startEngine() {
+    if (!oscRef1.current) {
+      Tone.start();
+      oscRef1.current = new Tone.Oscillator(osc1Frequency);
+      oscRef1.current.type = osc1Type;
+      oscRef2.current = new Tone.Oscillator(osc2Frequency);
+      oscRef2.current.type = osc2Type;
+
+      filterRef.current = new Tone.Filter(filterFrequency);
+      filterRef.current.type = filterType;
+      filterRef.current.Q.value = resonance;
+      ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
+
+      revRef.current = new Tone.Reverb(reverbDuration);
+      phaserRef.current = new Tone.Phaser(phaserDuration);
+
+      oscRef1.current.connect(ampEnvRef.current);
+      oscRef2.current.connect(ampEnvRef.current);
+      ampEnvRef.current.chain(
+        filterRef.current,
+        revRef.current,
+        phaserRef.current,
+        Tone.getDestination()
+      );
+
+      oscRef1.current.start();
+      oscRef2.current.start();
+    } else {
+      oscRef1.current.mute = false;
+      oscRef2.current.mute = false;
+    }
+  }
+
+  function stopEngine() {
+    oscRef1.current.mute = true;
+    oscRef2.current.mute = true;
+  }
+
+  function handleOnOff() {
+    if (!active) {
+      startEngine();
+    } else {
+      stopEngine();
+    }
+
     setActive(!active);
-
-    Tone.start();
-    oscRef1.current = new Tone.Oscillator(osc1Frequency);
-    oscRef1.current.type = osc1Type;
-    oscRef2.current = new Tone.Oscillator(osc2Frequency);
-    oscRef2.current.type = osc2Type;
-
-    filterRef.current = new Tone.Filter(filterFrequency);
-    filterRef.current.type = filterType;
-    filterRef.current.Q.value = resonance;
-    ampEnvRef.current = new Tone.AmplitudeEnvelope(ampEnvelope);
-
-    revRef.current = new Tone.Reverb(reverbDuration);
-    phaserRef.current = new Tone.Phaser(phaserDuration);
-
-    oscRef1.current.connect(ampEnvRef.current);
-    oscRef2.current.connect(ampEnvRef.current);
-    ampEnvRef.current.chain(
-      filterRef.current,
-      revRef.current,
-      phaserRef.current,
-      Tone.getDestination()
-    );
-
-    oscRef1.current.start();
-    oscRef2.current.start();
   }
 
   function handleTouchStart() {
@@ -141,10 +158,11 @@ export default function App() {
         <header className="App-Header">
           <button
             className={!active ? "Start-Button" : "Start-Button-Active"}
-            onClick={handleStartEngine}
+            onClick={handleOnOff}
           >
-            <On className={"On-Button"} />
+            <h2 className="On">ON</h2>
           </button>
+
           <Header />
         </header>
         <main className="App-Main">

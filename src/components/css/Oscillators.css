@@ -6,26 +6,36 @@
   margin: 0;
 }
 
+.Vco-headline {
+  font-size: 1.4em;
+
+  margin: 0;
+  padding: 0;
+  color: var(--general-font-color);
+  font-weight: 800;
+  font-family: "Toxigenesis";
+}
+
 .Change {
-  border-radius: 6px;
+  border-radius: 0.4em;
   width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 2px;
+  margin: 0 0.2em;
   background-color: var(--general-body-color);
-  border: 1px solid var(--general-border-color);
+  border: 0.12em solid var(--general-border-color);
 }
 
 .Change-Active {
-  border-radius: 6px;
+  border-radius: 0.4em;
   width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 2px;
+  margin: 0 0.2em;
   color: aquamarine;
-  border: 1px solid aquamarine;
+  border: 0.12em solid aquamarine;
 }
 
 .Input-Label {

@@ -9,15 +9,16 @@ export default function Save({ patch }) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const form = event.target;
+    const input = form["patchName"];
+
     const newPatchToSave = { ...patch };
+    newPatchToSave.name = input.value;
+
     const patchesFromLocal = JSON.parse(localStorage.getItem("Patches")) || [];
     const existingPatch = patchesFromLocal.find(
       (patch) => patch.name === input.value
     );
-
-    const form = event.target;
-    const input = form["patchName"];
-    newPatchToSave.name = input.value;
 
     if (newPatchToSave.name === "" || newPatchToSave.name === undefined) {
       alert("Enter Name For Patch");
@@ -34,23 +35,22 @@ export default function Save({ patch }) {
     <div className="Background-Blur">
       <div className="Save-Patch">
         <h2>SAVE PATCH</h2>
-        <div className="Save-Patch-Area">
-          <form onSubmit={handleSubmit}>
-            <label> NAME PATCH</label>
-            <input
-              type="text"
-              placeholder="Enter Patch Name"
-              id="Patch-Save"
-              name="patchName"
-            ></input>
-            <button className="SaveButton" type="submit">
-              SAVE HERE
-            </button>
-            <button className="ExitButton" type="button">
-              <Link to="/">BACK TO MAIN</Link>
-            </button>
-          </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <label> NAME PATCH</label>
+          <input
+            type="text"
+            placeholder="Enter Patch Name"
+            id="Patch-Save"
+            name="patchName"
+          ></input>
+          <button className="SaveButton" type="submit">
+            SAVE HERE
+          </button>
+        </form>
+
+        <button className="ExitButton" type="button">
+          <Link to="/">EXIT</Link>
+        </button>
       </div>
     </div>
   );

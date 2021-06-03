@@ -2,7 +2,6 @@
   border-radius: 6px;
   display: flex;
   align-items: center;
-  margin: 0 2px;
   background: var(--general-body-color);
   border: 1px solid var(--general-border-color);
 }
@@ -11,13 +10,13 @@
   border-radius: 6px;
   display: flex;
   align-items: center;
-  margin: 0 2px;
   background: var(--general-border-color);
   border: 1px solid var(--general-border-color);
 }
 
-.Filter-Box {
+.Filter-headline {
   margin: 0;
+  font-size: 1.4em;
   color: var(--general-font-color);
   font-weight: 800;
   font-family: "Toxigenesis";
@@ -25,12 +24,8 @@
 
 .Filter-bar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-}
-
-h2 {
-  font-size: 20px;
 }
 
 .Filter-label {

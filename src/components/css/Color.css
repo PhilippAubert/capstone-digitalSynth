@@ -1,6 +1,7 @@
 :root {
   --background-body-color: #c0c0c0;
   --general-font-color: #080808;
+  --general-active-font-color: #fff;
   --general-box-color: #c0c0c0;
   --general-border-color: #b53389;
 }
