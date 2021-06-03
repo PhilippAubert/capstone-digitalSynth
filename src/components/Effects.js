@@ -24,10 +24,10 @@ export default function Effects({
         value={reverb}
         onChange={handleReverbChange}
         type="range"
-        min="0.1"
-        max="10"
+        min="0.001"
+        max="5"
         className="Value"
-        step="0.01"
+        step="0.001"
       />
       <label className="Effect-Label"> PHASER </label>
       <input

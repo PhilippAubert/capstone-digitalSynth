@@ -4,13 +4,18 @@ import { useHistory, Link } from "react-router-dom";
 
 export default function Load({ onPatchLoad }) {
   let history = useHistory();
-  function loadAndRedirect() {
-    onPatchLoad(selectedPatch);
-    history.push("/");
-  }
 
   const [patchesFromLocal, setPatchesFromLocal] = useState([]);
   const [selectedPatch, setSelectedPatch] = useState({});
+
+  function loadAndRedirect() {
+    if (onPatchLoad(!selectedPatch)) {
+      alert("save patch first");
+    } else {
+      onPatchLoad(selectedPatch);
+      history.push("/");
+    }
+  }
 
   useEffect(() => {
     const patches = JSON.parse(localStorage.getItem("Patches")) || [];
