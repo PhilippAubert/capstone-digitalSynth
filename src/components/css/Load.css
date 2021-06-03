@@ -44,7 +44,7 @@
   display: flex;
   font-size: 1em;
   user-select: none;
-  width: 70%;
+  width: 100%;
 }
 
 .Loaded-List-Item-Active {
