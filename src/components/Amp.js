@@ -12,7 +12,7 @@ export default function Amp({ attack, decay, onChangeAttack, onChangeDecay }) {
   return (
     <div className="Function-Board">
       <div className="Amp-bar">
-        <h2>SET AMP ENVELOPE</h2>
+        <h2 className="Amp-headline">SET AMP ENVELOPE</h2>
       </div>
       <label className="Amp-label"> ATTACK</label>
       <input

@@ -51,7 +51,7 @@
 .Slider-Active {
   text-decoration: none;
   font-family: "Toxigenesis";
-  color: #fff;
+  color: var(--general-active-font-color);
   font-weight: 800;
   border: 0.15em solid var(--general-border-color);
   border-radius: 0.7em;
@@ -109,7 +109,7 @@
   font-family: "Toxigenesis";
   color: var(--general-font-color);
   border-radius: 15px;
-  width: 19em;
+  width: 20em;
   margin: 2%;
   padding: 2%;
   background: var(--background-body-color);

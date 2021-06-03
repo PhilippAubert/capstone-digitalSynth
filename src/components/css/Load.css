@@ -9,15 +9,18 @@
 
 .Loaded-Patches {
   font-family: "Toxigenesis";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   position: absolute;
-  z-index: 100;
   background-color: var(--background-body-color);
-  top: 6rem;
-  left: 1.8rem;
-  border: 0.3em solid var(--general-border-color);
-  border-radius: 1.5em;
+  border: 0.5em solid var(--general-border-color);
+  border-radius: 1em;
   width: 85%;
   height: 70%;
+  top: 5rem;
+  left: 1.8rem;
 }
 
 .List-Container {
@@ -30,7 +33,7 @@
 .Loaded-List {
   display: flex;
   flex-direction: column;
-  margin-right: 4.5em;
+  margin-right: 7em;
   text-align: left;
   width: 70%;
 }
@@ -51,7 +54,6 @@
   color: chartreuse;
   display: flex;
   font-size: 1em;
-
   justify-content: flex-start;
   user-select: none;
 }
@@ -69,10 +71,9 @@
 }
 
 .LoadButton {
-  border: 0.2em solid var(--general-border-color);
+  border: 0.25em solid var(--general-border-color);
   font-family: "Toxigenesis";
-  font-size: 1.3em;
-  border-radius: 0.6em;
-  margin: 3%;
-  user-select: none;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  margin: 2em 0;
 }

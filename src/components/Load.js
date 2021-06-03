@@ -70,7 +70,7 @@ export default function Load({ onPatchLoad }) {
           PRESS LOAD
         </button>
         <button className="ExitButton" type="button">
-          <Link to="/">BACK TO MAIN</Link>
+          <Link to="/">EXIT</Link>
         </button>
       </div>
     </div>

@@ -2,6 +2,16 @@ h2 {
   font-size: 20px;
 }
 
+.Effects-Headline {
+  font-size: 1.4em;
+
+  margin: 0;
+  padding: 0;
+  color: var(--general-font-color);
+  font-weight: 800;
+  font-family: "Toxigenesis";
+}
+
 .Effect-Label {
   display: inline-block;
   margin: 0.4em;

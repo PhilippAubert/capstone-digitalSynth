@@ -1,35 +1,44 @@
 .Save-Patch {
   font-family: "Toxigenesis";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   position: absolute;
   background-color: var(--background-body-color);
-  border: 5px solid var(--general-border-color);
-  border-radius: 15px;
+  border: 0.5em solid var(--general-border-color);
+  border-radius: 1em;
   width: 85%;
   height: 70%;
-  top: 7rem;
+  top: 5rem;
   left: 1.8rem;
 }
 
 .SaveButton {
-  border: 4px solid var(--general-border-color);
+  border: 0.25em solid var(--general-border-color);
   font-family: "Toxigenesis";
   font-size: 1.2em;
-  border-radius: 0.6em;
-  margin-top: 1em;
-  text-align: center;
-  display: inline-block;
+  border-radius: 0.5em;
+  margin: 2em 0;
 }
 
 .ExitButton {
-  border: 4px solid var(--general-border-color);
+  border: 0.25em solid var(--general-border-color);
   font-family: "Toxigenesis";
   font-size: 1.2em;
-  border-radius: 0.6em;
-  margin-top: 1em;
-  display: inline-block;
-  text-align: center;
+  border-radius: 0.5em;
+  margin: 1em 0;
+}
+
+h2 {
+  margin-bottom: 2em;
+}
+
+label {
+  font-size: 1.3em;
 }
 
 input {
-  margin: 3em;
+  margin: 1em;
+  font-size: 16px;
 }

@@ -1,8 +1,8 @@
 .Touchpad {
-  height: 200px;
-  width: 19em;
+  height: 12em;
+  width: 20em;
   border: var(--general-border-color);
-  border-radius: 15px;
+  border-radius: 1em;
   position: relative;
   touch-action: none;
   background: var(--general-box-color);
@@ -11,8 +11,8 @@
 }
 
 .box {
-  height: 20px;
-  width: 20px;
+  height: 1.5em;
+  width: 1.5em;
   border-radius: 100%;
   border-radius: 50%;
   background: linear-gradient(145deg, #7aca57, #90f068);

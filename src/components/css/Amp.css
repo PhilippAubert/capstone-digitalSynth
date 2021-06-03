@@ -4,6 +4,16 @@
   align-items: center;
 }
 
+.Amp-headline {
+  font-size: 1.4em;
+
+  margin: 0;
+  padding: 0;
+  color: var(--general-font-color);
+  font-weight: 800;
+  font-family: "Toxigenesis";
+}
+
 h2 {
   font-size: 2em;
 }
