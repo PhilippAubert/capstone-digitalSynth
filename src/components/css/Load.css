@@ -60,6 +60,7 @@
   font-family: "Toxigenesis";
   border: 0.15em solid var(--general-border-color);
   position: absolute;
+  padding: 0 0.5em;
   margin-left: 12.9rem;
   margin-bottom: 0.6rem;
   font-size: 0.7em;

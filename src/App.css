@@ -51,7 +51,7 @@
 .Slider-Active {
   text-decoration: none;
   font-family: "Toxigenesis";
-  color: var(--background-body-color);
+  color: #fff;
   font-weight: 800;
   border: 0.15em solid var(--general-border-color);
   border-radius: 0.7em;
@@ -60,6 +60,7 @@
 }
 
 .Start-Button {
+  margin-top: 0.1rem;
   border: 0.2em solid var(--general-font-color);
   border-radius: 0.6em;
   background: var (--general-box-color);
@@ -67,6 +68,8 @@
 }
 
 .Start-Button-Active {
+  margin-top: 0.1rem;
+
   border: 0.2em solid var(--general-border-color);
   border-radius: 0.6em;
   background: var (--general-border-color);
@@ -129,6 +132,13 @@
 .OnOff_Board {
   display: flex;
   justify-content: space-around;
+}
+
+.On {
+  margin: 0;
+  font-family: "Toxigenesis";
+  font-weight: 800;
+  padding: 0.1em;
 }
 
 a {
