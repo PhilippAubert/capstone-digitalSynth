@@ -82,28 +82,6 @@
   margin: 0;
 }
 
-.Value[type="range"] {
-  -webkit-appearance: none;
-  width: 75%;
-  background: var(--general-body-color);
-  height: 0.2em;
-  margin-bottom: 1.5%;
-  cursor: pointer;
-  box-shadow: 1px 1px 1px #000, 0px 0px 1px #000;
-  background: #000;
-  margin: 1.3rem, 0;
-}
-
-.Value[type="range"]::-moz-range-thumb {
-  box-shadow: -1px -1px -1px #2afd00, 2px 2px 2px #b1fd00;
-  border: 1px solid var(--general-border-color);
-  height: 1.5em;
-  width: 1em;
-  background: #34eb67;
-  border-radius: 0;
-  cursor: pointer;
-}
-
 .Function-Board {
   border: 0.15em solid var(--general-border-color);
   font-family: "Toxigenesis";
@@ -144,4 +122,57 @@
 a {
   text-decoration: none;
   color: var(--general-font-color);
+}
+
+/* RANGE-INPUT */
+
+.Value[type="range"] {
+  -webkit-appearance: none;
+  width: 75%;
+  background: var(--general-body-color);
+  height: 0.2em;
+  margin-bottom: 1.5%;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000, 0px 0px 1px #000;
+  background: #000;
+  margin: 1.3rem, 0;
+}
+
+.Value[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.Value[type="range"]:focus {
+  outline: none;
+}
+
+.Value[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-shadow: -1px -1px -1px #2afd00, 2px 2px 2px #b1fd00;
+  border: 1px solid var(--general-border-color);
+  height: 1.5em;
+  width: 1em;
+  background: #34eb67;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.Value[type="range"]::-ms-track {
+  box-shadow: -1px -1px -1px #2afd00, 2px 2px 2px #b1fd00;
+  border: 1px solid var(--general-border-color);
+  height: 1.5em;
+  width: 1em;
+  background: #34eb67;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.Value[type="range"]::-moz-range-thumb {
+  box-shadow: -1px -1px -1px #2afd00, 2px 2px 2px #b1fd00;
+  border: 1px solid var(--general-border-color);
+  height: 1.5em;
+  width: 1em;
+  background: #34eb67;
+  border-radius: 0;
+  cursor: pointer;
 }
