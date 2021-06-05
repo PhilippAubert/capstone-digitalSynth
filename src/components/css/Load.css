@@ -18,24 +18,13 @@
   border: 0.5em solid var(--general-border-color);
   border-radius: 1em;
   width: 85%;
-  height: 70%;
+  height: 75%;
   top: 5rem;
   left: 1.8rem;
 }
 
-.List-Container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
 .Loaded-List {
-  display: flex;
-  flex-direction: column;
-  margin-right: 7em;
-  text-align: left;
-  width: 70%;
+  width: 100%;
 }
 
 .Loaded-List-Item {
@@ -44,18 +33,18 @@
   display: flex;
   justify-content: flex-start;
   font-size: 1em;
-  user-select: none;
+  width: 80%;
+  margin-right: 14rem;
 }
 
 .Loaded-List-Item-Active {
-  list-style-type: none;
   color: var(--general-border-color);
   background-color: black;
   color: chartreuse;
   display: flex;
   font-size: 1em;
+  width: 80%;
   justify-content: flex-start;
-  user-select: none;
 }
 
 .DeleteButton {
@@ -63,8 +52,8 @@
   border: 0.15em solid var(--general-border-color);
   position: absolute;
   padding: 0 0.5em;
-  margin-left: 12.9rem;
-  margin-bottom: 0.6rem;
+  margin-left: 14.9rem;
+  margin-top: 0.2rem;
   font-size: 0.7em;
   font-weight: 800;
   border-radius: 0.4em;
