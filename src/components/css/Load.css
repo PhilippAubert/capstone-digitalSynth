@@ -23,8 +23,15 @@
   left: 1.8rem;
 }
 
+.List-Container {
+  max-width: 80vw;
+  min-width: 80vw;
+}
+
 .Loaded-List {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .Loaded-List-Item {
@@ -33,8 +40,6 @@
   display: flex;
   justify-content: flex-start;
   font-size: 1em;
-  width: 80%;
-  margin-right: 14rem;
 }
 
 .Loaded-List-Item-Active {
@@ -43,7 +48,6 @@
   color: chartreuse;
   display: flex;
   font-size: 1em;
-  width: 80%;
   justify-content: flex-start;
 }
 
@@ -52,8 +56,8 @@
   border: 0.15em solid var(--general-border-color);
   position: absolute;
   padding: 0 0.5em;
-  margin-left: 14.9rem;
-  margin-top: 0.2rem;
+  left: 80%;
+  margin-top: 0.3rem;
   font-size: 0.7em;
   font-weight: 800;
   border-radius: 0.4em;
