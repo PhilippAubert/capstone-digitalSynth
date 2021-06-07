@@ -34,8 +34,8 @@ export default function App() {
     resonance: 0.01,
     ampEnvelope: {
       attack: 0,
-      decay: 0,
-      sustain: 0.01,
+      decay: 1,
+      sustain: 0.001,
       release: 0,
     },
     reverbDuration: 0.001,
