@@ -13,6 +13,7 @@ export default function Load({ onPatchLoad }) {
     history.push("/");
   }
 
+ 
   useEffect(() => {
     const patches = JSON.parse(localStorage.getItem("Patches")) || [];
     setPatchesFromLocal(patches);

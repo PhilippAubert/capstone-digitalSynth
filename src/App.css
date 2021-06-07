@@ -82,6 +82,48 @@
   margin: 0;
 }
 
+.Function-Board {
+  border: 0.15em solid var(--general-border-color);
+  font-family: "Toxigenesis";
+  color: var(--general-font-color);
+  border-radius: 15px;
+  width: 20em;
+  margin: 2%;
+  padding: 2%;
+  background: var(--background-body-color);
+}
+
+.Function-Board input {
+  margin: 0;
+}
+
+.Icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Amp-bar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.OnOff_Board {
+  display: flex;
+  justify-content: space-around;
+}
+
+.On {
+  margin: 0;
+  font-family: "Toxigenesis";
+  font-weight: 800;
+  padding: 0.1em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--general-font-color);
+}
+
 /* RANGE-INPUT */
 
 .Value[type="range"] {
@@ -133,46 +175,4 @@
   background: #34eb67;
   border-radius: 0;
   cursor: pointer;
-}
-
-.Function-Board {
-  border: 0.15em solid var(--general-border-color);
-  font-family: "Toxigenesis";
-  color: var(--general-font-color);
-  border-radius: 15px;
-  width: 20em;
-  margin: 2%;
-  padding: 2%;
-  background: var(--background-body-color);
-}
-
-.Function-Board input {
-  margin: 0;
-}
-
-.Icons {
-  display: flex;
-  justify-content: space-around;
-}
-
-.Amp-bar {
-  display: flex;
-  justify-content: space-around;
-}
-
-.OnOff_Board {
-  display: flex;
-  justify-content: space-around;
-}
-
-.On {
-  margin: 0;
-  font-family: "Toxigenesis";
-  font-weight: 800;
-  padding: 0.1em;
-}
-
-a {
-  text-decoration: none;
-  color: var(--general-font-color);
 }

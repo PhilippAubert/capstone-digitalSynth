@@ -26,20 +26,21 @@
 .List-Container {
   max-width: 80vw;
   min-width: 80vw;
+ 
 }
 
 .Loaded-List {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+ 
 }
 
 .Loaded-List-Item {
-  list-style-type: none;
   color: var(--general-border-color);
   display: flex;
-  justify-content: flex-start;
   font-size: 1em;
+ 
 }
 
 .Loaded-List-Item-Active {
@@ -49,18 +50,21 @@
   display: flex;
   font-size: 1em;
   justify-content: flex-start;
+ 
 }
 
 .DeleteButton {
   font-family: "Toxigenesis";
-  border: 0.15em solid var(--general-border-color);
-  position: absolute;
+  border: 0.25em solid var(--general-border-color);
   padding: 0 0.5em;
   left: 80%;
   margin-top: 0.3rem;
+ 
   font-size: 0.7em;
   font-weight: 800;
-  border-radius: 0.4em;
+  border-radius: 0.6em;
+  right: 15%;
+  position: absolute;
 }
 
 .LoadButton {
