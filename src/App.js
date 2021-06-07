@@ -33,9 +33,9 @@ export default function App() {
     filterType: "lowpass",
     resonance: 0.01,
     ampEnvelope: {
-      attack: 0.01,
+      attack: 0,
       decay: 1,
-      sustain: 0.01,
+      sustain: 0.001,
       release: 0,
     },
     reverbDuration: 0.001,

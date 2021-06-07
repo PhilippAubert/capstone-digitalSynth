@@ -18,51 +18,48 @@
   border: 0.5em solid var(--general-border-color);
   border-radius: 1em;
   width: 85%;
-  height: 70%;
+  height: 75%;
   top: 5rem;
   left: 1.8rem;
 }
 
 .List-Container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  list-style-type: none;
-  max-width: 100%;
+  max-width: 80vw;
+  min-width: 80vw;
+ 
 }
 
 .Loaded-List {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-right: 5.2em;
+  align-items: flex-start;
+ 
 }
 
 .Loaded-List-Item {
   color: var(--general-border-color);
   display: flex;
   font-size: 1em;
-  user-select: none;
-  width: 100%;
+ 
 }
 
 .Loaded-List-Item-Active {
-  list-style-type: none;
   color: var(--general-border-color);
   background-color: black;
   color: chartreuse;
   display: flex;
   font-size: 1em;
-  width: 70%;
-  user-select: none;
+  justify-content: flex-start;
+ 
 }
 
 .DeleteButton {
   font-family: "Toxigenesis";
   border: 0.25em solid var(--general-border-color);
   padding: 0 0.5em;
-  margin-top: 0.1em;
+  left: 80%;
+  margin-top: 0.3rem;
+ 
   font-size: 0.7em;
   font-weight: 800;
   border-radius: 0.6em;

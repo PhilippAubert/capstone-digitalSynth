@@ -26,9 +26,8 @@ export default function Effects({
         type="range"
         min="0.001"
         max="5"
-        className="Value"
-        step="0.001"
-      />
+        step="0.01"
+        className="Value"/>
       <label className="Effect-Label"> PHASER </label>
       <input
         value={phaser}

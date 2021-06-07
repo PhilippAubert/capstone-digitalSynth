@@ -9,14 +9,11 @@ export default function Load({ onPatchLoad }) {
   const [selectedPatch, setSelectedPatch] = useState({});
 
   function loadAndRedirect() {
-    if (onPatchLoad(!selectedPatch)) {
-      alert("save patch first");
-    } else {
-      onPatchLoad(selectedPatch);
-      history.push("/");
-    }
+    onPatchLoad(selectedPatch);
+    history.push("/");
   }
 
+ 
   useEffect(() => {
     const patches = JSON.parse(localStorage.getItem("Patches")) || [];
     setPatchesFromLocal(patches);
